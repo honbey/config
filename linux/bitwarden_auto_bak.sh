@@ -4,4 +4,4 @@ FILENAME=bitwarden_bak_$(date +"%Y-%m-%d").tar.gz
 set -e
 cd /root/bitwarden-server/data
 tar czf $FILENAME ./*
-mv $FILENAME /root/freewisdom/bitwarden/
+mv $FILENAME /root/bitwarden-server/backup/

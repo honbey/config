@@ -8,11 +8,10 @@ mkdir ./workspace
 cd ${CUR_PATH}/workspace
 mkdir honbey corcpp python shell web
 cd ${CUR_PATH}/workspace/honbey
-git clone git@${MY_GIT_URL}:honbey/notes.git
+git clone git@${MY_GIT_URL}:honbey/pri-notes.git
 git clone git@${MY_GIT_URL}:honbey/learn-corcpp.git
 git clone git@${MY_GIT_URL}:honbey/learn-javascript.git
 git clone git@${MY_GIT_URL}:honbey/learn-python.git
-git clone git@${MY_GIT_URL}:honbey/hexo-blog.git
 
 cd ${CUR_PATH}/workspace/corcpp
 git clone git@${REMOTE_GIT_URL}:honbey/my-hnu-codeset.git

@@ -4,10 +4,11 @@
 # crontab -e
 # 0 0 15 * * /path/bitwarden_auto_bak.sh $1
 
+set -e
+
 FILE_NAME=bitwarden_bak_$(date +"%Y-%m-%d").tar.gz
 
 file_path=${1}
-set -e
 cd ${file_path}/data/
 tar czf ${FILE_NAME} ./*
 mv ${FILE_NAME} ${file_path}/backup/

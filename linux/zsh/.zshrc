@@ -16,6 +16,7 @@ source ~/.zinit/bin/zinit.zsh
 WORDCHARS=''
 
 # User specific aliases and functions
+alias grep='grep --color=auto' ls='ls --color=auto'
 alias ll='ls -alF' la='ls -A' l='ls -CF' l.='ls -d .*'
 alias rm='rm -i' cp='cp -v' mv='mv -v'
 alias ..='cd ..' ...='cd ../..'

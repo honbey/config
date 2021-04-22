@@ -1,7 +1,13 @@
 #!/bin/bash
 # 此脚本用于自动备份 BitWarden 的文件
-FILENAME=bitwarden_bak_$(date +"%Y-%m-%d").tar.gz
+
+# crontab -e
+# 0 0 15 * * /path/bitwarden_auto_bak.sh $1
+
+FILE_NAME=bitwarden_bak_$(date +"%Y-%m-%d").tar.gz
+
+file_path=${1}
 set -e
-cd /root/bitwarden-server/data
-tar czf $FILENAME ./*
-mv $FILENAME /root/bitwarden-server/backup/
+cd ${file_path}/data/
+tar czf ${FILE_NAME} ./*
+mv ${FILE_NAME} ${file_path}/backup/

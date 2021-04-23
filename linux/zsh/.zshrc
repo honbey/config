@@ -22,11 +22,10 @@ alias rm='rm -i' cp='cp -v' mv='mv -v'
 alias ..='cd ..' ...='cd ../..'
 alias ck='cmake .'
 alias vi='vim'
-alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
-alias sysservice='systemctl list-units --type=service'
 
   # Linux
 #alias dl='du -h --max-depth=1'
+#alias sysservice='systemctl list-units --type=service'
     # Fast Jump
 #alias d='dirs -v'
 #alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
@@ -72,7 +71,7 @@ zinit wait lucid for \
  atload"unalias grv g" \
     OMZ::plugins/git/git.plugin.zsh
 
-#PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
+#PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c  "
 PS1="%F{gray} %F{cyan}%c "
 #PS1="%F{magenta} %F{cyan}%c "
 #PS1="%F{magenta} %F{cyan}%c "

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Program to output a system information page
 
 TITLE="System Information Report"

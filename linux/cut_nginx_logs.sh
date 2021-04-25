@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 每天自动备份 nginx 日志并压缩存储
 
 # crontab -e

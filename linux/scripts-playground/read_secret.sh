@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # read secret
 if read -t 10 -sp "Enter secret pass phrase > " secret_pass; then
     echo -e "\nSecret pass phrase = '$secret_pass'"

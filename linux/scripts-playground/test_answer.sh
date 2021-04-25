@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # test string
 ANSWER="maybe"
 if [ -z "$ANSWER" ]; then

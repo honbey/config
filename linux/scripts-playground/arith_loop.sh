@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to demonstrate arithmetic operators
 finished=0
 a=0

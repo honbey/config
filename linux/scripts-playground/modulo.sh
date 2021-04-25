@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # demonstrate the modulo operator
 for (( i = 0; i <= 20; ++i )); do
     remainder=$((i % 5))

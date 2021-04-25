@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Use arrays to tolly file owners
 declare -A files file_group file_owner groups owners
 

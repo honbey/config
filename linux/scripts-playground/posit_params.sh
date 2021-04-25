@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # posit parameters
 print_params () {
     echo "\$1 = $1"

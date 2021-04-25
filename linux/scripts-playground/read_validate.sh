@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # read validate
 invalid_input() {
     echo "Invalid input '$REPLY'" >&2

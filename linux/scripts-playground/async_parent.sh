@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Asynchronous execution demo (parent)
 echo "Parent: starting..."
 echo "Parent: launching child script..."

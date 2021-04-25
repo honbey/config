@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to count files by modification time
 usage () {
     echo "usage: $(basename $0) directory" >&2

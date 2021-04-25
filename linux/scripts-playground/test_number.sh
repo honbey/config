@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # test number
 echo -n "Please enter an integer -> "
 read int

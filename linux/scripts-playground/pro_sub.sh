@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # demo of process substitution
 while read attr links owner group size month day time filename; do
     cat <<- _EOF_

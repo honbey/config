@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # posit parameter
 count=1
 while [[ $# -gt 0 ]]; do

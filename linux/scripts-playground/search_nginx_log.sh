@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 lineCount=1000
 if [ $2 ]; then
     lineCount=$2

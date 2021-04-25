@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # read IFS
 FILE=/etc/passwd
 read -p "Enter a user name > " user_name

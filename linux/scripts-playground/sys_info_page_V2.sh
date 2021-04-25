@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Program to output a system information page
 PROGNAME=$(basename $0)
 TITLE="System Information Report For $HOSTNAME"

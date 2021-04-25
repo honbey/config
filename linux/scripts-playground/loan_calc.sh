@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to calculate monthly loan payments
 PROGNAME=$(basename $0)
 usage () {

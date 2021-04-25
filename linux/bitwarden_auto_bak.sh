@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 此脚本用于自动备份 BitWarden 的文件
 
 # crontab -e

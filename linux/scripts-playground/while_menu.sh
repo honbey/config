@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # while menu
 DELAY=2
 while [[ $REPLY != 0 ]]; do

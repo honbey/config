@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # find longest string in a file
 for i; do
     if [[ -r $i ]]; then

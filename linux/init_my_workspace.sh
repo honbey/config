@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 # Script for initializing my workspace
 set -e
 CUR_PATH=$(pwd)

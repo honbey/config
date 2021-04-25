@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # until count
 count=1
 until [ $count -gt 5 ]; do

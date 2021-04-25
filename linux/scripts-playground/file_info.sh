@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # show file information
 PROGNAME=$(basename $0)
 if [[ -e $1 ]]; then

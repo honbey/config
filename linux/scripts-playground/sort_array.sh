@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # sort an array
 a=(f e d c b a)
 echo "Original array: ${a[@]}"

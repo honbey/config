@@ -13,3 +13,9 @@ find . \
     -not -perm 755 \
     -exec chmod 755 '{}' + \
     \)
+
+# 更改释伴行
+# Mac
+sed -i '' 's/#!\/bin\/bash/#!\/usr\/bin\/env\ bash/' *.sh
+# Linux
+#sed -i 's/#!\/bin\/bash/#!\/usr\/bin\/env\ bash/' *.sh

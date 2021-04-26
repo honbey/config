@@ -3,6 +3,7 @@
 	"expand_tabs_on_save": true,
 	"font_face": "Code New Roman Nerd Font Complete Mono",
 	"font_size": 18,
+    "rulers": [80, 100],
 	"ignored_packages":
 	[
 		"Vintage"

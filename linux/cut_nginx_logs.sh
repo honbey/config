@@ -25,5 +25,8 @@ if [[ ! -d "${log_path}/backups" ]]; then
     mkdir ${log_path}/backups
 fi
 
+gzip "${old_access_log}"
+gzip "${old_error_log}"
+
 mv "${old_access_log}.gz" ${log_path}/backups/
 mv "${old_error_log}.gz" ${log_path}/backups/

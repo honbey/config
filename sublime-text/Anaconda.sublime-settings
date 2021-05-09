@@ -1,4 +1,5 @@
 {
     "anaconda_linting": false,
-    "python_interpreter": "/Users/honbey/working/python/bin/python3",
+    "swallow_startup_errors": true,
+    "python_interpreter": "/opt/homebrew/Caskroom/miniforge/base/envs/work/bin/python",
 }

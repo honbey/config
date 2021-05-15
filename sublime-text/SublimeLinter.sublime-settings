@@ -35,7 +35,8 @@
     "htmlhint": {
       "env": {
         "PATH": "/opt/homebrew/bin"
-      }
+      },
+      "excludes": ["*.md"]
     }
   },
   "no_column_highlights_line": false,

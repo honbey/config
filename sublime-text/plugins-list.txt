@@ -1,11 +1,13 @@
 Anaconda
+Babel
 ConvertToUTF8
+Emmet
 Package Control
 SublimeLinter
 SublimeLinter-clang
-SublimeLinter-flake8
-SublimeLinter-shellcheck
-SublimeLinter-jshint
-SublimeLinter-csslint
 SublimeLinter-contrib-htmlhint
+SublimeLinter-csslint
 SublimeLinter-eslint
+SublimeLinter-flake8
+SublimeLinter-jshint
+SublimeLinter-shellcheck

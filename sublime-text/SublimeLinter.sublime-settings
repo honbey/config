@@ -30,7 +30,8 @@
     "csslint": {
       "env": {
         "PATH": "/opt/homebrew/bin"
-      }
+      },
+      "ignore": ["order-alphabetical"]
     },
     "htmlhint": {
       "env": {

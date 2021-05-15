@@ -1,5 +1,5 @@
 {
-    "anaconda_linting": false,
-    "swallow_startup_errors": true,
-    "python_interpreter": "/opt/homebrew/Caskroom/miniforge/base/envs/work/bin/python",
+  "anaconda_linting": false,
+  "swallow_startup_errors": true,
+  "python_interpreter": "/opt/homebrew/Caskroom/miniforge/base/envs/work/bin/python",
 }

@@ -1,84 +1,80 @@
 // SublimeLinter Settings - User
 {
-    "debug": false,
-
-    "delay": 0.1,
-
-    "gutter_theme": "Default",
-
-    "highlights.demote_while_editing": "none",
-
-    "highlights.demote_scope": "",
-
-    "highlights.time_to_idle": 1.5,
-
-    "highlights.start_hidden": false,
-
-    "kill_old_processes": true,
-
-    "lint_mode": "load_save",
-
-    "linters": {
-        "flake8": {
-            "disable": false,
-            "args": [
-                "--max-line-length", "120",
-                "--ignore", "E133,E226",
-            ]
-        }
+  "debug": false,
+  "delay": 0.1,
+  "gutter_theme": "Default",
+  "highlights.demote_while_editing": "none",
+  "highlights.demote_scope": "",
+  "highlights.time_to_idle": 1.5,
+  "highlights.start_hidden": false,
+  "kill_old_processes": true,
+  "lint_mode": "load_save",
+  "linters": {
+    "flake8": {
+      "disable": false,
+      "args": [
+        "--max-line-length", "120",
+        "--ignore", "E111,E133,E226",
+      ]
     },
-
-    "no_column_highlights_line": false,
-
-    "paths": {
-        "linux": [],
-        "osx": [
-            "/Users/honbey/working/python/bin"
-        ],
-        "windows": []
+    "eslint": {
+      "env": {
+        "PATH": "/opt/homebrew/bin"
+      }
     },
-
-    "show_hover_line_report": true,
-
-    "show_hover_region_report": true,
-
-    "show_marks_in_minimap": true,
-
-    "show_panel_on_save": "never",
-
-    "statusbar.counters_template": "",
-
-    "statusbar.messages_template": "{message}",
-
-    "statusbar.show_active_linters": true,
-
-    "styles": [
-        {
-            "mark_style": "squiggly_underline",
-
-            "scope": "region.yellowish markup.warning.sublime_linter",
-
-            "types": ["warning"]
-        },
-        {
-            "priority": 1,
-
-            "icon": "dot",
-
-            "mark_style": "squiggly_underline",
-
-            "scope": "region.redish markup.error.sublime_linter"
-        }
-    ],
-
-    "syntax_map": {
-        "html (django)": "html",
-        "html (rails)": "html",
-        "html 5": "html",
-        "javascript (babel)": "javascript",
-        "magicpython": "python",
-        "php": "html",
-        "python django": "python",
-        "pythonimproved": "python"
+    "jshint": {
+      "env": {
+        "PATH": "/opt/homebrew/bin"
+      }
+    },
+    "csslint": {
+      "env": {
+        "PATH": "/opt/homebrew/bin"
+      }
+    },
+    "htmlhint": {
+      "env": {
+        "PATH": "/opt/homebrew/bin"
+      }
     }
+  },
+  "no_column_highlights_line": false,
+  "paths": {
+    "linux": [],
+    "osx": [
+      "/opt/homebrew/Caskroom/miniforge/base/envs/work/bin",
+      "/opt/homebrew/bin"
+    ],
+    "windows": []
+  },
+  "show_hover_line_report": true,
+  "show_hover_region_report": true,
+  "show_marks_in_minimap": true,
+  "show_panel_on_save": "never",
+  "statusbar.counters_template": "",
+  "statusbar.messages_template": "{message}",
+  "statusbar.show_active_linters": true,
+  "styles": [
+    {
+      "mark_style": "squiggly_underline",
+      "scope": "region.yellowish markup.warning.sublime_linter",
+      "types": ["warning"]
+    },
+    {
+      "priority": 1,
+      "icon": "dot",
+      "mark_style": "squiggly_underline",
+      "scope": "region.redish markup.error.sublime_linter"
+    }
+  ],
+  "syntax_map": {
+    "html (django)": "html",
+    "html (rails)": "html",
+    "html 5": "html",
+    "javascript (babel)": "javascript",
+    "magicpython": "python",
+    "php": "html",
+    "python django": "python",
+    "pythonimproved": "python"
+  }
 }

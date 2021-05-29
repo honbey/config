@@ -10,9 +10,9 @@ GITEE_URL=gitee.com
 GITHUB_URL=github.com
 
 if [[ ! -d "${CUR_PATH}/workspace" ]]; then
-    mkdir ${CUR_PATH}/workspace
+  mkdir ${CUR_PATH}/workspace
 else
-    rm -rf ${CUR_PATH}/workspace/*
+  rm -rf ${CUR_PATH}/workspace/*
 fi
 
 cd ${CUR_PATH}/workspace
@@ -21,30 +21,30 @@ git clone git@${MY_GIT_URL}:honbey/honbey.git
 repos_dirs=("corcpp" "python" "shell" "web")
 
 corcpp_repos=(
-    "my-hnu-codeset" "ping-gui" "seminar-iris" "share-bookcase"
+  "my-hnu-codeset"
 )
 
 python_repos=(
-    "m-image"
+  "m-image"
 )
 
 shell_repos=(
-    "config-and-scripts"
+  "config-and-scripts"
 )
 
 web_repos=(
-    "freewisdom-web" "se-book2"
+  "freewisdom-web"
 )
 
 for repos_dir in ${repos_dirs[*]}; do
-    mkdir ${CUR_PATH}/workspace/${repos_dir}
-    repos=`eval echo '$'{${repos_dir}_repos[*]}`
-    for repo in ${repos}; do
-        cd ${CUR_PATH}/workspace/${repos_dir}
-        git clone git@${GITEE_URL}:honbey/${repo}.git
-        cd ${CUR_PATH}/workspace/${repos_dir}/${repo}
-        git remote set-url --add origin git@${GITHUB_URL}:honbey/${repo}.git
-    done
+  mkdir ${CUR_PATH}/workspace/${repos_dir}
+  repos=`eval echo '$'{${repos_dir}_repos[*]}`
+  for repo in ${repos}; do
+    cd ${CUR_PATH}/workspace/${repos_dir}
+    git clone git@${GITEE_URL}:honbey/${repo}.git
+    cd ${CUR_PATH}/workspace/${repos_dir}/${repo}
+    git remote set-url --add origin git@${GITHUB_URL}:honbey/${repo}.git
+  done
 done
 
 cd ${CUR_PATH}/workspace

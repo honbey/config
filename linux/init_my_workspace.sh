@@ -6,7 +6,7 @@ set -e
 CUR_PATH=$(pwd)
 
 MY_GIT_URL=freewisdom.cn
-GITEE_URL=gitee.com
+
 GITHUB_URL=github.com
 
 if [[ ! -d "${CUR_PATH}/workspace" ]]; then
@@ -41,9 +41,9 @@ for repos_dir in ${repos_dirs[*]}; do
   repos=`eval echo '$'{${repos_dir}_repos[*]}`
   for repo in ${repos}; do
     cd ${CUR_PATH}/workspace/${repos_dir}
-    git clone git@${GITEE_URL}:honbey/${repo}.git
-    cd ${CUR_PATH}/workspace/${repos_dir}/${repo}
-    git remote set-url --add origin git@${GITHUB_URL}:honbey/${repo}.git
+    git clone git@${GITHUB_URL}:honbey/${repo}.git
+    # cd ${CUR_PATH}/workspace/${repos_dir}/${repo}
+    # git remote set-url --add origin git@${GITHUB_URL}:honbey/${repo}.git
   done
 done
 

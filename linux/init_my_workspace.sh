@@ -5,7 +5,7 @@ set -e
 
 CUR_PATH=$(pwd)
 
-MY_GIT_URL=freewisdom.cn
+PRI_GIT_URL=""
 
 GITHUB_URL=github.com
 
@@ -16,25 +16,25 @@ else
 fi
 
 cd ${CUR_PATH}/workspace
-git clone git@${MY_GIT_URL}:honbey/honbey.git
+# git clone git@${PRI_GIT_URL}:honbey/honbey.git
 
-repos_dirs=("corcpp" "python" "shell" "web")
-
-corcpp_repos=(
-  "my-hnu-codeset"
+repos=(
+  "honbey.github.io" "hwiki" "config-and-scripts" "big-integer"
 )
+
+for repo in ${repos[*]}; do
+  git clone git@${GITHUB_URL}:honbey/${repo}.git
+done
+
+repos_dirs=("python")
 
 python_repos=(
   "m-image"
 )
 
-shell_repos=(
-  "config-and-scripts"
-)
-
-web_repos=(
-  "freewisdom-web"
-)
+#web_repos=(
+#  "web"
+#)
 
 for repos_dir in ${repos_dirs[*]}; do
   mkdir ${CUR_PATH}/workspace/${repos_dir}
@@ -47,12 +47,12 @@ for repos_dir in ${repos_dirs[*]}; do
   done
 done
 
-cd ${CUR_PATH}/workspace
-git clone git@${MY_GIT_URL}:honbey/learn-corcpp.git
-git clone git@${MY_GIT_URL}:honbey/learn-python.git
-git clone git@${MY_GIT_URL}:honbey/learn-javascript.git
-mv -i learn-corcpp ${CUR_PATH}/workspace/corcpp
-mv -i learn-python ${CUR_PATH}/workspace/python
-mv -i learn-javascript ${CUR_PATH}/workspace/web
+if [[ -n "${PRI_GIT_URL}" ]]; then 
+  cd ${CUR_PATH}/workspace
+  git clone git@${PRI_GIT_URL}:honbey/learn-python.git
+  git clone git@${PRI_GIT_URL}:honbey/learn-javascript.git
+  mv -i learn-python ${CUR_PATH}/workspace/python
+  mv -i learn-javascript ${CUR_PATH}/workspace/web
+fi
 
 echo 'Done.'

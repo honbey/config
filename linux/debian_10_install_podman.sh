@@ -1,4 +1,4 @@
-#/bin/bash                                                                                                                                                    
+#!/usr/bin/env bash                                                                                                                                                    
 
 # Debian 10
 # First enable user namespaces as root user

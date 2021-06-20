@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # 此脚本用于更改 git 仓库中的历史提交邮箱和用户名
 git filter-branch --env-filter '
 OLD_EMAIL="honbey@honbey.com"

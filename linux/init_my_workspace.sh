@@ -19,7 +19,7 @@ cd ${CUR_PATH}/workspace
 # git clone git@${PRI_GIT_URL}:honbey/honbey.git
 
 repos=(
-  "honbey.github.io" "hwiki" "config-and-scripts" "big-integer"
+  "honbey.github.io" "config-and-scripts" "big-integer"
 )
 
 for repo in ${repos[*]}; do
@@ -46,13 +46,5 @@ for repos_dir in ${repos_dirs[*]}; do
     # git remote set-url --add origin git@${GITHUB_URL}:honbey/${repo}.git
   done
 done
-
-if [[ -n "${PRI_GIT_URL}" ]]; then 
-  cd ${CUR_PATH}/workspace
-  git clone git@${PRI_GIT_URL}:honbey/learn-python.git
-  git clone git@${PRI_GIT_URL}:honbey/learn-javascript.git
-  mv -i learn-python ${CUR_PATH}/workspace/python
-  mv -i learn-javascript ${CUR_PATH}/workspace/web
-fi
 
 echo 'Done.'

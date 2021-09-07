@@ -1,16 +1,13 @@
 {
-  "color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
   "expand_tabs_on_save": true,
   "font_face": "Code New Roman Nerd Font Complete Mono",
   "font_size": 16,
   "rulers": [80, 100],
   "tab_size": 2,
-  "theme": "auto",
   "translate_tabs_to_spaces": true,
-  "dark_theme": "Adaptive.sublime-theme",
-  "light_theme": "Adaptive.sublime-theme",
   "ignored_packages":
   [
     "Vintage",
   ],
+  "theme": "auto",
 }

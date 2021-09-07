@@ -38,9 +38,9 @@ endif
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/plugged')
-Plug 'crusoexia/vim-monokai'
+"Plug 'crusoexia/vim-monokai'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
-colorscheme monokai
+"colorscheme monokai

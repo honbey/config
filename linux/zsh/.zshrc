@@ -12,38 +12,44 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 source ~/.zinit/bin/zinit.zsh
 
+export PATH="$HOME/.bin:$PATH"
+
 # Let Meta-B work well
 WORDCHARS=''
 
 # User specific aliases and functions
-alias grep='grep --color=auto' ls='ls --color=auto'
-alias ll='ls -alF' la='ls -A' l='ls -CF' l.='ls -d .*'
+alias ls='ls --color=auto' ll='ls -alF' la='ls -A' l='ls -CF' l.='ls -d .*'
 alias rm='rm -i' cp='cp -v' mv='mv -v'
+alias grep='grep --color=auto'
 alias ..='cd ..' ...='cd ../..'
 alias ck='cmake .'
 alias vi='vim'
 
+
   # Linux
 #alias dl='du -h --max-depth=1'
-#alias sysservice='systemctl list-units --type=service'
     # Fast Jump
 #alias d='dirs -v'
 #alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
 #alias jj='pushd'
+    # Openresty
+#alias o1t='openresty -t'
+#alias o1c='openresty -T'
+#alias o1r='openresty -s reload'
+#alias n1t='/usr/local/nginx/sbin/nginx -t'
+#alias n1c='/usr/local/nginx/sbin/nginx -T'
+#alias n1r='/usr/local/nginx/sbin/nginx -s reload'
+#alias syss='systemctl list-units --type=service'
 
   # MacOSX
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias dl='du -h -d 1'
+alias aw='source ~/.conda_zshrc && conda activate work'
+
       # burp suite
 #alias burp-suite='/opt/homebrew/opt/openjdk/bin/java -jar /Users/honbey/tools/burp-suite/burpsuite_community_v2021.3.1.jar'
 
-# History file configuration
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-# Ignore the same commands
-export HISTCONTROL=ignoredups
-
+# zinit
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -71,7 +77,8 @@ zinit wait lucid for \
  atload"unalias grv g" \
     OMZ::plugins/git/git.plugin.zsh
 
-#PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c  "
+# Custom theme
+#PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
 PS1="%F{gray} %F{cyan}%c "
 #PS1="%F{magenta} %F{cyan}%c "
 #PS1="%F{magenta} %F{cyan}%c "
@@ -79,5 +86,30 @@ zinit ice wait lucid atload
 zinit ice lucid wait='!0'
 zinit light honbey/mzt
 
-# My zshrc ###############################################################################
-##########################################################################################
+# History file configuration
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Wirte to the history file immediately, not when the shell exit
+setopt INC_APPEND_HISTORY
+# Share history between all sessions
+setopt SHARE_HISTORY
+# Expire duplicate entries first when trimming history
+setopt HIST_EXPIRE_DUPS_FIRST
+# Don't record an entry that was just recorded angin
+setopt HIST_IGNORE_DUPS
+# Delete old recorded entry if new entry is a duplicate
+setopt HIST_IGNORE_ALL_DUPS
+# Don't display a line previously fount
+setopt HIST_FIND_NO_DUPS
+# Don't record an entry starting with a space
+setopt HIST_IGNORE_SPACE
+# Don't write dulicate entries in the history file
+setopt HIST_SAVE_NO_DUPS
+# Remove superfluous blanks before recording entry
+setopt HIST_REDUCE_BLANKS
+# Don't execute immediately upon history expansion
+setopt HIST_VERIFY
+# Don't store ts and duration of the execution
+setopt EXTENDED_HISTORY

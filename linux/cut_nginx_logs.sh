@@ -16,13 +16,13 @@ old_error_log=${log_path}/${date_str}-${error_log}
 mv ${log_path}/${access_log} ${old_access_log}
 mv ${log_path}/${error_log} ${old_error_log}
 
-kill -USR1 `cat ${log_path}/nginx.pid`
+kill -USR1 $(cat ${log_path}/nginx.pid)
 
 # not necessary
 # sed -i 's/"[0-9]\+"/"0"/' /tmp/positions.yaml
 
 if [[ ! -d "${log_path}/backups" ]]; then
-    mkdir ${log_path}/backups
+  mkdir ${log_path}/backups
 fi
 
 gzip "${old_access_log}"

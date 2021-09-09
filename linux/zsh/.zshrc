@@ -7,8 +7,8 @@ export PATH="/opt/homebrew/bin:$PATH"
 #  export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 #  export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 
-##########################################################################################
-# My zshrc ###############################################################################
+################################################################################
+# My zshrc #####################################################################
 
 source ~/.zinit/bin/zinit.zsh
 
@@ -112,4 +112,7 @@ setopt HIST_REDUCE_BLANKS
 # Don't execute immediately upon history expansion
 setopt HIST_VERIFY
 # Don't store ts and duration of the execution
-setopt EXTENDED_HISTORY
+#setopt EXTENDED_HISTORY
+
+# My zshrc #####################################################################
+################################################################################

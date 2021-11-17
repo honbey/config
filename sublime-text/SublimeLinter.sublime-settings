@@ -14,7 +14,7 @@
       "disable": false,
       "args": [
         "--max-line-length", "120",
-        "--ignore", "E111,E133,E226",
+        "--ignore", "E111,E114,E121,E133,E226",
       ]
     },
     "eslint": {
@@ -48,7 +48,7 @@
   "paths": {
     "linux": [],
     "osx": [
-      "/opt/homebrew/Caskroom/miniforge/base/envs/work/bin",
+      "/Users/user/working/pyenv/work/bin",
       "/opt/homebrew/bin"
     ],
     "windows": []

@@ -1,0 +1,11 @@
+[
+  { 
+    "keys": ["ctrl+m"], 
+    "command": "commit_completion", 
+  },
+  { 
+    "keys": ["ctrl+j"], 
+    "command": "move_to", 
+    "args": {"to": "brackets"} 
+  },
+]

@@ -1,11 +1,26 @@
 [
-  { 
-    "keys": ["ctrl+m"], 
-    "command": "commit_completion", 
+  {
+    "keys": ["ctrl+j"],
+    "command": "move_to",
+    "args": {"to": "brackets"}
   },
-  { 
-    "keys": ["ctrl+j"], 
-    "command": "move_to", 
-    "args": {"to": "brackets"} 
+  {
+    "keys": ["ctrl+m"],
+    "command": "insert",
+    "args": {"characters": "\n"}
+  },
+  {
+    "keys": ["ctrl+m"],
+    "command": "commit_completion",
+    "context":
+    [
+      {
+        "key": "auto_complete_visible"
+      },
+      {
+        "key": "setting.auto_complete_commit_on_tab",
+        "operand": false
+      }
+    ]
   },
 ]

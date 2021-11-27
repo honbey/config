@@ -32,7 +32,7 @@ alias vi='vim'
 #alias d='dirs -v'
 #alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
 #alias jj='pushd'
-    # Openresty
+    # Nginx
 #alias o1t='openresty -t'
 #alias o1c='openresty -T'
 #alias o1r='openresty -s reload'
@@ -44,9 +44,9 @@ alias vi='vim'
   # MacOSX
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias dl='du -h -d 1'
-alias aw='source ~/.conda_zshrc && conda activate work'
+alias aw='source ~/working/pyenv/work/bin/activate'
 
-      # burp suite
+    # burp suite
 #alias burp-suite='/opt/homebrew/opt/openjdk/bin/java -jar /Users/honbey/tools/burp-suite/burpsuite_community_v2021.3.1.jar'
 
 # zinit
@@ -78,10 +78,16 @@ zinit wait lucid for \
     OMZ::plugins/git/git.plugin.zsh
 
 # Custom theme
-#PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
-PS1="%F{gray} %F{cyan}%c "
-#PS1="%F{magenta} %F{cyan}%c "
-#PS1="%F{magenta} %F{cyan}%c "
+# PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
+if [[ "$OSTYPE" == darwin* ]]; then
+  PS1="%F{gray} %F{cyan}%c "
+elif grep -Eq "CentOS" /etc/*-release; then
+  PS1="%F{magenta} %F{cyan}%c "
+elif grep -Eq "Debian" /etc/*-release; then
+  PS1="%F{magenta} %F{cyan}%c "
+else
+  PS1="%F{green}✓ %F{cyan}%c "
+fi
 zinit ice wait lucid atload
 zinit ice lucid wait='!0'
 zinit light honbey/mzt

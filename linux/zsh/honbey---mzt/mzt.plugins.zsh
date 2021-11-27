@@ -48,11 +48,22 @@ setopt prompt_subst
 
 [[ -n "$WINDOW" ]] && SCREEN_NO="%B$WINDOW%b " || SCREEN_NO=""
 
+# PROMPT=""
+# cat > ${PROMPT} <<- EOF
+# %{$fg_bold[green]%}%n%{$fg[cyan]%}@%{$fg_bold[green]%}%m %{$fg_bold[green]%} 
+# %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % 
+# %{$reset_color%}
+# EOF
 # git theming default: Variables for theming the git info prompt
-PROMPT="%(?:%{$fg_bold[gray]%} :%{$fg_bold[red]%} )"
-#PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
-#PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
-#PROMPT+='%{$fg_bold[green]%}%n%{$fg[cyan]%}@%{$fg_bold[green]%}%m %{$fg_bold[green]%} %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+if [[ "$OSTYPE" == darwin* ]]; then
+  PROMPT="%(?:%{$fg_bold[gray]%} :%{$fg_bold[red]%} )"
+elif grep -Eq "CentOS" /etc/*-release; then
+  PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
+elif grep -Eq "Debian" /etc/*-release; then 
+  PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
+else
+  PROMPT="%(?:%{$fg_bold[green]%}✓ :%{$fg_bold[red]%}✗ )"
+fi
 PROMPT+='%{$fg[cyan]%}%c%{$reset_color%} %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}% %{$reset_color%}'
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "

@@ -1,0 +1,14 @@
+beautifulsoup4
+flake8
+jupyterlab
+matplotlib
+numpy
+pandas
+Pillow
+pymongo
+pyMySQL
+requests
+selenium
+sshtunnel
+xlrd
+xlsxWriter

@@ -1,0 +1,10 @@
+chromedriver
+eloston-chromium
+iterm2
+mactex-no-gui
+minecraft
+multitouch
+netnewswire
+obs
+sublime-text
+wireshark

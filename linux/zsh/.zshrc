@@ -26,13 +26,24 @@ alias ck='cmake .'
 alias vi='vim'
 
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  # MacOSX
+  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+  alias dl='du -h -d 1'
+  alias aw='source ~/working/pyenv/work/bin/activate'
+  # burp suite
+  # alias burp-suite='/opt/homebrew/opt/openjdk/bin/java -jar \
+  # /Users/honbey/tools/burp-suite/burpsuite_community_v2021.3.1.jar'
+elif [[ "$OSTYPE" == linux* ]]; then
   # Linux
-#alias dl='du -h --max-depth=1'
-    # Fast Jump
-#alias d='dirs -v'
-#alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
-#alias jj='pushd'
-    # Nginx
+  alias dl='du -h --max-depth=1'
+  # Fast Jump
+  alias d='dirs -v'
+  alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
+  alias jj='pushd'
+fi
+    
+  # Nginx
 #alias o1t='openresty -t'
 #alias o1c='openresty -T'
 #alias o1r='openresty -s reload'
@@ -40,14 +51,6 @@ alias vi='vim'
 #alias n1c='/usr/local/nginx/sbin/nginx -T'
 #alias n1r='/usr/local/nginx/sbin/nginx -s reload'
 #alias syss='systemctl list-units --type=service'
-
-  # MacOSX
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias dl='du -h -d 1'
-alias aw='source ~/working/pyenv/work/bin/activate'
-
-    # burp suite
-#alias burp-suite='/opt/homebrew/opt/openjdk/bin/java -jar /Users/honbey/tools/burp-suite/burpsuite_community_v2021.3.1.jar'
 
 # zinit
 autoload -Uz _zinit

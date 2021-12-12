@@ -23,7 +23,7 @@ function track_all_branches {
   git branch -r | \
   grep -v '\->' | \
   while read remote; do \
-    git branch --track "${remote#origin/}" "$remote"; \
+    git branch --track "${remote#origin/}" "${remote}"; \
   done
   git fetch --all
   git pull --all
@@ -60,7 +60,7 @@ done
 
 # My private repository
 pri_repos=("h-learning")
-for repo in pri_repos; do
+for repo in "${pri_repos[@]}"; do
   git clone git@${GITHUB_URL}:honbey/${repo}.git
   track_all_branches
 done

@@ -1,6 +1,4 @@
-chromedriver
-eloston-chromium
-iterm2
+firefox
 mactex-no-gui
 minecraft
 multitouch

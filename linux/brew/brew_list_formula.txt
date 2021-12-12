@@ -12,11 +12,14 @@ fribidi
 gd
 gdbm
 gdk-pixbuf
+geckodriver
 gettext
 ghostscript
 giflib
+git-crypt
 glib
 gmp
+gnupg
 gnutls
 gobject-introspection
 graphite2
@@ -30,11 +33,15 @@ jbig2dec
 jemalloc
 jpeg
 jq
+libassuan
 libev
 libevent
 libffi
+libgcrypt
+libgpg-error
 libidn
 libidn2
+libksba
 libnghttp2
 libpng
 libpthread-stubs
@@ -62,6 +69,7 @@ netpbm
 nettle
 nghttp2
 node
+npth
 oniguruma
 openjdk
 openjpeg
@@ -71,6 +79,7 @@ pandoc
 pango
 pcre
 pcre2
+pinentry
 pixman
 pkg-config
 python@3.9

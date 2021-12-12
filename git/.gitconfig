@@ -1,14 +1,14 @@
 [user]
-	name = ${name}
-	email = ${email}
+  name = ${name}
+  email = ${email}
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
-	quotepath = false
-	safecrlf = true
-# Unix / Linux 
+  quotepath = false
+  safecrlf = true
+  # Unix / Linux 
   autocrlf = input
-# Windows 
-# autocrlf = true
+  # Windows 
+  # autocrlf = true
 [init]
   defaultBranch = main

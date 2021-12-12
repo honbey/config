@@ -61,6 +61,8 @@ elif grep -Eq "CentOS" /etc/*-release; then
   PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
 elif grep -Eq "Debian" /etc/*-release; then 
   PROMPT="%(?:%{$fg_bold[magenta]%} :%{$fg_bold[red]%} )"
+elif grep -Eq "Kali" /etc/*-release; then 
+  PROMPT="%(?:%{$fg_bold[magenta]%}㉿ :%{$fg_bold[red]%}㉿ )"
 else
   PROMPT="%(?:%{$fg_bold[green]%}✓ :%{$fg_bold[red]%}✗ )"
 fi

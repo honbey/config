@@ -1,16 +1,38 @@
-# Homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-# If you need to have openssl@1.1 first in your PATH, run:
-#  echo 'export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"' >> ~/.zshrc
+### Zinit
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# For compilers to find openssl@1.1 you may need to set:
-#  export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
-#  export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
-################################################################################
-# My zshrc #####################################################################
+### End of Zinit's installer chunk
 
-source ~/.zinit/bin/zinit.zsh
+# Fast-syntax-highlighting & autosuggestions
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+ blockf \
+    zsh-users/zsh-completions
+
+# lib/git.zsh is loaded mostly to stay in touch with the plugin (for the users)
+zinit wait lucid for \
+    zdharma-continuum/zsh-unique-id \
+    OMZ::lib/git.zsh \
+ atload"unalias grv g" \
+    OMZ::plugins/git/git.plugin.zsh
+
+### End of plugins
+
+
+### My zshrc ###################################################################
 
 export PATH="$HOME/.bin:$PATH"
 
@@ -34,6 +56,15 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # burp suite
   # alias burp-suite='/opt/homebrew/opt/openjdk/bin/java -jar \
   # /Users/honbey/tools/burp-suite/burpsuite_community_v2021.3.1.jar'
+
+  # Homebrew
+  export PATH="/opt/homebrew/bin:$PATH"
+  # If you need to have openssl@1.1 first in your PATH, run:
+  #  echo 'export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"' >> ~/.zshrc
+
+  # For compilers to find openssl@1.1 you may need to set:
+  #  export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
+  #  export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 elif [[ "$OSTYPE" == linux* ]]; then
   # Linux
   alias dl='du -h --max-depth=1'
@@ -41,44 +72,16 @@ elif [[ "$OSTYPE" == linux* ]]; then
   alias d='dirs -v'
   alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
   alias jj='pushd'
-fi
-    
+  alias syss='systemctl list-units --type=service'
   # Nginx
-#alias o1t='openresty -t'
-#alias o1c='openresty -T'
-#alias o1r='openresty -s reload'
-#alias n1t='/usr/local/nginx/sbin/nginx -t'
-#alias n1c='/usr/local/nginx/sbin/nginx -T'
-#alias n1r='/usr/local/nginx/sbin/nginx -s reload'
-#alias syss='systemctl list-units --type=service'
+  # alias o1t='openresty -t'
+  # alias o1c='openresty -T'
+  # alias o1r='openresty -s reload'
+  # alias n1t='/usr/local/nginx/sbin/nginx -t'
+  # alias n1c='/usr/local/nginx/sbin/nginx -T'
+  # alias n1r='/usr/local/nginx/sbin/nginx -s reload'
+fi
 
-# zinit
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-# Fast-syntax-highlighting & autosuggestions
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
-    zdharma/fast-syntax-highlighting \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
- blockf \
-    zsh-users/zsh-completions
-
-# lib/git.zsh is loaded mostly to stay in touch with the plugin (for the users)
-zinit wait lucid for \
-    zdharma/zsh-unique-id \
-    OMZ::lib/git.zsh \
- atload"unalias grv g" \
-    OMZ::plugins/git/git.plugin.zsh
 
 # Custom theme
 # PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
@@ -88,6 +91,8 @@ elif grep -Eq "CentOS" /etc/*-release; then
   PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Debian" /etc/*-release; then
   PS1="%F{magenta} %F{cyan}%c "
+elif grep -Eq "Kali" /etc/*-release; then
+  PS1="%F{magenta}㉿ %F{cyan}%c "
 else
   PS1="%F{green}✓ %F{cyan}%c "
 fi
@@ -123,5 +128,4 @@ setopt HIST_VERIFY
 # Don't store ts and duration of the execution
 #setopt EXTENDED_HISTORY
 
-# My zshrc #####################################################################
-################################################################################
+### My zshrc ###################################################################

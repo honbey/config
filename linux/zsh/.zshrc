@@ -85,14 +85,16 @@ fi
 
 # Custom theme
 # PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
-if [[ "$OSTYPE" == darwin* ]]; then
+if [[ "$USER" == "root" ]]; then
+  PS1="%F{gray} %F{cyan}%c "
+elif [[ "$OSTYPE" == darwin* ]]; then
   PS1="%F{gray} %F{cyan}%c "
 elif grep -Eq "CentOS" /etc/*-release; then
   PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Debian" /etc/*-release; then
   PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Kali" /etc/*-release; then
-  PS1="%F{magenta}㉿ %F{cyan}%c "
+  PS1="%F{blue} %F{cyan}%c "
 else
   PS1="%F{green}✓ %F{cyan}%c "
 fi

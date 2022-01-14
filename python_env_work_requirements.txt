@@ -1,7 +1,9 @@
 beautifulsoup4
+cryptography
 flake8
-jupyterlab
 matplotlib
+motor
+notebook
 numpy
 pandas
 Pillow
@@ -11,4 +13,4 @@ requests
 selenium
 sshtunnel
 xlrd
-xlsxWriter
+XlsxWriter

@@ -1,0 +1,26 @@
+{
+  "workbench.colorTheme": "Quiet Light",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true,
+    "**/.ipynb_checkpoints": true
+  },
+  "editor.fontFamily": "'CodeNewRoman Nerd Font Mono', Monaco, 'Courier New', monospace",
+  "editor.fontSize": 15,
+  "editor.rulers": [80, 100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.macOptionIsMeta": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "notebook.lineNumbers": "on"
+}

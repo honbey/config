@@ -111,27 +111,20 @@ while true; do
   curr_mem="$(mem_usage Mem)"
   curr_swap="$(mem_usage Swap)"
 
-  cpu_usage_per="$(echo "${curr_cpu_usage[@]} ${init_cpu_usage[@]}" |
-    awk '{print (($2 - $4) * 100) / ($1 - $3)}')"
+  cpu_usage_per="$(awk '{print (($2 - $4) * 100) / ($1 - $3)}' <(echo "${curr_cpu_usage[@]} ${init_cpu_usage[@]}"))"
 
   # [0] down, [1] up
-  if1_io_speed=($(echo "${curr_if1_flow[@]} ${init_if1_flow[@]}" |
-    awk '{print ($1 - $3) / '${ki}', ($2 - $4) / '${ki}'}'))
-  if1_pkg_speed=($(echo "${curr_if1_package[@]} ${init_if1_package[@]}" |
-    awk '{print ($1 - $3) / '${interval}', ($2 - $4) / '${interval}'}'))
-  if2_io_speed=($(echo "${curr_if2_flow[@]} ${init_if2_flow[@]}" |
-    awk '{print ($1 - $3) / '${ki}', ($2 - $4) / '${ki}'}'))
-  if2_pkg_speed=($(echo "${curr_if2_package[@]} ${init_if2_package[@]}" |
-    awk '{print ($1 - $3) / '${interval}', ($2 - $4) / '${interval}'}'))
+  if1_io_speed=($(awk '{print ($1 - $3) / '${ki}', ($2 - $4) / '${ki}'}' <(echo "${curr_if1_flow[@]} ${init_if1_flow[@]}")))
+  if1_pkg_speed=($(awk '{print ($1 - $3) / '${interval}', ($2 - $4) / '${interval}'}' <(echo "${curr_if1_package[@]} ${init_if1_package[@]}")))
+  if2_io_speed=($(awk '{print ($1 - $3) / '${ki}', ($2 - $4) / '${ki}'}' <(echo "${curr_if2_flow[@]} ${init_if2_flow[@]}")))
+  if2_pkg_speed=($(awk '{print ($1 - $3) / '${interval}', ($2 - $4) / '${interval}'}' <(echo "${curr_if2_package[@]} ${init_if2_package[@]}")))
 
-  disk_i_speed="$(echo "${curr_disk_in} ${init_disk_in}" | awk '{printf "%.f", ($1 - $2) / '${interval}'}')"
-  disk_o_speed="$(echo "${curr_disk_out} ${init_disk_out}" | awk '{printf "%.f", ($1 - $2) / '${interval}'}')"
+  disk_i_speed="$(awk '{printf "%.f", ($1 - $2) / '${interval}'}' <(echo "${curr_disk_in} ${init_disk_in}"))"
+  disk_o_speed="$(awk '{printf "%.f", ($1 - $2) / '${interval}'}' <(echo "${curr_disk_out} ${init_disk_out}"))"
 
   # [0] read, [1] write
-  disk1_speed=($(echo "${curr_disk1_io[@]} ${init_disk1_io[@]}" |
-    awk '{printf "%.f %.f", ($1 - $3) * 512 / '${ki}', ($2 - $4) * 512 / '${ki}'}'))
-  disk2_speed=($(echo "${curr_disk2_io[@]} ${init_disk2_io[@]}" |
-    awk '{printf "%.f %.f", ($1 - $3) * 512 / '${ki}', ($2 - $4) * 512 / '${ki}'}'))
+  disk1_speed=($(awk '{printf "%.f %.f", ($1 - $3) * 512 / '${ki}', ($2 - $4) * 512 / '${ki}'}' <(echo "${curr_disk1_io[@]} ${init_disk1_io[@]}")))
+  disk2_speed=($(awk '{printf "%.f %.f", ($1 - $3) * 512 / '${ki}', ($2 - $4) * 512 / '${ki}'}' <(echo "${curr_disk2_io[@]} ${init_disk2_io[@]}")))
 
   s0="{\"timestamp\":\"$(date -u "+%Y-%m-%dT%H:%M:%S.%NZ")\",\"cpu_usage_per\":${cpu_usage_per}"
   s1=",\"cpu_load_1\":${curr_cpu_load[0]},\"cpu_load_5\":${curr_cpu_load[1]},\"cpu_load_15\":${curr_cpu_load[2]}"

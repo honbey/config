@@ -1,0 +1,17 @@
+version: '3.0'
+
+services:
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - ./config:/etc/promtail/config:Z
+      - /data/logs/nginx:/logs/nginx:Z
+      - /data/logs/host:/logs/host:Z
+    command: -config.file=/etc/promtail/config/promtail-config.yaml
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

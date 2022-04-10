@@ -1,0 +1,79 @@
+server {
+  listen  local:443 http3;
+  #listen  [::]:443 http3;
+  listen  local:443 ssl http2;
+  #listen  [::]:443 ssl http2;
+  include http3.conf;
+  #listen      local:443 ssl http2;
+  #listen      [::]:443 ssl http2;
+  server_name seafile.example.com;
+
+  client_max_body_size 10m;
+
+  location / {
+    proxy_pass http://seafile/;
+    proxy_read_timeout 310s;
+    proxy_set_header Host $host;
+    proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Connection "";
+    proxy_http_version 1.1;
+
+    client_max_body_size 0;
+  }
+
+  location /seafhttp {
+    rewrite ^/seafhttp(.*)$ $1 break;
+    proxy_pass http://seafile-http;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    client_max_body_size 0;
+    proxy_connect_timeout 36000s;
+    proxy_read_timeout 36000s;
+    proxy_request_buffering off;
+  }
+
+  location /seafdav {
+    proxy_pass         http://seafile-dav;
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host $server_name;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+    proxy_read_timeout  1200s;
+    client_max_body_size 0;
+  }
+
+  location /media {
+    # root /data/seafile-server/seahub;
+    rewrite ^/(.*)$ https://dl.example.com/$1 redirect;
+  }
+}
+
+server {
+  listen  local:443 http3;
+  #listen  [::]:443 http3;
+  listen  local:443 ssl http2;
+  #listen  [::]:443 ssl http2;
+  include http3.conf;
+  server_name seafile_.example.com;
+
+  #include certification.conf;
+
+  client_max_body_size 10m;
+
+  location / {
+    proxy_pass http://seafile/;
+    proxy_read_timeout 310s;
+    proxy_set_header Host $host;
+    proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Connection "";
+    proxy_http_version 1.1;
+
+    client_max_body_size 0;
+  }
+}

@@ -10,7 +10,7 @@ services:
     container_name: loki
     restart: unless-stopped
     #ports:
-    #  - 3100:3100
+    #  - 8081:3100
     volumes:
       - ./config:/etc/loki/config
     #command: -config.file=/etc/loki/config/loki-config.yaml
@@ -49,11 +49,11 @@ services:
     #env_file:
     #  - ./config/grafana.env
     volumes:
-      - ./config/grafana.ini:/tmp/grafana.ini
+      - ./config/custom.ini:/tmp/custom.ini
       - ./grafana:/var/lib/grafana
-    command: --config /tmp/grafana.ini
+    command: --config /tmp/custom.ini
     #ports:
-    #  - 9010:3000
+    #  - 8082:3000
     networks:
       docker-br-log:
         ipv4_address: 172.28.0.30

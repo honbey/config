@@ -1,10 +1,14 @@
-version: '3.0'
+version: '3.8'
+
+networks:
+  podman-br-con:
+    external: true
 
 services:
   bitwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
-    restart: unless-stopped
+    restart: always
     environment:
       DOMAIN: https://vault.example.com
       SIGNUPS_ALLOWED: true
@@ -17,9 +21,11 @@ services:
       - ./data:/data:Z
     #env_file:
     #  - config.env
+    networks:
+      - podman-br-con
     ports:
-      - 8080:80
-      - 3012:3012
+      - 127.0.0.1:8080:80
+      - 127.0.0.1:3012:3012
     logging:
       driver: k8s-file
       options:

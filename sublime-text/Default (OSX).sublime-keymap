@@ -1,8 +1,7 @@
 [
   {
-    "keys": ["ctrl+j"],
-    "command": "move_to",
-    "args": {"to": "brackets"}
+    "keys": ["super+."],
+    "command": "rest_request"
   },
   {
     "keys": ["ctrl+m"],

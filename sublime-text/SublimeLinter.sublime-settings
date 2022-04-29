@@ -48,7 +48,7 @@
   "paths": {
     "linux": [],
     "osx": [
-      "/Users/user/working/pyenv/work/bin",
+      "/opt/data/pyvenv/work/bin",
       "/opt/homebrew/bin"
     ],
     "windows": []

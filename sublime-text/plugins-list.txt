@@ -3,6 +3,7 @@ Babel
 ConvertToUTF8
 Emmet
 Package Control
+REST Client
 SublimeLinter
 SublimeLinter-clang
 SublimeLinter-contrib-htmlhint

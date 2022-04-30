@@ -46,7 +46,7 @@ storage_config:
 
   aws:
     s3: s3://access_key:secret_key@172.28.0.10:9000/log
-    endpoint: 172.28.0.10:9000
+    endpoint: 10.2.4.10:9000
     insecure: true
     s3forcepathstyle: true
 

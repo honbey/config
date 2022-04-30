@@ -1,10 +1,28 @@
 version: '3.0'
 
 networks:
-  docker-br-log:
+  docker-br-con:
     external: true
 
 services:
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - ./config:/etc/promtail/config
+      - /data/logs/nginx:/logs/nginx
+      - /data/logs/host:/logs/host
+    command: -config.file=/etc/promtail/config/promtail.yaml
+    networks:
+      docker-br-con:
+        ipv4_address: 10.2.3.10
+    logging:
+      driver: json-file
+      options:
+        max-size: "10M"
+        max-file: "10"
+
   loki:
     image: grafana/loki:latest
     container_name: loki
@@ -16,26 +34,8 @@ services:
     #command: -config.file=/etc/loki/config/loki-config.yaml
     command: -config.file=/etc/loki/config/loki.yaml
     networks:
-      docker-br-log:
-        ipv4_address: 172.28.0.20
-    logging:
-      driver: json-file
-      options:
-        max-size: "10M"
-        max-file: "10"
-
-  promtail:
-    image: grafana/promtail:latest
-    container_name: promtail
-    restart: unless-stopped
-    volumes:
-      - ./config:/etc/promtail/config
-      - /data/logs/nginx:/logs/nginx
-      - /data/logs/host:/logs/host
-    command: -config.file=/etc/promtail/config/promtail.yaml
-    networks:
-      docker-br-log:
-        ipv4_address: 172.28.0.25
+      docker-br-con:
+        ipv4_address: 10.2.3.20
     logging:
       driver: json-file
       options:
@@ -55,8 +55,8 @@ services:
     #ports:
     #  - 8082:3000
     networks:
-      docker-br-log:
-        ipv4_address: 172.28.0.30
+      docker-br-con:
+        ipv4_address: 10.2.3.30
     logging:
       driver: json-file
       options:

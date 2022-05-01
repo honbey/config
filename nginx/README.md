@@ -1,7 +1,11 @@
-#!/usr/bin/env bash
+# Nginx with QUIC
 
-# nginx-quic
+## Compile
 
+Source: [nginx-quic](https://hg.nginx.org/nginx-quic/shortlog/quic)
+
+Compile command:
+```bash
 ./auto/configure --prefix=/usr/local/nginx-quic \
   --user=nginx --group=nginx \
   --with-http_v3_module \
@@ -30,3 +34,33 @@
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-cc-opt=-I../boringssl/include \
   --with-ld-opt='-L../boringssl/build/ssl -L../boringssl/build/crypto'
+```
+
+### BoringSSL
+
+## Configuration
+
+### Certificate with Let's Encrypt
+
+
+```bash
+certbot certonly \
+  -d example.com -d *.example.com \
+  --manual \
+  --preferred-challenges dns-01 \
+  --email no-reply@example.com \
+  --server https://acme-v02.api.letsencrypt.org/directory \
+  --manual-auth-hook /data/certbot-auth-dnspod/certbot-auth-dnspod.sh \
+  --manual-cleanup-hook "/data/certbot-auth-dnspod/certbot-auth-dnspod.sh clean" \
+  --config-dir /data/letsencrypt \
+  --work-dir /data/letsencrypt \
+  --logs-dir /data/logs/letsencrypt
+```
+
+### Self-sign Certificate
+
+```
+cert.zip
+ |_ private.key
+ |_ cacert.pem
+```

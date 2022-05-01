@@ -1,0 +1,38 @@
+version: '3.8'
+
+networks:
+  podman-br-con:
+    external: true
+
+services:
+  ghost:
+    image: library/ghost:4-alpine
+    container_name: ghost
+    restart: always
+    environment:
+      NODE_ENV: production
+      url: https://www.example.com
+      admin__url: https://www.example.com
+      database__client: mysql
+      database__connection__host: 10.1.1.10
+      database__connection__user: ghost
+      database__connection__password: ghost_db_passwd
+      database__connection__database: ghost
+      mail__transport: smtp
+      mail__from: "Example <no-reply@example.com>"
+      mail__options__host: mail.example.com
+      mail__options__secure: true
+      mail__options__port: 465
+      mail__options__auth__user: no-reply@example.com
+      mail__options__auth__pass: stmp_passwd
+    volumes:
+      - ./data:/var/lib/ghost/content:Z
+    networks:
+      - podman-br-con
+    ports:
+      - 127.0.0.1:7030:2368
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

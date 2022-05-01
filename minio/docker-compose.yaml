@@ -1,7 +1,7 @@
 version: "3.0"
 
 networks:
-  docker-br-log:
+  docker-br-con:
     external: true
 
 services:
@@ -20,8 +20,8 @@ services:
       MINIO_ROOT_USER: access_key
       MINIO_ROOT_PASSWORD: secret_key
     networks:
-      docker-br-log:
-        ipv4_address: 172.28.0.10
+      docker-br-con:
+        ipv4_address: 10.2.4.10
     logging:
       driver: json-file
       options:

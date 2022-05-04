@@ -1,0 +1,24 @@
+# configuration of `offineimap`
+[general]
+accounts = Email
+maxsyncaccounts = 3
+# pythonfile = ~/.offlineimap.py
+
+[Account Email]
+localrepository = Email-Local
+remoterepository = Email-Remote
+utf8foldernames = True
+
+[Repository Email-Local]
+type = Maildir
+localfolders = ~/.mail/
+
+[Repository Email-Remote]
+type = IMAP
+remotehost = imap.email.com
+remoteuser = user@email.com
+remotepass = password
+ssl = true
+sslcacertfile = /etc/ssl/cert.pem
+maxconnections = 4
+realdelete = yes

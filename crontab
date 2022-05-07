@@ -1,4 +1,0 @@
-* 1-6 * * * /usr/bin/env bash /data/ddns-dnspod/dnspod_ddns.sh >> /data/logs/ddns/log 2>&1
-0 2 1 * *   /usr/bin/env bash /data/certbot-auth-dnspod/certbot_renew.sh >> /data/logs/letsencrypt/certbot_renew.log 2>&1
-0 0 15 * *  /usr/bin/env bash /data/server/vaultwarden/auto_bak_config.sh /data/server/vaultwarden > /dev/null 2>&1
-0 3 */5 * * cd /data/byte-unixbench/UnixBench && ./Run >> /data/logs/unixbench/stress_test.log 2>&1

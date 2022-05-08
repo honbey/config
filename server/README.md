@@ -42,3 +42,69 @@ Application/Service running on Linux server.
 # GITHUB BEGIN
 # GITHUB END
 ```
+
+## logrotate
+
+Logrotate can rotate log daily/weekly/monthly, can also detect log size and rotate it.
+
+- log directory mode: 700
+- config file mode:   644
+
+### nginx
+
+```
+/data/logs/nginx/json_access.log
+/data/logs/nginx/error.log
+{
+  daily
+  rotate 365
+  missingok
+  notifempty
+  dateext
+  compress
+  olddir /data/logs/nginx/backups
+  postrotate
+    if [[ -f /data/logs/nginx/pid ]]; then
+      kill -USR1 $(cat /data/logs/nginx/pid)
+    fi
+  endscript
+}
+```
+
+### monitor host
+
+```
+/data/logs/host/json_host.log
+{
+  daily
+  rotate 7
+  missingok
+  notifempty
+  dateext
+  compress
+  olddir /data/logs/host/backups
+  copytruncate
+}
+```
+
+## docker
+
+Runing a container:
+
+```bash
+docker run -itd --name <container_name> \
+  --restart always \
+  --privileged \
+  -p <host_port>:<container_port> \
+  -e <CONTAINER_ENV_NAME>=<value> \
+  -v <host_path>:<container_path> \
+  <image_name>:<version> [enter_point]
+```
+
+State of container:
+```
+                    running
+     `pause/unpause`       `kill/start`
+ paused                               stoped
+```
+

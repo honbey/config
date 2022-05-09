@@ -24,8 +24,8 @@ services:
     networks:
       - podman-br-con
     ports:
-      - 127.0.0.1:8080:80
-      - 127.0.0.1:3012:3012
+      - 127.0.0.1:1120:80
+      - 127.0.0.1:1121:3012
     logging:
       driver: k8s-file
       options:

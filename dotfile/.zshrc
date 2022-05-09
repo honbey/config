@@ -64,7 +64,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias dl='du -h -d 1'
   alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-  function ts2td(){date -r "$1" '+%Y-%m-%d %H:%M:%S'}
+  function ts(){date -r "$1" '+%Y-%m-%d %H:%M:%S'}
 
   # Homebrew
   export PATH="/opt/homebrew/bin:$PATH"
@@ -86,7 +86,7 @@ elif [[ "$OSTYPE" == linux* ]]; then
     alias ng='nginx'
   fi
 
-  function ts2td(){date -d "@$1" '+%Y-%m-%d %H:%M:%S'}
+  function ts(){date -d "@$1" '+%Y-%m-%d %H:%M:%S'}
 
   # NVIDIA
   if [[ -d "/usr/local/cuda" ]]; then

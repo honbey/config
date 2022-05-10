@@ -1,0 +1,14 @@
+C/C++
+C/C++ Extension Pack
+Excel View
+Go
+indent-rainbow
+Jupyter
+Jupyter Keymap
+Jupyter Notebook Renderers
+Lisp
+markdownlint
+Pylance
+Python
+REST Client
+Vim

@@ -59,6 +59,28 @@ function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
 function be(){base64          <(echo "$1")}
 function bd(){base64 --decode <(echo "$1")}
 
+# https://unix.stackexchange.com/a/678894
+function ue() {
+  LC_ALL=C awk -- '
+    BEGIN {
+      for (i = 1; i <= 255; i++) hex[sprintf("%c", i)] = sprintf("%%%02X", i)
+    }
+    function urlencode(s, c, i, r, l) {
+      l = length(s)
+      for (i = 1; i <= l; i++) {
+        c = substr(s, i, 1)
+        r = r "" (c ~ /^[-._~0-9a-zA-Z]$/ ? c : hex[c])
+      }
+      return r
+    }
+    BEGIN {
+      for (i = 1; i < ARGC; i++)
+        print urlencode(ARGV[i])
+    }' "$@"
+}
+
+function ud() {echo -e "${1//%/\\x}"}
+
 if [[ "$OSTYPE" == darwin* ]]; then
   # macOS
   alias dl='du -h -d 1'

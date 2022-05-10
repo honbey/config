@@ -8,6 +8,7 @@ Set-Theme Paradox
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -HistoryNoDuplicates
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key "Tab" -Function MenuComplete
@@ -110,3 +111,4 @@ Set-PSReadLineKeyHandler -Key Backspace `
 }
 
 Set-Alias open explorer.exe
+Set-Alias brew scoop

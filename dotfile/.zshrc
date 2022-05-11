@@ -39,9 +39,10 @@ export PATH="$HOME/.bin:$PATH"
 WORDCHARS=''
 
 # User specific aliases and functions
-alias ls='ls --color=auto' la='ls -A' ll='ls -ahlrt' l.='ls -d .*' l='ls -alF'
+alias ls='ls --color=auto' la='ls -A' ll='ls -Ahlrt' l.='ls -d .*' l='ls -alF'
 alias rm='rm -i' cp='cp -v' mv='mv -v'
 alias grep='grep --color=auto'
+alias history='history 1'
 alias ..='cd ..' ...='cd ../..'
 alias vi='vim'
 alias :q='exit' :wq='exit'

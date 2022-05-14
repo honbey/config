@@ -121,7 +121,7 @@ podman-compose --podman-run-args '--ip 10.1.1.10' up -d
 ### MongoDB
 
 ```bash
-podman-compose --podman-run-args '--ip 10.1.2.10 --privileged' up -d
+podman-compose --podman-run-args '--ip 10.1.1.20 --privileged' up -d
 ```
 
 ### Vaultwarden

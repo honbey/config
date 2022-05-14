@@ -87,7 +87,7 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
 }
 ```
 
-## docker
+## Docker
 
 Runing a container:
 
@@ -106,5 +106,39 @@ State of container:
                     running
      `pause/unpause`       `kill/start`
  paused                               stoped
+```
+
+## Podman
+
+Some containers with `podman-compose` need add parameters for `podman-run`:
+
+### MySQL
+
+```bash
+podman-compose --podman-run-args '--ip 10.1.1.10' up -d
+```
+
+### MongoDB
+
+```bash
+podman-compose --podman-run-args '--ip 10.1.1.10 --privileged' up -d
+```
+
+### Vaultwarden
+
+```bash
+podman-compose --podman-run-args '--ip 10.1.2.10' up -d
+```
+
+### Promtail
+
+```bash
+podman-compose --podman-run-args '--ip 10.1.3.10' up -d
+```
+
+### Ghost
+
+```bash
+podman-compose --podman-run-args '--ip 10.1.5.10' up -d
 ```
 

@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  podman-br-con:
+    external: true
+
+services:
+  mysql:
+    image: library/mongo:4.2
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongodb_root_passwd
+    volumes:
+      - ./data:/data/db:Z
+    networks:
+      - podman-br-con
+    ports:
+      - 0.0.0.0:1112:27017
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

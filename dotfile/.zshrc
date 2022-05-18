@@ -80,7 +80,7 @@ function ue() {
     }' "$@"
 }
 
-function ud() {echo -e "${1//%/\\x}"}
+function ud() {echo -e "${1//\%/\\x}"}
 
 if [[ "$OSTYPE" == darwin* ]]; then
   # macOS

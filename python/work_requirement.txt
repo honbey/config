@@ -1,4 +1,5 @@
 beautifulsoup4
+colorama
 cryptography
 flake8
 matplotlib

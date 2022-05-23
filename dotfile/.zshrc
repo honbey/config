@@ -51,9 +51,9 @@ alias c='curl'
 alias s='ssh'
 
 if type emacs > /dev/null 2>&1; then
-  function start_emacs(){exec emacsclient -c -a "" "$@"}
-  alias killemacs="emacsclient -e '(kill-emacs)'"
-  alias emacs='start_emacs'
+    function start_emacs(){exec emacsclient -c -a "" "$@"}
+    alias killemacs="emacsclient -e '(kill-emacs)'"
+    alias emacs='start_emacs'
 fi
 
 function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
@@ -83,64 +83,64 @@ function ue() {
 function ud() {echo -e "${1//\%/\\x}"}
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  # macOS
-  alias dl='du -h -d 1'
-  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+    # macOS
+    alias dl='du -h -d 1'
+    alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-  function ts(){date -r "$1" '+%Y-%m-%d %H:%M:%S'}
+    function ts(){date -r "$1" '+%Y-%m-%d %H:%M:%S'}
 
-  # Homebrew
-  export PATH="/opt/homebrew/bin:$PATH"
+    # Homebrew
+    export PATH="/opt/homebrew/bin:$PATH"
 
 elif [[ "$OSTYPE" == linux* ]]; then
-  alias dl='du -h --max-depth=1'
-  alias syss='systemctl list-units --type=service'
-  # Fast Jump
-  alias d='dirs -v'
-  alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
-  alias p='pushd'
-
+    alias dl='du -h --max-depth=1'
+    alias syss='systemctl list-units --type=service'
+    # Fast Jump
+    alias d='dirs -v'
+    alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
+    alias p='pushd'
+ 
   # Nginx
-  if   [[ -f "/usr/local/nginx/sbin/nginx"      ]]; then
-    alias ng='/usr/local/nginx/sbin/nginx'
-  elif [[ -f "/usr/local/nginx-quic/sbin/nginx" ]]; then
-    alias ng='/usr/local/nginx-quic/sbin/nginx'
-  else
-    alias ng='nginx'
-  fi
+    if   [[ -f "/usr/local/nginx/sbin/nginx"      ]]; then
+        alias ng='/usr/local/nginx/sbin/nginx'
+    elif [[ -f "/usr/local/nginx-quic/sbin/nginx" ]]; then
+        alias ng='/usr/local/nginx-quic/sbin/nginx'
+    else
+        alias ng='nginx'
+    fi
 
-  function ts(){date -d "@$1" '+%Y-%m-%d %H:%M:%S'}
+    function ts(){date -d "@$1" '+%Y-%m-%d %H:%M:%S'}
 
-  # NVIDIA
-  if [[ -d "/usr/local/cuda" ]]; then
-    export PATH=$PATH:/usr/local/cuda/bin
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/
-    export CUDA_HOME=/usr/local/cuda
-  fi
+    # NVIDIA
+    if [[ -d "/usr/local/cuda" ]]; then
+        export PATH=$PATH:/usr/local/cuda/bin
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/
+        export CUDA_HOME=/usr/local/cuda
+    fi
 fi
 
 if [[ -f "$HOME/.env" ]]; then
-  source "$HOME/.env"
+    source "$HOME/.env"
 fi
 
 if type gpg > /dev/null 2>&1; then
-  export GPG_TTY=$(tty)
+    export GPG_TTY=$(tty)
 fi
 
 # Custom theme
 # PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
 if [[ "$USER" == "root" ]]; then
-  PS1="%F{gray} %F{cyan}%c "
+    PS1="%F{gray} %F{cyan}%c "
 elif [[ "$OSTYPE" == darwin* ]]; then
-  PS1="%F{gray} %F{cyan}%c "
+    PS1="%F{gray} %F{cyan}%c "
 elif grep -Eq "CentOS" /etc/*-release; then
-  PS1="%F{magenta} %F{cyan}%c "
+    PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Debian" /etc/*-release; then
-  PS1="%F{magenta} %F{cyan}%c "
+    PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Kali" /etc/*-release; then
-  PS1="%F{blue} %F{cyan}%c "
+    PS1="%F{blue} %F{cyan}%c "
 else
-  PS1="%F{green}✓ %F{cyan}%c "
+    PS1="%F{green}✓ %F{cyan}%c "
 fi
 zinit ice wait lucid atload
 zinit ice lucid wait='!0'

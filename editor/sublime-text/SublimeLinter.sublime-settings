@@ -14,7 +14,7 @@
       "disable": false,
       "args": [
         "--max-line-length", "120",
-        "--ignore", "E111,E114,E121,E133,E226",
+        "--ignore", "E114,E121,E133,E226",
       ]
     },
     "eslint": {

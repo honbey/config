@@ -1,12 +1,13 @@
 set encoding=utf-8
 set number
-set relativenumber
+"set relativenumber
 
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 "set autowriteall
+autocmd FileType bash,python setlocal tabstop=4
 
 if has("autocmd")
   autocmd BufReadPost *

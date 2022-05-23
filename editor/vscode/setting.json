@@ -27,4 +27,11 @@
   "vim.hlsearch": true,
   "notebook.lineNumbers": "on",
   "terminal.integrated.sendKeybindingsToShell": true
+  "rest-client.enableTelemetry": false,
+  "[bash]": {
+    "editor.tabSize": 4
+  },
+  "[python]": {
+    "editor.tabSize": 4
+  }
 }

@@ -26,9 +26,9 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "notebook.lineNumbers": "on",
-  "terminal.integrated.sendKeybindingsToShell": true
+  "terminal.integrated.sendKeybindingsToShell": true,
   "rest-client.enableTelemetry": false,
-  "[bash]": {
+  "[shellscript]": {
     "editor.tabSize": 4
   },
   "[python]": {

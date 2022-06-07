@@ -15,9 +15,6 @@ Compile command(with OpenSSL 3.0):
   --with-http_realip_module \
   --with-http_addition_module \
   --with-http_sub_module \
-  --with-http_dav_module \
-  --with-http_gunzip_module \
-  --with-http_gzip_static_module \
   --with-http_random_index_module \
   --with-http_secure_link_module \
   --with-http_stub_status_module \
@@ -32,6 +29,8 @@ Compile command(with OpenSSL 3.0):
   --with-mail_ssl_module \
   --with-stream_ssl_module \
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
+  --with-http_gunzip_module \
+  --with-http_gzip_static_module --add-module=../ngx_brotli \
   --with-cc-opt=-I../openssl-3.0.3-quic/include \
   --with-ld-opt='-L../openssl-3.0.3-quic -L../openssl-3.0.3-quic'
 ```
@@ -47,9 +46,6 @@ Compile command(with BoringSSL):
   --with-http_realip_module \
   --with-http_addition_module \
   --with-http_sub_module \
-  --with-http_dav_module \
-  --with-http_gunzip_module \
-  --with-http_gzip_static_module \
   --with-http_random_index_module \
   --with-http_secure_link_module \
   --with-http_stub_status_module \
@@ -64,6 +60,8 @@ Compile command(with BoringSSL):
   --with-mail_ssl_module \
   --with-stream_ssl_module \
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
+  --with-http_gunzip_module \
+  --with-http_gzip_static_module --add-module=../ngx_brotli \
   --with-cc-opt=-I../boringssl/include \
   --with-ld-opt='-L../boringssl/build/ssl -L../boringssl/build/crypto'
 ```

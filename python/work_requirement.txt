@@ -10,6 +10,7 @@ pandas
 Pillow
 pymongo
 pyMySQL
+pyyaml
 requests
 selenium
 sshtunnel

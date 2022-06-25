@@ -70,15 +70,15 @@ Compile command(with BoringSSL):
 
 Clone from GitHub:
 ```bash
-git clone --depth=1 -b openssl-openssl-3.0.3-quic https://github.com/quictls/openssl
+git clone --depth=1 -b openssl-3.0.3+quic https://github.com/quictls/openssl
 ```
 
 Make:
 
-> PS: Don't execute that `make install`!
+> PS: Don't execute `make install`!
 
 ```bash
-mv openssl-openssl-3.0.3-quic openssl-3.0.3-quic
+mv openssl openssl-3.0.3-quic
 cd $_
 ./config
 make -j4

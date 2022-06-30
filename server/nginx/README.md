@@ -6,8 +6,8 @@ Source: [nginx-quic](https://hg.nginx.org/nginx-quic/shortlog/quic)
 
 Compile command(with OpenSSL 3.0):
 ```bash
-./auto/configure --prefix=/usr/local/nginx-quic \
-  --user=nginx --group=nginx \
+./auto/configure --prefix=/var/data/etc/nginx \
+  --user=nobody --group=nobody \
   --with-http_v3_module \
   --with-stream_quic_module \
   --with-http_ssl_module \
@@ -31,14 +31,14 @@ Compile command(with OpenSSL 3.0):
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-http_gunzip_module \
   --with-http_gzip_static_module --add-module=../ngx_brotli \
-  --with-cc-opt=-I../openssl-3.0.3-quic/include \
-  --with-ld-opt='-L../openssl-3.0.3-quic -L../openssl-3.0.3-quic'
+  --with-cc-opt=-I../openssl/include \
+  --with-ld-opt='-L../openssl -L../openssl'
 ```
 
 Compile command(with BoringSSL):
 ```bash
-./auto/configure --prefix=/usr/local/nginx-quic \
-  --user=nginx --group=nginx \
+./auto/configure --prefix=/var/data/etc/nginx \
+  --user=nobody --group=nobody \
   --with-http_v3_module \
   --with-stream_quic_module \
   --with-http_ssl_module \
@@ -78,16 +78,15 @@ Make:
 > PS: Don't execute `make install`!
 
 ```bash
-mv openssl openssl-3.0.3-quic
-cd $_
+cd openssl
 ./config
 make -j4
 ```
 
 Move library of OpenSSL to `/usr/lib64`:
 ```bash
-sudo cp openssl-3.0.3-quic/libssl.so.81.3 /usr/lib64 
-sudo cp openssl-3.0.3-quic/libcrypto.so.81.3 /usr/lib64 
+sudo cp openssl/libssl.so.81.3 /usr/lib64 
+sudo cp openssl/libcrypto.so.81.3 /usr/lib64 
 ```
 
 ### BoringSSL
@@ -104,11 +103,11 @@ certbot certonly \
   --preferred-challenges dns-01 \
   --email no-reply@example.com \
   --server https://acme-v02.api.letsencrypt.org/directory \
-  --manual-auth-hook /data/certbot-auth-dnspod/certbot-auth-dnspod.sh \
-  --manual-cleanup-hook "/data/certbot-auth-dnspod/certbot-auth-dnspod.sh clean" \
-  --config-dir /data/letsencrypt \
-  --work-dir /data/letsencrypt \
-  --logs-dir /data/logs/letsencrypt
+  --manual-auth-hook /var/data/letsencrypt/certbot-auth-dnspod.sh \
+  --manual-cleanup-hook "/var/data/letsencrypt/certbot-auth-dnspod.sh clean" \
+  --config-dir /var/data/letsencrypt \
+  --work-dir /var/data/letsencrypt \
+  --logs-dir /var/data/letsencrypt
 ```
 
 ### Self-sign Certificate

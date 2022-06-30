@@ -73,4 +73,7 @@
 
 - [NGINXConfig](https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN)
 
+- [](https://1loc.dev/)
+- [](https://www.30secondsofcode.org/)
+
 

@@ -101,10 +101,10 @@ elif [[ "$OSTYPE" == linux* ]]; then
     alias p='pushd'
  
   # Nginx
-    if   [[ -f "/usr/local/nginx/sbin/nginx"      ]]; then
+    if   [[ -f "/usr/local/nginx/sbin/nginx"    ]]; then
         alias ng='/usr/local/nginx/sbin/nginx'
-    elif [[ -f "/usr/local/nginx-quic/sbin/nginx" ]]; then
-        alias ng='/usr/local/nginx-quic/sbin/nginx'
+    elif [[ -f "/var/data/etc/nginx/sbin/nginx" ]]; then
+        alias ng='/var/data/etc/nginx/sbin/nginx'
     else
         alias ng='nginx'
     fi

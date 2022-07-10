@@ -1,0 +1,225 @@
+#+TITLE: Windows System
+#+FILETAGS: Windows
+
+* Registry
+
+** Change default photos viewer soft
+Change to `PhotoViewer`.
+
+#+begin_src windows-reg
+Windows Registry Editor Version 5.00
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.jpg]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.jpeg]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.gif]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.png]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.bmp]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.tiff]
+@="PhotoViewer.FileAssoc.Tiff"
+
+; Change Extension's File Type
+[HKEY_CURRENT_USER\Software\Classes\.ico]
+@="PhotoViewer.FileAssoc.Tiff"
+#+end_src
+
+** Add item to Right Click Menu
+`Sublime Text 3` as example.
+
+#+begin_src windows-reg
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\Directory\shell\SublimeText3]
+@="Open with Sublime Text"
+"Icon"="(C:\\Path\\Sublime Text 3\\sublime_text.exe),0"
+[HKEY_CLASSES_ROOT\Directory\shell\SublimeText3\command]
+@="(C:\\Path\\Sublime Text 3\\sublime_text.exe) %1"
+#+end_src
+
+* Useful Command
+
+Key: `win + r`.
+
+| Command      | Caption                     |
+|--------------+-----------------------------|
+| control      | Control Panel               |
+| calc         | Calculator                  |
+| shutdown     | Auto Shutdown               |
+| ncpa.cpl     | Show Network Driver         |
+| regedit      | Registry Editor             |
+| slmgr        | Show System Activation Info |
+| taskmgr      | Task Manager                |
+| snippingtool | Screenshot Tool             |
+| gpedit.msc   | Group Policy Editor         |
+| explorer     | Resource Explorer           |
+| notepad      | Open Notepad                |
+| compmgmt.msc | Computer Management         |
+| winver       | Windows Version             |
+| write        | Write Board                 |
+| mspaint      | Microsoft Paint             |
+| diskpart     | Disk Tool                   |
+
+** Automatic shutdown
+
+| Command            | Caption                        |
+|--------------------+--------------------------------|
+| shutdown /s /t 600 | shutdown after 600 seconds     |
+| shutdown /r /t 600 | restart  after 600 seconds     |
+| shutdown /a        | cancel all schedular opeartion |
+
+** Operate disk
+
+`diskpart`
+
+| Command                | Caption                                       |
+|------------------------+-----------------------------------------------|
+| list disk              | List all mount disk                           |
+| select disk <disk_no.> | Select disk by no.                            |
+| clean                  | Clean current disk, including partition table |
+
+** Windows and Linux both in a host, but Windows time is wrong
+
+#+begin_src windows-cmd
+Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+#+end_src
+
+** Use USB flash drive in print shop or computer room, but files is invisible
+You should enter the drive directory.
+
+#+begin_src windows-cmd
+attrib -s -h /s /d
+#+end_src
+
+** Time on Dual System
+
+#+begin_src windows-cmd
+@reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+#+end_src
+
+** Turn on Windows RDP service(open port 3389) :Security:
+
+#+begin_src windows-cmd
+@reg add HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 0 /f
+#+end_src
+
+*** Clear login record
+
+#+begin_src windows-cmd
+@echo off
+reg delete "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default" /va /f
+del "%USERPROFILE%\My Documents\Default.rdp" /a
+@exit
+#+end_src
+
+
+* PowerShell Command
+** Clear command history
+
+#+begin_src windows-powershell
+Remove-Item (Get-PSReadlineOption).HistorySavaPath
+#+end_src
+
+** Reinstall UWP application
+
+#+begin_src windows-powershell
+Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+#+end_src
+
+* Windows softs
+** UWP
+- WSL (Windows Subsystem of Linux)
+- Minecraft
+- Windows Terminal
+- PowerShell
+- QuickLook
+- Translucent TB
+- X410
+
+** x86/x64
+- Captura
+- Sublime Text 4
+- Mem Reduct
+- Wireshark
+- Screen to Gif
+- Chromium Edge
+- Draw.io
+- Dism++
+- doom-emacs
+- Huorong
+- (×) SpeedPan X
+
+
+* Hyper-V
+
+** Android VM have no GUI
+1. Enter Debug mode
+2. Execute `mount -0 remount,re/mnt`
+3. Execute `vi /mnt/grub/menu.lst`
+4. Input `nomodeset` after `quiet` around `Android-x86 xx-rcx`
+5. Restart VM
+
+* Windows Subsystem of Linux
+
+** .bashrc
+#+begin_src bash
+# Ignore the same commands
+export HISTCONTROL=ignoredups
+
+# User specific aliases and functions #
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias dl='du -h --max-depth=1'
+alias rm='rm -i'
+alias ck='cmake .'
+alias ..='cd ..'
+
+  # WSL
+alias open='explorer.exe'
+
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
+export JAVA_HOME=~/Java
+
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+export JRE_HOME=$JAVA_HOME/jre
+
+# WSL 1
+  # X Display
+export DISPLAY=:0
+
+# WSL 2
+  # X Display, should get the host ip by '/etc/resolv.conf'
+host=$(cat /etc/resolv.conf | sed -n 's/^nameserver\W\(.*\)$/\1/p')
+export DISPLAY=$host:0
+
+# https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL/issues/46
+# https://github.com/Microsoft/WSL/issues/3023
+if [ -x /usr/lib64/libQt5Core.so.5 ]; then
+  (set -x; strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5)
+fi
+# sudo strip --remove-section=.note.ABI-tag /usr/lib64/libQt5Core.so.5
+# strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+# find /lib /usr/lib /usr/libexec -name '*.so' | xargs strip --remove-section=.note.ABI-tag
+
+# install man-pages-zh-CN
+# ./configure --disable-zhtw  --prefix=/usr/local/zhman
+# aclocal;autoconf;autoheader;automake --adding-missing;./configure;make;sudo make install
+# alias cman='man -M /usr/local/zhman/share/man/zh_CN'
+#+end_src

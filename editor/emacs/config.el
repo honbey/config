@@ -204,31 +204,13 @@
 
   ;; Reference: https://hychen.me/post/doom_config/
   (setq org-roam-dailies-capture-templates
-      '(("d" "default" entry"* %?"
-        :if-new (file+head "%<%Y-%m-%d>.org"
-                      ,(concat "#+title: %<%Y-%m-%d>\n"
-                        "\n"
-                        "*Don't ignore your dreams; don't work too much; say what you think; cultivate friendships; be happy*\n"
-                        "\n"
-                        "* 早晨 [/]\n"
-                        " - [ ] 刷牙保持口腔健康\n"
-                        " - [ ] 刮胡子消除颓废感\n"
-                        " - [ ] 叠被是一个好习惯\n"
-                        " - [ ] 锻炼\n"
-                        " - [ ] 早餐\n"
-                        " - [ ] 安排本日行程，决定今天最重要的事情\n"
-                        "  - [ ] 查看日程中已安排的行程\n"
-                        "  - [ ] 回顾本月目标，整理待办事项\n"
-                        "  - [ ] 计划今天要完成的事\n"
-                        "* 重要事情\n"
-                        "* 其他\n"
-                        "#+begin_comment\n"
-                        "- 今天从起床到現在，我经历了什么？\n"
-                        "- 今天有哪三件事情我觉得感恩？\n"
-                        "- 今天有哪一件事情我可以做得更好？具体地，我可以如何做得更好？\n"
-                        "#+end_comment\n"
-                        ))
-         :unnarrowed t)))
+      '(("d" "default" plain
+         "%?"
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n\n*Don't ignore your dreams; don't work too much; say what you think; cultivate friendships; be happy*\n* 早晨 [/]\n - [ ] 刷牙保持口腔健康\n - [ ] 刮胡子消除颓废感\n - [ ] 叠被是一个好习惯\n - [ ] 锻炼\n - [ ] 早餐\n - [ ] 安排本日行程，决定今天最重要的事情\n  - [ ] 查看日程中已安排的行程\n  - [ ] 回顾本月目标，整理待办事项\n  - [ ] 计划今天要完成的事\n* 重要事情\n* 其他\n#+begin_comment\n- 今天从起床到現在，我经历了什么？\n- 今天有哪三件事情我觉得感恩？\n- 今天有哪一件事情我可以做得更好？具体地，我可以如何做得更好？\n#+end_comment\n"
+                        )
+         :unnarrowed t
+         :immediate-finish t
+         )))
 )
 
 (setq org-publish-project-alist

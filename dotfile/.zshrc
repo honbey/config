@@ -56,6 +56,10 @@ if type emacs > /dev/null 2>&1; then
     alias emacs='start_emacs'
 fi
 
+if type podman > /dev/null 2>&1; then
+    alias docker='podman'
+fi
+
 function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
 function be(){base64          <(echo "$1")}
 function bd(){base64 --decode <(echo "$1")}

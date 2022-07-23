@@ -1,5 +1,7 @@
 # Nginx with QUIC
 
+I encrypted the configuration files for security.
+
 ## Compile
 
 Source: [nginx-quic](https://hg.nginx.org/nginx-quic/shortlog/quic)

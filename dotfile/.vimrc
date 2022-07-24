@@ -7,7 +7,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 "set autowriteall
-autocmd FileType bash,python setlocal tabstop=4
+autocmd FileType sh,python,nginx setlocal tabstop=4
+autocmd FileType sh,python,nginx setlocal softtabstop=4
+autocmd FileType sh,python,nginx setlocal shiftwidth=4
 
 if has("autocmd")
   autocmd BufReadPost *
@@ -38,10 +40,10 @@ endif
 " plugins
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
 "Plug 'crusoexia/vim-monokai'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
-call plug#end()
+"Plug 'yuezk/vim-js'
+"Plug 'maxmellon/vim-jsx-pretty'
+"call plug#end()
 
 "colorscheme monokai

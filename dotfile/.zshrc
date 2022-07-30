@@ -91,7 +91,21 @@ if [[ "$OSTYPE" == darwin* ]]; then
     alias dl='du -h -d 1'
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-    function ts(){date -r "$1" '+%Y-%m-%d %H:%M:%S'}
+    function ts() {
+        if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
+            date -r "${1}" '+%Y-%m-%d %H:%M:%S'
+        elif [[ "${1}" =~ ^[0-9]{13}$ ]]; then
+            date -r "${1:0:10}" "+%Y-%m-%d %H:%M:%S%.${1:10:13}"
+        elif [[ "${1}" =~ ^[0-9]{8}$ ]]; then
+            date -j -f "%Y%m%d" "${1}" "+%s"
+        elif [[ "${1}" =~ ^[0-9]{14}$ ]]; then
+            date -j -f "%Y%m%d%H%M%S" "${1}" "+%s"
+        elif [[ "${1}" =~ ^[0-9]{4}(-[0-9]{2}){2}[[:blank:]][0-9]{2}(:[0-9]{2}){2}$ ]]; then
+            date -j -f "%Y-%m-%d %H:%M:%S" "${1}" "+%s"
+        else
+            date "+%s"
+        fi
+    }
 
     # Homebrew
     export PATH="/opt/homebrew/bin:$PATH"
@@ -113,7 +127,15 @@ elif [[ "$OSTYPE" == linux* ]]; then
         alias ng='nginx'
     fi
 
-    function ts(){date -d "@$1" '+%Y-%m-%d %H:%M:%S'}
+    function ts() {
+        if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
+            date -d "@${1}" '+%Y-%m-%d %H:%M:%S'
+        elif [[ "${1}" =~ ^[0-9]{13}$ ]]; then
+            date -d "@${1:0:10}" "+%Y-%m-%d %H:%M:%S%.${1:10:13}"
+        else
+            date -d "${1}" "+%s"
+        fi
+    }
 
     # NVIDIA
     if [[ -d "/usr/local/cuda" ]]; then

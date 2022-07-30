@@ -7,9 +7,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 "set autowriteall
-autocmd FileType sh,python,nginx setlocal tabstop=4
-autocmd FileType sh,python,nginx setlocal softtabstop=4
-autocmd FileType sh,python,nginx setlocal shiftwidth=4
+autocmd FileType sh,zsh,python,nginx setlocal tabstop=4
+autocmd FileType sh,zsh,python,nginx setlocal softtabstop=4
+autocmd FileType sh,zsh,python,nginx setlocal shiftwidth=4
 
 if has("autocmd")
   autocmd BufReadPost *

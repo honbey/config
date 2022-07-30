@@ -73,6 +73,8 @@
 
 - [NGINXConfig](https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN)
 
+- [AWS - CloudScape](https://cloudscape.design/)
+
 - [](https://1loc.dev/)
 - [](https://www.30secondsofcode.org/)
 

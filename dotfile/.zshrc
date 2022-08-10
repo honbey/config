@@ -91,6 +91,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     alias dl='du -h -d 1'
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+    autoload -Uz compinit && compinit -i
+
     function ts() {
         if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
             date -r "${1}" '+%Y-%m-%d %H:%M:%S'

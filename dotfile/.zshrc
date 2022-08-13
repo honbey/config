@@ -37,8 +37,8 @@ if [[ ! -d "$HOME/.bin" ]]; then
     mkdir "$HOME/.bin"
 fi
 
-if [[ ! type app > /dev/null 2>&1 ]]; then
-    if [[ "$OSTYPE" == "darwin*" && type brew > /dev/null 2>&1 ]]; then
+if ! type app > /dev/null 2>&1; then
+    if [[ "$OSTYPE" == "darwin*" && $(type brew > /dev/null 2>&1) ]]; then
         ln -s $(which brew) ${$(which brew)%/*}/app
     elif grep -Eq "Fedora|CentOS|Redhat" /etc/*-release; then
         sudo ln -s $(which yum) ${$(which yum)%/*}/app

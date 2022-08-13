@@ -40,7 +40,7 @@ fi
 if ! type app > /dev/null 2>&1; then
     if [[ "$OSTYPE" == "darwin*" && $(type brew > /dev/null 2>&1) ]]; then
         ln -s $(which brew) ${$(which brew)%/*}/app
-    elif grep -Eq "Fedora|CentOS|Redhat" /etc/*-release; then
+    elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
         sudo ln -s $(which yum) ${$(which yum)%/*}/app
     elif grep -Eq "Debian|Ubuntu|Kali" /etc/*-release; then
         sudo ln -s $(which apt) ${$(which apt)%/*}/app
@@ -176,7 +176,7 @@ if [[ "$USER" == "root" ]]; then
     PS1="%F{gray} %F{cyan}%c "
 elif [[ "$OSTYPE" == "darwin*" ]]; then
     PS1="%F{gray} %F{cyan}%c "
-elif grep -Eq "Fedora|CentOS" /etc/*-release; then
+elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
     PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Debian|Ubuntu" /etc/*-release; then
     PS1="%F{magenta} %F{cyan}%c "

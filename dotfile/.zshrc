@@ -33,6 +33,20 @@ zinit wait lucid for \
 
 ### My zshrc ###################################################################
 
+if [[ ! -d "$HOME/.bin" ]]; then
+    mkdir "$HOME/.bin"
+fi
+
+if [[ ! type app > /dev/null 2>&1 ]]; then
+    if [[ "$OSTYPE" == "darwin*" && type brew > /dev/null 2>&1 ]]; then
+        ln -s $(which brew) ${$(which brew)%/*}/app
+    elif grep -Eq "Fedora|CentOS|Redhat" /etc/*-release; then
+        sudo ln -s $(which yum) ${$(which yum)%/*}/app
+    elif grep -Eq "Debian|Ubuntu|Kali" /etc/*-release; then
+        sudo ln -s $(which apt) ${$(which apt)%/*}/app
+    fi
+fi
+
 export PATH="$HOME/.bin:$PATH"
 
 # Let Meta-B work well
@@ -160,11 +174,11 @@ fi
 # PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
 if [[ "$USER" == "root" ]]; then
     PS1="%F{gray} %F{cyan}%c "
-elif [[ "$OSTYPE" == darwin* ]]; then
+elif [[ "$OSTYPE" == "darwin*" ]]; then
     PS1="%F{gray} %F{cyan}%c "
-elif grep -Eq "CentOS" /etc/*-release; then
+elif grep -Eq "Fedora|CentOS" /etc/*-release; then
     PS1="%F{magenta} %F{cyan}%c "
-elif grep -Eq "Debian" /etc/*-release; then
+elif grep -Eq "Debian|Ubuntu" /etc/*-release; then
     PS1="%F{magenta} %F{cyan}%c "
 elif grep -Eq "Kali" /etc/*-release; then
     PS1="%F{blue} %F{cyan}%c "

@@ -177,9 +177,9 @@ if [[ "$USER" == "root" ]]; then
 elif [[ "$OSTYPE" == "darwin*" ]]; then
     PS1="%F{gray} %F{cyan}%c "
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
-    PS1="%F{magenta} %F{cyan}%c "
+    PS1="%F{gray} %F{cyan}%c "
 elif grep -Eq "Debian|Ubuntu" /etc/*-release; then
-    PS1="%F{magenta} %F{cyan}%c "
+    PS1="%F{blue} %F{cyan}%c "
 elif grep -Eq "Kali" /etc/*-release; then
     PS1="%F{blue} %F{cyan}%c "
 else

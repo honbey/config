@@ -4,6 +4,16 @@ I encrypted the configuration files for security.
 
 ## Compile
 
+CentOS/Fedora/Euler
+```bash
+sudo yum install -y pcre-devel zlib-devel libxslt-devel geoip-devel
+```
+
+Debian/Ubuntu/Kali
+```bash
+sudo apt install libxslt1-dev zlib1g-dev libpcre2-dev libgeoip-dev
+```
+
 Source: [nginx-quic](https://hg.nginx.org/nginx-quic/shortlog/quic)
 
 Compile command(with OpenSSL 3.0):
@@ -72,7 +82,7 @@ Compile command(with BoringSSL):
 
 Clone from GitHub:
 ```bash
-git clone --depth=1 -b openssl-3.0.3+quic https://github.com/quictls/openssl
+git clone --depth=1 -b openssl-3.0.5+quic https://github.com/quictls/openssl
 ```
 
 Make:
@@ -83,6 +93,7 @@ Make:
 cd openssl
 ./config
 make -j4
+cd ..
 ```
 
 Move library of OpenSSL to `/usr/lib64`:

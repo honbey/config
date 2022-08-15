@@ -1,4 +1,8 @@
+# Podman
 
+## Build from source
+
+```bash
 yum install -y \
   btrfs-progs-devel \
   conmon \
@@ -115,6 +119,6 @@ vi /etc/containers/policy.conf
 
 /usr/sbin/iptables -t nat -S --wait
 
-https://raw.githubusercontent.com/containers/podman-compose/devel/podman_compose.py
+curl -fOL https://raw.githubusercontent.com/containers/podman-compose/devel/podman_compose.py
 
-
+```

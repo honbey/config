@@ -33,22 +33,6 @@ zinit wait lucid for \
 
 ### My zshrc ###################################################################
 
-if [[ ! -d "$HOME/.bin" ]]; then
-    mkdir "$HOME/.bin"
-fi
-
-if ! type app > /dev/null 2>&1; then
-    if [[ "$OSTYPE" =~ "darwin*" && -f /opt/homebrew/bin/brew ]]; then
-        sudo ln -s /opt/homebrew/bin/brew /usr/local/bin/app
-    elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
-        sudo ln -s $(which yum) ${$(which yum)%/*}/app
-    elif grep -Eq "Debian|Ubuntu|Kali" /etc/*-release; then
-        sudo ln -s $(which apt) ${$(which apt)%/*}/app
-    fi
-fi
-
-export PATH="$HOME/.bin:$PATH"
-
 # Let Meta-B work well
 WORDCHARS=''
 
@@ -72,6 +56,19 @@ fi
 
 if type podman > /dev/null 2>&1; then
     alias docker='podman'
+fi
+
+if type gpg > /dev/null 2>&1; then
+    export GPG_TTY=$(tty)
+fi
+
+# Nginx
+if   [[ -f "/usr/local/nginx/sbin/nginx"    ]]; then
+    alias ng='/usr/local/nginx/sbin/nginx'
+elif [[ -f "/var/data/etc/nginx/sbin/nginx" ]]; then
+    alias ng='/var/data/etc/nginx/sbin/nginx'
+elif type nginx > /dev/null 2>&1; then
+    alias ng='nginx'
 fi
 
 function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
@@ -100,13 +97,20 @@ function ue() {
 
 function ud() {echo -e "${1//\%/\\x}"}
 
+if [[ -f "$HOME/.env" ]]; then
+    source "$HOME/.env"
+fi
+
+if [[ ! -d "$HOME/.bin" ]]; then
+    mkdir "$HOME/.bin"
+fi
+
+export PATH="$HOME/.bin:$PATH"
+
 if [[ "$OSTYPE" == darwin* ]]; then
     # macOS
     alias dl='du -h -d 1'
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
-    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-    autoload -Uz compinit && compinit -i
 
     function ts() {
         if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
@@ -126,6 +130,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # Homebrew
     export PATH="/opt/homebrew/bin:$PATH"
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+    autoload -Uz compinit && compinit -i
 
 elif [[ "$OSTYPE" == linux* ]]; then
     alias dl='du -h --max-depth=1'
@@ -135,15 +141,6 @@ elif [[ "$OSTYPE" == linux* ]]; then
     alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
     alias p='pushd'
  
-  # Nginx
-    if   [[ -f "/usr/local/nginx/sbin/nginx"    ]]; then
-        alias ng='/usr/local/nginx/sbin/nginx'
-    elif [[ -f "/var/data/etc/nginx/sbin/nginx" ]]; then
-        alias ng='/var/data/etc/nginx/sbin/nginx'
-    else
-        alias ng='nginx'
-    fi
-
     function ts() {
         if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
             date -d "@${1}" '+%Y-%m-%d %H:%M:%S'
@@ -162,12 +159,14 @@ elif [[ "$OSTYPE" == linux* ]]; then
     fi
 fi
 
-if [[ -f "$HOME/.env" ]]; then
-    source "$HOME/.env"
-fi
-
-if type gpg > /dev/null 2>&1; then
-    export GPG_TTY=$(tty)
+if ! type app > /dev/null 2>&1; then
+    if [[ "$OSTYPE" =~ "darwin*" && -f /opt/homebrew/bin/brew ]]; then
+        ln -s /opt/homebrew/bin/brew /opt/homebrew/bin/app
+    elif grep -Eq "Fedora|CentOS|Redhat" /etc/*-release; then
+        sudo ln -s $(which yum) ${$(which yum)%/*}/app
+    elif grep -Eq "Debian|Ubuntu|Kali" /etc/*-release; then
+        sudo ln -s $(which apt) ${$(which apt)%/*}/app
+    fi
 fi
 
 # Custom theme

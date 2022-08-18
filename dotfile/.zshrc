@@ -48,29 +48,6 @@ alias ck='cmake'
 alias c='curl'
 alias s='ssh'
 
-if type emacs > /dev/null 2>&1; then
-    function start_emacs(){exec emacsclient -c -a "" "$@"}
-    alias killemacs="emacsclient -e '(kill-emacs)'"
-    alias emacs='start_emacs'
-fi
-
-if type podman > /dev/null 2>&1; then
-    alias docker='podman'
-fi
-
-if type gpg > /dev/null 2>&1; then
-    export GPG_TTY=$(tty)
-fi
-
-# Nginx
-if   [[ -f "/usr/local/nginx/sbin/nginx"    ]]; then
-    alias ng='/usr/local/nginx/sbin/nginx'
-elif [[ -f "/var/data/etc/nginx/sbin/nginx" ]]; then
-    alias ng='/var/data/etc/nginx/sbin/nginx'
-elif type nginx > /dev/null 2>&1; then
-    alias ng='nginx'
-fi
-
 function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
 function be(){base64          <(echo "$1")}
 function bd(){base64 --decode <(echo "$1")}
@@ -159,6 +136,29 @@ elif [[ "$OSTYPE" == linux* ]]; then
     fi
 fi
 
+if type emacs > /dev/null 2>&1; then
+    function start_emacs(){exec emacsclient -c -a "" "$@"}
+    alias killemacs="emacsclient -e '(kill-emacs)'"
+    alias emacs='start_emacs'
+fi
+
+if type podman > /dev/null 2>&1; then
+    alias docker='podman'
+fi
+
+if type gpg > /dev/null 2>&1; then
+    export GPG_TTY=$(tty)
+fi
+
+# Nginx
+if   [[ -f "/usr/local/nginx/sbin/nginx"    ]]; then
+    alias ng='/usr/local/nginx/sbin/nginx'
+elif [[ -f "/var/data/etc/nginx/sbin/nginx" ]]; then
+    alias ng='/var/data/etc/nginx/sbin/nginx'
+elif type nginx > /dev/null 2>&1; then
+    alias ng='nginx'
+fi
+
 if ! type app > /dev/null 2>&1; then
     if [[ "$OSTYPE" =~ "darwin*" && -f /opt/homebrew/bin/brew ]]; then
         ln -s /opt/homebrew/bin/brew /opt/homebrew/bin/app
@@ -217,3 +217,10 @@ setopt HIST_VERIFY
 #setopt EXTENDED_HISTORY
 
 ### My zshrc ###################################################################
+
+# pnpm
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+export PNPM_HOME="/Users/zhang/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+alias npm='pnpm'
+# pnpm end

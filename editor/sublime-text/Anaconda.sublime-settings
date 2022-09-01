@@ -1,5 +1,5 @@
 {
-  "anaconda_linting": false,
+  "anaconda_linting": true,
   "swallow_startup_errors": true,
   "python_interpreter": "/opt/data/pyvenv/work/bin/python",
 }

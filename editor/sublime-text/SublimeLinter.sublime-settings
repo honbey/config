@@ -1,4 +1,5 @@
 // SublimeLinter Settings - User
+// SublimeLinter Settings - User
 {
   "debug": false,
   "delay": 0.1,
@@ -9,38 +10,19 @@
   "highlights.start_hidden": false,
   "kill_old_processes": true,
   "lint_mode": "load_save",
-  "linters": {
-    "flake8": {
-      "disable": false,
-      "args": [
-        "--max-line-length", "120",
-        "--ignore", "E114,E121,E133,E226",
-      ]
-    },
+  "linters":{ 
     "eslint": {
       "disable": false,
-      "env": {
-        "PATH": "/opt/homebrew/bin"
-      }
     },
     "jshint": {
       "disable": true,
-      "env": {
-        "PATH": "/opt/homebrew/bin"
-      }
     },
     "csslint": {
       "disable": false,
-      "env": {
-        "PATH": "/opt/homebrew/bin"
-      },
       "ignore": ["order-alphabetical"]
     },
     "htmlhint": {
       "disable": false,
-      "env": {
-        "PATH": "/opt/homebrew/bin"
-      },
       "excludes": ["*.md"]
     }
   },

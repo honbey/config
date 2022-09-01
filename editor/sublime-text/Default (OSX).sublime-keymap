@@ -1,7 +1,7 @@
 [
   {
     "keys": ["super+."],
-    "command": "rest_request"
+    "command": "rest_requeset",
   },
   {
     "keys": ["ctrl+m"],

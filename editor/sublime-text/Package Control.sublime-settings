@@ -1,0 +1,19 @@
+{
+	"bootstrapped": true,
+	"installed_packages":
+	[
+		"Anaconda",
+		"Babel",
+		"Emmet",
+		"Package Control",
+		"REST Client",
+		"SublimeLinter",
+		"SublimeLinter-clang",
+		"SublimeLinter-shellcheck",
+	],
+	"in_process_packages":
+	[
+	],
+	"http_proxy": "socks5://127.0.0.1:7890",
+ 	"https_proxy": "socks5://127.0.0.1:7890",
+}

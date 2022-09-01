@@ -1,7 +1,9 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
 {
   "ignored_packages":
   [
-  //  "Vintage",
+    "Vintage",
   ],
   "vintage_ctrl_keys": true,
   "expand_tabs_on_save": true,

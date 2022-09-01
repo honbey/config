@@ -110,5 +110,20 @@ Set-PSReadLineKeyHandler -Key Backspace `
     }
 }
 
-Set-Alias open explorer.exe
-Set-Alias brew scoop
+Set-Alias -Name "open" -Value "explorer"
+Set-Alias -Name "app" -Value "scoop"
+Set-Alias -Name "ll" -Value "dir"
+Set-Alias -Name "grep" -Value "findstr"
+Set-Alias -Name "cat" -Value "type"
+Set-Alias -Name "v" -Value "nvim"
+
+Function ap {
+	Param (
+		[string] $venv
+	)
+
+	Process
+	{
+		. C:\Users\"$env:USERNAME"\pyvenv\"$venv"\Scripts\Activate.ps1
+	}
+}

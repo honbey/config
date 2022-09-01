@@ -37,7 +37,7 @@ Some tips of Application running with Podman or Docker, crontab, logrotate and s
 
 Applications:
   - Ghost for blog
-  - Grafana, loki and promtail for monitoring and analysising data
+  - Grafana, loki and promtail for monitoring and analyzing data
   - Minio for object storage
   - MySQL for database
   - Nginx for HTTP server

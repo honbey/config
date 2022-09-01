@@ -1,8 +1,8 @@
-firefox
-mactex-no-gui
+basictex
 minecraft
 multitouch
-netnewswire
 obs
 sublime-text
 wireshark
+iina
+iterm2

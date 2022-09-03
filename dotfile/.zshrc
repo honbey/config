@@ -146,6 +146,7 @@ fi
 # NeoVim
 if type nvim > /dev/null 2>&1; then
     alias v='nvim'
+    alias vi='vim'
 fi
 
 # Docker / Podman

@@ -3,7 +3,7 @@ function M.config()
 	require("toggleterm").setup {
 		-- size can be a number or function which is passed the current terminal
 		size = 30,
-		open_mapping = "<leader>tb",
+		open_mapping = "<esc>t",
 		on_open = function() end, -- function to run when the terminal opens
 		on_close = function() end, -- function to run when the terminal closes
 		on_stdout = function() end, -- callback for processing output on stdout
@@ -34,8 +34,8 @@ function M.config()
 			-- not natively supported but implemented in this plugin.
 			border = 'single',
 			-- like `size`, width and height can be a number or function which is passed the current terminal
-			width = 140,
-			height = 50,
+			width = 90,
+			height = 20,
 			winblend = 1,
 		},
 		winbar = {

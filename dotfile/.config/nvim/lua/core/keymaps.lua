@@ -1,8 +1,8 @@
 local function set_bg_light()
 	vim.cmd('set background=light')
-	local colors_name = vim.g.colors_name
-	vim.cmd('colorscheme shine')
-	vim.cmd('colorscheme ' .. colors_name)
+--	local colors_name = vim.g.colors_name
+	vim.cmd('colorscheme solarized')
+--	vim.cmd('colorscheme ' .. colors_name)
 end
 
 local function set_bg_dark()
@@ -19,7 +19,7 @@ vim.g.maplocalleader = ' '
 -- keymaps
 vim.keymap.set('i', '<C-g>', '<esc>')
 vim.keymap.set('i', '<C-;>', '::') -- for C++ and Rust
--- vim.keymap.set('n', '<leader>vl', set_bg_light)
+vim.keymap.set('n', '<leader>vl', set_bg_light)
 vim.keymap.set('n', '<leader>vd', set_bg_dark)
 vim.keymap.set('n', '<leader>', ':')
 -- f: file tree
@@ -31,6 +31,7 @@ vim.keymap.set('n', '<leader>fg', function() require 'telescope.builtin'.git_fil
 vim.keymap.set('n', '<leader>fb', function() require 'telescope.builtin'.buffers {} end)
 vim.keymap.set({ 'n', 'i' }, '<C-p>', function() require 'telescope.builtin'.registers {} end)
 -- w: window
+vim.keymap.set('n', '<leader>ww', ':w<cr>')
 vim.keymap.set('n', '<leader>wh', '<c-w>h')
 vim.keymap.set('n', '<leader>wj', '<c-w>j')
 vim.keymap.set('n', '<leader>wk', '<c-w>k')

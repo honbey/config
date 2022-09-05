@@ -3,7 +3,7 @@ function M.config()
 	require("toggleterm").setup {
 		-- size can be a number or function which is passed the current terminal
 		size = 30,
-		open_mapping = "<esc>t",
+		open_mapping = "<F5>",
 		on_open = function() end, -- function to run when the terminal opens
 		on_close = function() end, -- function to run when the terminal closes
 		on_stdout = function() end, -- callback for processing output on stdout

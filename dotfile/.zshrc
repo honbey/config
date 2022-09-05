@@ -1,40 +1,66 @@
-### Zinit
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+### Initial zi
+source "$HOME/.zi/bin/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
-# Fast-syntax-highlighting & autosuggestions
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- atload"!_zsh_autosuggest_start" \
+### completion, autosuggestion and git
+zi wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+    z-shell/F-Sy-H \
+  atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
- blockf \
+  blockf atpull'zi creinstall -q .' \
     zsh-users/zsh-completions
 
-# lib/git.zsh is loaded mostly to stay in touch with the plugin (for the users)
-zinit wait lucid for \
-    zdharma-continuum/zsh-unique-id \
-    OMZ::lib/git.zsh \
- atload \
-    OMZ::plugins/git/git.plugin.zsh
+zi wait lucid for \
+    z-shell/zsh-unique-id \
+    OMZL::git.zsh \
+ atload nocd \
+    OMZP::git
 
-### End of plugins
+### custom config
+export LANG=en_US.UTF-8
 
-### My zshrc ###################################################################
+# Set different config such as prompt for different OS
+if [[ "$OSTYPE" == darwin* ]]; then
+    # macOS
+    PS1="%F{gray} %F{cyan}%c "
 
-# Let Meta-B work well
-WORDCHARS=''
+    # Homebrew
+    export PATH="/opt/homebrew/bin:$PATH"
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+
+elif [[ "$OSTYPE" == linux* ]]; then
+    # Judge different distributions
+    if   grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
+        PS1="%F{gray} %F{cyan}%c "
+    elif grep -Eq "Debian|Ubuntu" /etc/*-release; then
+        PS1="%F{blue} %F{cyan}%c "
+    elif grep -Eq "Kali" /etc/*-release; then
+        PS1="%F{blue} %F{cyan}%c "
+    else
+        PS1="%F{green}✓ %F{cyan}%c "
+    fi
+
+    alias syss='systemctl list-units --type=service'
+
+    # NVIDIA
+    if [[ -d "/usr/local/cuda" ]]; then
+        export PATH=$PATH:/usr/local/cuda/bin
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/
+        export CUDA_HOME=/usr/local/cuda
+    fi
+fi
+if [[ "$USER" == "root" ]]; then
+    PS1="%F{gray} %F{cyan}%c "
+fi
+zinit ice lucid wait pick'mzt.plugins.zsh'
+zinit light honbey/mzt
+
+zi ice atclone'dircolors -b LS_COLORS > clrs.zsh' \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zi light trapd00r/LS_COLORS
 
 # User specific aliases and functions
 alias ls='ls --color=auto' la='ls -A' ll='ls -Ahlrt' l.='ls -d .*' l='ls -alF'
@@ -42,12 +68,23 @@ alias rm='rm -i' cp='cp -v' mv='mv -v'
 alias grep='grep --color=auto'
 alias history='history 1'
 alias ..='cd ..' ...='cd ../..'
-alias vi='vim'
 alias :q='exit' :wq='exit'
 alias ck='cmake'
 alias c='curl'
 alias s='ssh'
+alias dl='du -h --max-depth=1'
 
+# History file configuration
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST \
+    HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS \
+    HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS \
+    HIST_VERIFY
+
+###
 function ap(){source /opt/data/pyvenv/${1}/bin/activate;}
 function be(){base64          <(echo "$1")}
 function bd(){base64 --decode <(echo "$1")}
@@ -74,6 +111,16 @@ function ue() {
 
 function ud() {echo -e "${1//\%/\\x}"}
 
+function ts() {
+    if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
+        date -d "@${1}" '+%Y-%m-%d %H:%M:%S'
+    elif [[ "${1}" =~ ^[0-9]{13}$ ]]; then
+        date -d "@${1:0:10}" "+%Y-%m-%d %H:%M:%S%.${1:10:13}"
+    else
+        date -d "${1}" "+%s"
+    fi
+}
+
 if [[ -f "$HOME/.env" ]]; then
     source "$HOME/.env"
 fi
@@ -84,58 +131,6 @@ fi
 
 export PATH="$HOME/.bin:$PATH"
 
-if [[ "$OSTYPE" == darwin* ]]; then
-    # macOS
-    alias dl='du -h -d 1'
-    alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
-    function ts() {
-        if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
-            date -r "${1}" '+%Y-%m-%d %H:%M:%S'
-        elif [[ "${1}" =~ ^[0-9]{13}$ ]]; then
-            date -r "${1:0:10}" "+%Y-%m-%d %H:%M:%S%.${1:10:13}"
-        elif [[ "${1}" =~ ^[0-9]{8}$ ]]; then
-            date -j -f "%Y%m%d" "${1}" "+%s"
-        elif [[ "${1}" =~ ^[0-9]{14}$ ]]; then
-            date -j -f "%Y%m%d%H%M%S" "${1}" "+%s"
-        elif [[ "${1}" =~ ^[0-9]{4}(-[0-9]{2}){2}[[:blank:]][0-9]{2}(:[0-9]{2}){2}$ ]]; then
-            date -j -f "%Y-%m-%d %H:%M:%S" "${1}" "+%s"
-        else
-            date "+%s"
-        fi
-    }
-
-    # Homebrew
-    export PATH="/opt/homebrew/bin:$PATH"
-    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-    autoload -Uz compinit && compinit -i
-
-elif [[ "$OSTYPE" == linux* ]]; then
-    alias dl='du -h --max-depth=1'
-    alias syss='systemctl list-units --type=service'
-    # Fast Jump
-    alias d='dirs -v'
-    alias j='jump_dir_stack(){ cd $(grep -m 1 $1 <(dirs -pl)); };jump_dir_stack'
-    alias p='pushd'
- 
-    function ts() {
-        if [[ "${1}" =~ ^[0-9]{10}$ ]]; then
-            date -d "@${1}" '+%Y-%m-%d %H:%M:%S'
-        elif [[ "${1}" =~ ^[0-9]{13}$ ]]; then
-            date -d "@${1:0:10}" "+%Y-%m-%d %H:%M:%S%.${1:10:13}"
-        else
-            date -d "${1}" "+%s"
-        fi
-    }
-
-    # NVIDIA
-    if [[ -d "/usr/local/cuda" ]]; then
-        export PATH=$PATH:/usr/local/cuda/bin
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64/
-        export CUDA_HOME=/usr/local/cuda
-    fi
-fi
-
 # Emacs
 if type emacs > /dev/null 2>&1; then
     function start_emacs(){exec emacsclient -c -a "" "$@"}
@@ -144,8 +139,10 @@ if type emacs > /dev/null 2>&1; then
 fi
 
 # NeoVim
-if type nvim > /dev/null 2>&1; then
+if   type nvim > /dev/null 2>&1; then
     alias v='nvim'
+    alias vi='nvim'
+elif type vim  > /dev/null 2>&1; then
     alias vi='vim'
 fi
 
@@ -179,51 +176,3 @@ if ! type app > /dev/null 2>&1; then
     fi
 fi
 
-# Custom theme
-# PS1="%F{green}✓ %F{green}%n%F{cyan}@%F{green}%m %F{green} %F{cyan}%c "
-if [[ "$USER" == "root" ]]; then
-    PS1="%F{gray} %F{cyan}%c "
-elif [[ "$OSTYPE" =~ "darwin*" ]]; then
-    PS1="%F{gray} %F{cyan}%c "
-elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
-    PS1="%F{gray} %F{cyan}%c "
-elif grep -Eq "Debian|Ubuntu" /etc/*-release; then
-    PS1="%F{blue} %F{cyan}%c "
-elif grep -Eq "Kali" /etc/*-release; then
-    PS1="%F{blue} %F{cyan}%c "
-else
-    PS1="%F{green}✓ %F{cyan}%c "
-fi
-zinit ice wait lucid atload
-zinit ice lucid wait='!0'
-zinit light honbey/mzt
-
-# History file configuration
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
-
-# Wirte to the history file immediately, not when the shell exit
-setopt INC_APPEND_HISTORY
-# Share history between all sessions
-setopt SHARE_HISTORY
-# Expire duplicate entries first when trimming history
-setopt HIST_EXPIRE_DUPS_FIRST
-# Don't record an entry that was just recorded angin
-setopt HIST_IGNORE_DUPS
-# Delete old recorded entry if new entry is a duplicate
-setopt HIST_IGNORE_ALL_DUPS
-# Don't display a line previously fount
-setopt HIST_FIND_NO_DUPS
-# Don't record an entry starting with a space
-setopt HIST_IGNORE_SPACE
-# Don't write dulicate entries in the history file
-setopt HIST_SAVE_NO_DUPS
-# Remove superfluous blanks before recording entry
-setopt HIST_REDUCE_BLANKS
-# Don't execute immediately upon history expansion
-setopt HIST_VERIFY
-# Don't store ts and duration of the execution
-#setopt EXTENDED_HISTORY
-
-### My zshrc ###################################################################

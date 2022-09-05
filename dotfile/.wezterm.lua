@@ -12,12 +12,12 @@ end
 
 -- based on https://github.com/ivaquero/oxidizer.sh/blob/master/defaults/wezterm.lua
 
-function basename(s)
+local function basename(s)
     return string.gsub(s, '(.*[/\\])(.*)', '%2')
 end
 
 -- Title
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+wezterm.on('format-tab-title', function(tab) --, tabs, panes, config, hover, max_width)
     local pane = tab.active_pane
     local title = basename(pane.foreground_process_name)
 

@@ -1,15 +1,9 @@
 local function set_bg_light()
 	vim.cmd('set background=light')
---	local colors_name = vim.g.colors_name
-	vim.cmd('colorscheme solarized')
---	vim.cmd('colorscheme ' .. colors_name)
 end
 
 local function set_bg_dark()
 	vim.cmd('set background=dark')
-	local colors_name = vim.g.colors_name
-	vim.cmd('colorscheme ron')
-	vim.cmd('colorscheme ' .. colors_name)
 end
 
 -- vim.g.mapleader = ';'
@@ -31,15 +25,20 @@ vim.keymap.set('n', '<leader>fg', function() require 'telescope.builtin'.git_fil
 vim.keymap.set('n', '<leader>fb', function() require 'telescope.builtin'.buffers {} end)
 vim.keymap.set({ 'n', 'i' }, '<C-p>', function() require 'telescope.builtin'.registers {} end)
 -- w: window
-vim.keymap.set('n', '<leader>ww', ':w<cr>')
+vim.keymap.set('n', '<leader>ws', ':w<cr>')
+vim.keymap.set('n', '<leader>ww', '<c-w>w')
+vim.keymap.set('n', '<leader>wr', '<c-w>r')
+vim.keymap.set('n', '<leader>wR', '<c-w>R')
 vim.keymap.set('n', '<leader>wh', '<c-w>h')
 vim.keymap.set('n', '<leader>wj', '<c-w>j')
 vim.keymap.set('n', '<leader>wk', '<c-w>k')
 vim.keymap.set('n', '<leader>wl', '<c-w>l')
 vim.keymap.set('n', '<leader>w1', '<c-w>o')
 vim.keymap.set('n', '<leader>wx', ':x<cr>')
-vim.keymap.set('n', '<leader>w2', ':sp<cr>')
-vim.keymap.set('n', '<leader>w3', ':vs<cr>')
+vim.keymap.set('n', '<leader>wo', ':sp<cr>')
+vim.keymap.set('n', '<leader>wv', ':vs<cr>')
+vim.keymap.set('n', '<leader>w[', ':tabp<cr>')
+vim.keymap.set('n', '<leader>w]', ':tabn<cr>')
 -- window resize
 vim.keymap.set('n', '<m-9>', '<c-w><')
 vim.keymap.set('n', '<m-0>', '<c-w>>')
@@ -86,7 +85,7 @@ vim.keymap.set('n', '<leader>gn', ':Lspsaga diagnostic_jump_next<cr>')
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references)
 
 vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
-vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
+vim.keymap.set('n', '<leader>wd', vim.lsp.buf.remove_workspace_folder)
 vim.keymap.set('n', '<leader>wi', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
 
 -- t: terminal

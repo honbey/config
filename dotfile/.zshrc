@@ -19,6 +19,7 @@ zi wait lucid for \
     OMZP::git
 
 ### custom config
+WORDCHARS=''
 export LANG=en_US.UTF-8
 
 # Set different config such as prompt for different OS
@@ -27,8 +28,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     PS1="%F{gray} %F{cyan}%c "
 
     # Homebrew
-    export PATH="/opt/homebrew/bin:$PATH"
-    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
@@ -43,16 +43,23 @@ fi
 if [[ "$USER" == "root" ]]; then
     PS1="%F{gray} %F{cyan}%c "
 fi
-zinit ice lucid wait pick'mzt.plugins.zsh' from'gitee'
-zinit light honbey/mzt
-
-zinit ice lucid wait pick'alias.zsh' src'tool.zsh' from'gitee'
-zinit light honbey/start-zsh
+zi wait lucid light-mode for \
+  pick'mzt.plugins.zsh' from'gitee' \
+    honbey/mzt \
+  pick'alias.zsh' src'tool.zsh' from'gitee' \
+    honbey/start-zsh \
+  pick'autopair.zsh' \
+    hlissner/zsh-autopair
 
 zi ice atclone'dircolors -b LS_COLORS > clrs.zsh' \
     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+    atload'zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}'
 zi light trapd00r/LS_COLORS
+
+zi wait'1' lucid light-mode for \
+    voronkovich/gitignore.plugin.zsh \
+  has'fzf' \
+    Aloxaf/fzf-tab
 
 # User specific aliases and functions
 alias ls='ls --color=auto' la='ls -A' ll='ls -Ahlrt' l.='ls -d .*' l='ls -alF'
@@ -76,3 +83,15 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST \
     HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS \
     HIST_VERIFY
 
+if [[ -f ~/.fzf.zsh ]]; then
+    export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git --exclude .cache'
+    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow'
+    source ~/.fzf.zsh
+fi
+
+# pnpm
+export PNPM_HOME="/opt/data/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+export EDITOR=nvim

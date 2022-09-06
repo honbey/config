@@ -34,8 +34,11 @@ local config = {
     -- Window
     -- Font and color scheme
     font_size = 16,
-    font = wezterm.font('CodeNewRoman Nerd Font Mono'),
-    color_scheme = 'Solarized (light) (terminal.sexy)',
+    font = wezterm.font_with_fallback{
+        'CodeNewRoman Nerd Font Mono',
+        'Kaiti SC',
+    },
+    color_scheme = 'Builtin Solarized Light',
 
     -- Initial GUI size
     initial_cols = 90,

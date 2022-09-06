@@ -1,10 +1,11 @@
 [user]
-  name = ${name}
-  email = ${email}
-  signingKey = ${email}
+  name = honbey
+  email = git@honbey.com
+  signingKey = git@honbey.com
 [alias]
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
+  editor=nvim
   quotepath = false
   safecrlf = true
   # Unix / Linux 

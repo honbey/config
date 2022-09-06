@@ -13,10 +13,14 @@ if (vim.fn.has('termguicolors') == 1) then
 end
 -- tabs
 vim.opt.autoindent      = true
-vim.opt.tabstop         = 4
-vim.opt.shiftwidth      = 4
-vim.opt.softtabstop     = 4
+vim.opt.tabstop         = 2
+vim.opt.shiftwidth      = 2
+vim.opt.softtabstop     = 2
 vim.opt.expandtab       = true
+
+vim.cmd('autocmd FileType sh,zsh,lua,python,nginx setlocal tabstop=4')
+vim.cmd('autocmd FileType sh,zsh,lua,python,nginx setlocal shiftwidth=4')
+vim.cmd('autocmd FileType sh,zsh,lua,python,nginx setlocal softtabstop=4')
 
 require("core.keymaps")
 --require("core.dvorak")	-- delete this line if you don't like using DVORAK

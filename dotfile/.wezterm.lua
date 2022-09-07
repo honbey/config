@@ -38,7 +38,43 @@ local config = {
         'CodeNewRoman Nerd Font Mono',
         'Kaiti SC',
     },
-    color_scheme = 'Builtin Solarized Light',
+
+    color_scheme = 'Solarized',
+
+        color_schemes = {
+            ['Solarized'] = {
+            foreground = '#657b83',
+            background = '#fdf6e3',
+            cursor_bg = '#657b83',
+            cursor_fg = '#eee8d5',
+            cursor_border = '#657b83',
+            selection_bg = '#eee8d5',
+            selection_fg = '#586e75',
+            scrollbar_thumb = '#222222',
+            split = '#444444',
+
+            ansi = {
+                '#073642',
+                '#dc322f',
+                '#859900',
+                '#b58900',
+                '#268bd2',
+                '#d33682',
+                '#2aa198',
+                '#707880'
+            },
+            brights = {
+                '#002b36',
+                '#cb4b16',
+                '#586e75',
+                '#657b83',
+                '#839496',
+                '#6c71c4',
+                '#93a1a1',
+                '#C5C8C6'
+            },
+        }
+    },
 
     -- Initial GUI size
     initial_cols = 90,

@@ -1,2 +1,3 @@
 server/nginx/*.conf filter=git-crypt diff=git-crypt
 server/nginx/web/*.conf filter=git-crypt diff=git-crypt
+dotfile/.env filter=git-crypt diff=git-crypt

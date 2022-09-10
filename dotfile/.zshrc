@@ -19,8 +19,12 @@ zi wait lucid for \
     OMZP::git
 
 ### custom config
+# let meta-b work well
 WORDCHARS=''
+
+# set some environments
 export LANG=en_US.UTF-8
+export EDITOR=nvim
 
 # Set different config such as prompt for different OS
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -89,9 +93,3 @@ if [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
 fi
 
-# pnpm
-export PNPM_HOME="/opt/data/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
-export EDITOR=nvim

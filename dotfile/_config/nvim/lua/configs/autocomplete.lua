@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
 	-- Setup nvim-cmp.
-	local cmp = require 'cmp'
+	local cmp = require("cmp")
 	cmp.setup({
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
@@ -67,7 +67,6 @@ function M.config()
 	end
 
 	local luasnip = require("luasnip")
-	local cmp = require("cmp")
 
 	cmp.setup({
 
@@ -157,18 +156,73 @@ function M.config()
 	-- nvim-lspconfig config
 	-- List of all pre-configured LSP servers:
 	-- github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    -- Mappings.
+    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+    -- local opts = { noremap=true, silent=true }
+    -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    local on_attach = function(client, bufnr)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        -- Mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local bufopts = { noremap=true, silent=true, buffer=bufnr }
+        -- g: general
+        -- l: lsp
+        -- s: workspace
+        vim.keymap.set('n', '<leader>gs', ':Lspsaga show_line_diagnostics<cr>')
+        vim.keymap.set('n', '<leader>gS', ':Lspsaga show_cursor_diagnostics<cr>')
+        vim.keymap.set('n', '<leader>gd', ':Lspsaga preview_definition<cr>')
+        vim.keymap.set('n', '<leader>gR', ':Lspsaga rename<cr>')
+        vim.keymap.set('n', '<leader>gc', ':Lspsaga code_action<cr>')
+        vim.keymap.set('n', '<leader>gl', ':Lspsaga lsp_finder<cr>')
+        vim.keymap.set('n', '<leader>gp', ':Lspsaga diagnostic_jump_prev<cr>')
+        vim.keymap.set('n', '<leader>gn', ':Lspsaga diagnostic_jump_next<cr>')
+        vim.keymap.set('n', '<leader>go', ':SymbolsOutline<cr>')
+
+        vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, bufopts)
+        vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
+        vim.keymap.set('n', '<leader>ld', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', '<leader>lD', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set('n', '<leader>lR', vim.lsp.buf.rename, bufopts)
+
+        vim.keymap.set('n', '<leader>sa', vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set('n', '<leader>sr', vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set('n', '<leader>sl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+
+        vim.keymap.set('n', '<leader>rt', function() require('rust-tools.inlay_hints').toggle_inlay_hints() end)
+        vim.keymap.set('n', '<leader>rs', function() require('rust-tools.inlay_hints').set_inlay_hints() end)
+        vim.keymap.set('n', '<leader>rd', function() require('rust-tools.inlay_hints').diable_inlay_hints() end)
+    end
+
 	require 'lspconfig'.gopls.setup {}
-	local servers = { 'clangd', 'rust_analyzer', 'sumneko_lua' }
+	local servers = { 'clangd', 'sumneko_lua', 'bashls', 'tsserver',
+        'rust_analyzer' }
 	for _, lsp in pairs(servers) do
 		require('lspconfig')[lsp].setup {
 			on_attach = on_attach
 		}
 	end
+    -- Python
 	require'lspconfig'.jedi_language_server.setup {
 		cmd = { '/var/data/pyvenv/work/bin/jedi-language-server' },
 		filetypes = { 'python' },
-		single_file_support = true, 
+		single_file_support = true,
+		on_attach = on_attach
 	}
+    -- TypeScript / JavaScript: vscode-langservers-extracted / ts-language-server
 
 	local devicons = require('nvim-web-devicons')
 	cmp.register_source('devicons', {
@@ -185,72 +239,11 @@ function M.config()
 		end,
 	})
 
-	local saga = require 'lspsaga'
-
 	-- change the lsp symbol kind
 	--local kind = require('lspsaga.lspkind')
 	--kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
 
 	-- use default config
-	saga.init_lsp_saga({
-		border_style = "single",
-		saga_winblend = 0,
-		move_in_saga = { prev = '<C-p>',next = '<C-n>'},
-		diagnostic_header = { " ", " ", " ", "ﴞ " },
-		show_diagnostic_source = true,
-		diagnostic_source_bracket = {},
-		max_preview_lines = 10,
-		code_action_icon = "",
-		code_action_num_shortcut = true,
-		code_action_lightbulb = {
-			enable = true,
-			sign = true,
-			enable_in_insert = true,
-			sign_priority = 20,
-			virtual_text = true,
-		},
-		finder_icons = {
-			def = '  ',
-			ref = '諭 ',
-			link = '  ',
-		},
-		finder_request_timeout = 1500,
-		finder_action_keys = {
-			open = "o",
-			vsplit = "s",
-			split = "i",
-			tabe = "t",
-			quit = "q",
-			scroll_down = "<C-f>",
-			scroll_up = "<C-b>", -- quit can be a table
-		},
-		code_action_keys = {
-			quit = "q",
-			exec = "<CR>",
-		},
-		rename_action_quit = "q",
-		rename_in_select = true,
-		definition_preview_icon = "  ",
-		-- show symbols in winbar must nightly
-		symbol_in_winbar = {
-			in_custom = false,
-			enable = false,
-			separator = ' ',
-			show_file = true,
-			click_support = false,
-		},
-		show_outline = {
-			win_position = 'right',
-			win_with = '',
-			win_width = 30,
-			auto_enter = true,
-			auto_preview = true,
-			virt_text = '┃',
-			jump_key = 'o',
-			auto_refresh = true,
-		},
-		server_filetype_map = {},
-	})
 
 	require('rust-tools').setup()
 

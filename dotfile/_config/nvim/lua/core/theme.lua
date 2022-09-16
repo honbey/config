@@ -51,5 +51,5 @@ vim.g.edge_better_performance = 1
 
 -- theme
 vim.cmd("set background=light")
-vim.cmd ("colorscheme solarized")
+vim.cmd ("colorscheme leuven")
 

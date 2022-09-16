@@ -30,8 +30,10 @@ return require('packer').startup(function()
 	-- use 'sainnhe/edge'
 	-- use 'B4mbus/oxocarbon-lua.nvim'
 	-- use 'Th3Whit3Wolf/one-nvim'
-	-- use 'gzagatti/vim-leuven-theme'
-    use 'ishan9299/nvim-solarized-lua'
+    use {
+        'gzagatti/vim-leuven-theme',
+        commit = '6dffe017f4b794b2b89d143d820091cad288f216',
+    }
 
 	-- file tree
 	use {

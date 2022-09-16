@@ -24,6 +24,8 @@ vim.cmd('autocmd FileType sh,zsh,lua,python,nginx setlocal softtabstop=4')
 
 vim.cmd('set colorcolumn=80,100')
 
+vim.wo.signcolumn = "yes"
+
 require("core.keymaps")
 --require("core.dvorak")	-- delete this line if you don't like using DVORAK
 require("core.plugins")

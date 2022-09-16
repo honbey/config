@@ -19,6 +19,7 @@ zi wait lucid for \
     OMZP::git
 
 ### custom config
+bindkey -e
 # let meta-b work well
 WORDCHARS=''
 
@@ -93,3 +94,4 @@ if [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
 fi
 
+[[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'

@@ -25,7 +25,7 @@ WORDCHARS=''
 
 # set some environments
 export LANG=en_US.UTF-8
-export EDITOR=nvim
+export EDITOR=vim
 
 # Set different config such as prompt for different OS
 if [[ "$OSTYPE" == darwin* ]]; then

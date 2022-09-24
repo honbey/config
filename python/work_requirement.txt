@@ -1,8 +1,9 @@
 beautifulsoup4
+black
 colorama
 cryptography
-jedi-language-server
 matplotlib
+mitmproxy
 motor
 notebook
 numpy

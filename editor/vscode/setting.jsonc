@@ -1,0 +1,231 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "Lua.telemetry.enable": false,
+  "rest-client.enableTelemetry": false,
+  "update.mode": "none",
+  "workbench.colorTheme": "Catppuccin Latte",
+  "editor.fontFamily": "'CodeNewRoman Nerd Font Mono', Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.rulers": [80, 100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.lineNumbers": "relative",
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "terminal.integrated.shellIntegration.enabled": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true,
+    "**/.ipynb_checkpoints": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.git/*.sh": true,
+    "**/CMakeFiles": true,
+    "**/tmp": true
+  },
+  "git.enabled": true,
+  "git.autoRepositoryDetection": false,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [","],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["f", "s"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["g", "n"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["g", "N"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDeclaration"]
+    },
+    {
+      "before": ["g", "t"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["g", "p", "d"],
+      "commands": ["editor.action.peekDefinition"]
+    },
+    {
+      "before": ["g", "p", "D"],
+      "commands": ["editor.action.peekDeclaration"]
+    },
+    {
+      "before": ["g", "p", "t"],
+      "commands": ["editor.action.peekTypeDefinition"]
+    },
+    {
+      "before": ["g", "p", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    {
+      "before": ["g", "f"],
+      "commands": ["editor.action.formatDocument.none"]
+    },
+    {
+      "before": ["g", "F"],
+      "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["references-view.showCallHierarchy"]
+    },
+    {
+      "before": ["g", "H"],
+      "commands": ["references-view.showTypeHierarchy"]
+    },
+    {
+      "before": ["g", "e"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "E"],
+      "commands": ["refactorPreview.discard"]
+    },
+    {
+      "before": ["g", "A"],
+      "commands": ["editor.action.changeAll"]
+    },
+    {
+      "before": ["g", "a"],
+      "commands": ["editor.action.sourceAction"]
+    },
+    {
+      "before": ["g", "C"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["g", "L"],
+      "commands": ["workbench.action.positionPanelRight"]
+    },
+    {
+      "before": ["g", "J"],
+      "commands": ["workbench.action.positionPanelBottom"]
+    },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    }
+  ],
+  "vim.insertModeKeyBindings": [],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.operatorPendingModeKeyBindings": [
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    }
+  ],
+  "[shellscript]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "python.defaultInterpreterPath": "/opt/data/pyvenv/work/bin/python",
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.completeFunctionParens": true,
+  "notebook.lineNumbers": "on",
+  "[lua]": {
+    "editor.tabSize": 4
+  },
+  "[properties]": {
+    "editor.tabSize": 4
+  },
+  "[html]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.maxTokenizationLineLength": 2500,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "javascript.preferences.quoteStyle": "single"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "typescript.preferences.quoteStyle": "single"
+  },
+  "[yaml]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.singleQuote": true,
+  "clang-format.executable": "/opt/homebrew/bin/clang-format"
+}
+

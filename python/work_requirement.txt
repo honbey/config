@@ -1,6 +1,7 @@
 beautifulsoup4
 black
 colorama
+debugpy
 cryptography
 matplotlib
 mitmproxy
@@ -10,6 +11,7 @@ numpy
 pandas
 Pillow
 playwright
+ptvsd
 pymongo
 pyMySQL
 pyyaml

@@ -1,4 +1,5 @@
 server/nginx/*.conf filter=git-crypt diff=git-crypt
 server/nginx/web/*.conf filter=git-crypt diff=git-crypt
 dotfile/.env filter=git-crypt diff=git-crypt
-rime/mac/* filter=git-crypt diff=git-crypt
+tool/rime/mac/* filter=git-crypt diff=git-crypt
+tool/jump-desktop/JumpDesktop/Viewer/Servers/* filter=git-crypt diff=git-crypt

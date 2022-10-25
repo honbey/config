@@ -15,6 +15,7 @@ This repository contains my configurations of editor, system, language and so on
 3. Config of Tmux.
 4. Config of Vim.
 5. Config of Zsh.
+6. ...
 
 ## editor
 
@@ -33,14 +34,15 @@ List virtual environments of Python I used and their requirements.
 
 ## server
 
-Some tips of Application running with Podman or Docker, crontab, logrotate and so on. Config of Nginx and tips of how to compile it from source, experiences and tips. 
+Some tips of Application running with Podman or Docker, crontab, logrotate and so on. Config of Nginx and tips of how to compile it from source, experiences and tips.
 
 Applications:
-  - Ghost for blog
-  - Grafana, loki and promtail for monitoring and analyzing data
-  - Minio for object storage
-  - MySQL for database
-  - Nginx for HTTP server
+
+- Ghost for blog
+- Grafana, loki and promtail for monitoring and analyzing data
+- Minio for object storage
+- MySQL for database
+- Nginx for HTTP server
 
 ## tool
 
@@ -51,4 +53,3 @@ Cask and formula and their version installed by brew.
 ### git
 
 Common gitignore integrated from [gitignore](https://github.com/github/gitignore).
-

@@ -8,6 +8,7 @@ mitmproxy
 motor
 notebook
 numpy
+openpyxl
 pandas
 Pillow
 playwright
@@ -17,6 +18,7 @@ pyMySQL
 pyyaml
 requests
 scan-build
+scipy
 sqlalchemy
 sshtunnel
 xlrd

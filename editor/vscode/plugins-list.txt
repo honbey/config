@@ -1,14 +1,39 @@
 C/C++
 C/C++ Extension Pack
+Catppuccin for VSCode
+Clang-Format
+CodeMetrics
+Docs View
+Draw.io integration
+edamagit
 Excel View
+File Browser
+fuzzy-search
 Go
-indent-rainbow
+Hex Editor
+isort
 Jupyter
+Jupyter Cell Tags
 Jupyter Keymap
 Jupyter Notebook Renderers
+Jupyter Slide Show
+LeetCode
 Lisp
+Lua
 markdownlint
+Path Intelligence
+PlantUML
+Playwright Test for VSCode
+Prettier - Code formatter
 Pylance
 Python
+Remote - SSH
+Remote - SSH: Editing Configuration Files
+Remote Explorer
 REST Client
+shell-format
+ShellCheck
+SQL Formatter
 Vim
+VSpaceCode
+Which Key

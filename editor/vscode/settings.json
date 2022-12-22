@@ -12,6 +12,22 @@
   "editor.lineNumbers": "relative",
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
+  "editor.linkedEditing": true,
+  "editor.bracketPairColorization.enabled": true,
+  "extensions.ignoreRecommendations": true,
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.trimTrailingWhitespace": true,
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.macOptionIsMeta": true,
   "terminal.integrated.sendKeybindingsToShell": true,
@@ -24,7 +40,8 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/__pycache__": true,
-    "**/.ipynb_checkpoints": true
+    "**/.ipynb_checkpoints": true,
+    "**/node_modules": true
   },
   "search.exclude": {
     "**/node_modules": true,
@@ -41,98 +58,20 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "vim.normalModeKeyBindings": [
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
+    },
     {
       "before": [","],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["f", "s"],
-      "commands": ["workbench.action.files.save"]
-    },
-    {
-      "before": ["g", "n"],
-      "commands": ["editor.action.marker.next"]
-    },
-    {
-      "before": ["g", "N"],
-      "commands": ["editor.action.marker.prev"]
-    },
-    {
-      "before": ["g", "d"],
-      "commands": ["editor.action.revealDefinition"]
-    },
-    {
-      "before": ["g", "D"],
-      "commands": ["editor.action.revealDeclaration"]
-    },
-    {
-      "before": ["g", "t"],
-      "commands": ["editor.action.goToTypeDefinition"]
-    },
-    {
-      "before": ["g", "r"],
-      "commands": ["editor.action.goToReferences"]
-    },
-    {
-      "before": ["g", "p", "d"],
-      "commands": ["editor.action.peekDefinition"]
-    },
-    {
-      "before": ["g", "p", "D"],
-      "commands": ["editor.action.peekDeclaration"]
-    },
-    {
-      "before": ["g", "p", "t"],
-      "commands": ["editor.action.peekTypeDefinition"]
-    },
-    {
-      "before": ["g", "p", "r"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
-    {
-      "before": ["g", "f"],
-      "commands": ["editor.action.formatDocument.none"]
-    },
-    {
-      "before": ["g", "F"],
-      "commands": ["references-view.findReferences"]
-    },
-    {
-      "before": ["g", "h"],
-      "commands": ["references-view.showCallHierarchy"]
-    },
-    {
-      "before": ["g", "H"],
-      "commands": ["references-view.showTypeHierarchy"]
-    },
-    {
-      "before": ["g", "e"],
-      "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["g", "E"],
-      "commands": ["refactorPreview.discard"]
-    },
-    {
-      "before": ["g", "A"],
-      "commands": ["editor.action.changeAll"]
-    },
-    {
-      "before": ["g", "a"],
-      "commands": ["editor.action.sourceAction"]
-    },
-    {
-      "before": ["g", "C"],
-      "commands": ["workbench.action.closeActiveEditor"]
-    },
-    {
-      "before": ["g", "L"],
-      "commands": ["workbench.action.positionPanelRight"]
-    },
-    {
-      "before": ["g", "J"],
-      "commands": ["workbench.action.positionPanelBottom"]
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
     },
     {
       "before": ["g", "i"],
@@ -143,15 +82,20 @@
       "commands": ["editor.action.showDefinitionPreviewHover"]
     }
   ],
-  "vim.insertModeKeyBindings": [],
-  "vim.visualModeKeyBindings": [
+  "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "before": [","],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
     }
   ],
   "vim.operatorPendingModeKeyBindings": [
@@ -221,11 +165,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.preferences.quoteStyle": "single"
   },
+  "npm.packageManager": "pnpm",
   "[yaml]": {
     "editor.autoIndent": "advanced",
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.singleQuote": true,
-  "clang-format.executable": "/opt/homebrew/bin/clang-format"
+  "clang-format.executable": "/opt/homebrew/bin/clang-format",
+  "playwright.reuseBrowser": false,
+  "jupyter.askForKernelRestart": false
 }
-

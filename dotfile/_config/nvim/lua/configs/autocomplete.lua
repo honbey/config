@@ -208,21 +208,15 @@ function M.config()
     end
 
 	require 'lspconfig'.gopls.setup {}
-	local servers = { 'clangd', 'sumneko_lua', 'bashls', 'tsserver',
+	local servers = { 'clangd', 'pyright', 'lua_ls', 'bashls', 'tsserver',
         'rust_analyzer' }
 	for _, lsp in pairs(servers) do
 		require('lspconfig')[lsp].setup {
 			on_attach = on_attach
 		}
 	end
-    -- Python
-	require'lspconfig'.jedi_language_server.setup {
-		cmd = { '/var/data/pyvenv/work/bin/jedi-language-server' },
-		filetypes = { 'python' },
-		single_file_support = true,
-		on_attach = on_attach
-	}
-    -- TypeScript / JavaScript: vscode-langservers-extracted / ts-language-server
+
+  -- TypeScript / JavaScript: vscode-langservers-extracted / ts-language-server
 
 	local devicons = require('nvim-web-devicons')
 	cmp.register_source('devicons', {

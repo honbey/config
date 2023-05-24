@@ -39,6 +39,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
     alias minecraft='java -jar /opt/data/etc/minecraft/HMCL.jar'
 
+    # cURL
+    export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
     PS1="%F{gray} %F{cyan}%c "

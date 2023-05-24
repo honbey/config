@@ -14,14 +14,13 @@ Debian/Ubuntu/Kali
 sudo apt install libxslt1-dev zlib1g-dev libpcre2-dev libgeoip-dev
 ```
 
-Source: [nginx-quic](https://hg.nginx.org/nginx-quic/shortlog/quic)
+Source: [nginx(>= v1.25.0)](https://hg.nginx.org/nginx)
 
 Compile command(with OpenSSL 3.0):
 ```bash
-./auto/configure --prefix=/var/data/etc/nginx \
+./configure --prefix=/var/data/etc/nginx \
   --user=nobody --group=nobody \
   --with-http_v3_module \
-  --with-stream_quic_module \
   --with-http_ssl_module \
   --with-http_v2_module \
   --with-http_realip_module \
@@ -45,6 +44,8 @@ Compile command(with OpenSSL 3.0):
   --with-http_gzip_static_module --add-module=../ngx_brotli \
   --with-cc-opt=-I../openssl/include \
   --with-ld-opt='-L../openssl -L../openssl'
+make -j2
+make install
 ```
 
 Compile command(with BoringSSL):
@@ -52,7 +53,6 @@ Compile command(with BoringSSL):
 ./auto/configure --prefix=/var/data/etc/nginx \
   --user=nobody --group=nobody \
   --with-http_v3_module \
-  --with-stream_quic_module \
   --with-http_ssl_module \
   --with-http_v2_module \
   --with-http_realip_module \
@@ -76,18 +76,20 @@ Compile command(with BoringSSL):
   --with-http_gzip_static_module --add-module=../ngx_brotli \
   --with-cc-opt=-I../boringssl/include \
   --with-ld-opt='-L../boringssl/build/ssl -L../boringssl/build/crypto'
+make -j2
+make install
 ```
 
 ### OpenSSL 3.0 with QUIC
 
 Clone from GitHub:
 ```bash
-git clone --depth=1 -b openssl-3.0.5+quic https://github.com/quictls/openssl
+git clone --depth=1 -b openssl-3.0.8+quic https://github.com/quictls/openssl
 ```
 
 Make:
 
-> PS: Don't execute `make install`!
+> It's unnecessary to execute `make install`!
 
 ```bash
 cd openssl

@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  memos:
+    image: neosmemo/memos:latest
+    container_name: memos
+    restart: always
+    environment:
+      LOG_FILE: /data/memos.log
+    volumes:
+      - ./data:/var/opt/memos:Z
+    #env_file:
+    #  - config.env
+    ports:
+      - 127.0.0.1:1130:5230
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

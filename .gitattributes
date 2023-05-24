@@ -1,5 +1,8 @@
-server/nginx/*.conf filter=git-crypt diff=git-crypt
-server/nginx/web/*.conf filter=git-crypt diff=git-crypt
+server/nginx/freewisdom.cn.conf/*.conf filter=git-crypt diff=git-crypt
+server/nginx/freewisdom.cn.conf/web/*.conf filter=git-crypt diff=git-crypt
+server/nginx/freewisdom.cn.conf/web/*.conf_ filter=git-crypt diff=git-crypt
+server/nginx/freewisdom.cn.conf/server.key filter=git-crypt diff=git-crypt
+server/nginx/freewisdom.cn.conf/server.crt filter=git-crypt diff=git-crypt
 dotfile/.env filter=git-crypt diff=git-crypt
 tool/rime/mac/* filter=git-crypt diff=git-crypt
 tool/jump-desktop/JumpDesktop/Viewer/Servers/* filter=git-crypt diff=git-crypt

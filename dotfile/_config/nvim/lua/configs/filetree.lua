@@ -4,7 +4,7 @@ function M.config()
 	require 'nvim-tree'.setup {
 		disable_netrw        = true,
 		hijack_netrw         = true,
-		open_on_setup        = true,
+		-- open_on_setup        = true,
 		ignore_ft_on_setup   = {},
 		auto_reload_on_write = true,
 		open_on_tab          = false,
@@ -39,7 +39,7 @@ function M.config()
 		},
 		view                 = {
 			width = 30,
-			height = 30,
+			-- height = 30,
 			hide_root_folder = false,
 			side = 'left',
 			mappings = {

@@ -303,7 +303,7 @@ local config = {
     }, {
         key = 'v',
         mods = 'CMD',
-        action = wezterm.action.Paste,
+        action = wezterm.action.PasteFrom 'Clipboard',
     }},
 
     -- Tab bar appearance

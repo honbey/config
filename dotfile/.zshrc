@@ -35,6 +35,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # Homebrew
     export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
+    # Minecraft
+    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+    alias minecraft='java -jar /opt/data/etc/minecraft/HMCL.jar'
+
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
     PS1="%F{gray} %F{cyan}%c "
@@ -95,3 +99,4 @@ if [[ -f ~/.fzf.zsh ]]; then
 fi
 
 [[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'
+

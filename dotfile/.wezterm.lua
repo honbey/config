@@ -39,7 +39,8 @@ local config = {
         'Kaiti SC',
     },
 
-    color_scheme = 'Builtin Light',
+    -- color_scheme = 'Builtin Light',
+    color_scheme = 'Builtin Solarized Light',
 
     -- Initial GUI size
     initial_cols = 90,

@@ -42,6 +42,7 @@ Compile command(with OpenSSL 3.0):
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-http_gunzip_module \
   --with-http_gzip_static_module --add-module=../ngx_brotli \
+  --with-compat --add-module=../incubator-pagespeed-ngx
   --with-cc-opt=-I../openssl/include \
   --with-ld-opt='-L../openssl -L../openssl'
 make -j2
@@ -74,6 +75,7 @@ Compile command(with BoringSSL):
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-http_gunzip_module \
   --with-http_gzip_static_module --add-module=../ngx_brotli \
+  --with-compat --add-module=../incubator-pagespeed-ngx
   --with-cc-opt=-I../boringssl/include \
   --with-ld-opt='-L../boringssl/build/ssl -L../boringssl/build/crypto'
 make -j2
@@ -143,4 +145,12 @@ cert.zip
 
 ```bash
 openssl s_client -connect example:443 -status -tlsextdebug < /dev/null 2>&1 | grep "OCSP response"
+```
+
+### Pagespeed
+
+```txt
+https://nova.moe/serve-webp-on-the-fly-with-nginx-and-mod_pagespeed/
+https://www.modpagespeed.com/doc/build_ngx_pagespeed_from_source
+https://github.com/apache/incubator-pagespeed-ngx/issues/1743
 ```

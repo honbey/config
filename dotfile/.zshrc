@@ -41,6 +41,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # cURL
     export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+    # mtr
+    export PATH="/opt/homebrew/opt/mtr/sbin:$PATH"
 
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then

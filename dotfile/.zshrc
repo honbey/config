@@ -34,6 +34,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # Homebrew
     export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
 
     # Minecraft
     export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

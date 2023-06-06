@@ -3,12 +3,11 @@ Import-Module DirColors
 Import-Module posh-git
 Import-Module oh-my-posh
 
-Set-Theme Paradox
-
+Set-Theme robbyrussell 
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -HistoryNoDuplicates
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key "Tab" -Function MenuComplete
@@ -110,20 +109,6 @@ Set-PSReadLineKeyHandler -Key Backspace `
     }
 }
 
-Set-Alias -Name "open" -Value "explorer"
-Set-Alias -Name "app" -Value "scoop"
-Set-Alias -Name "ll" -Value "dir"
-Set-Alias -Name "grep" -Value "findstr"
-Set-Alias -Name "cat" -Value "type"
-Set-Alias -Name "v" -Value "nvim"
-
-Function ap {
-	Param (
-		[string] $venv
-	)
-
-	Process
-	{
-		. C:\Users\"$env:USERNAME"\pyvenv\"$venv"\Scripts\Activate.ps1
-	}
-}
+Set-Alias open explorer.exe
+Set-Alias app scoop.exe
+Set-Alias grep findstr.exe

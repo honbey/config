@@ -3,11 +3,12 @@ Import-Module DirColors
 Import-Module posh-git
 Import-Module oh-my-posh
 
-Set-Theme robbyrussell 
+Set-Theme robbyrussell
+
 Set-PSReadLineOption -EditMode Emacs
-Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -HistoryNoDuplicates
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key "Tab" -Function MenuComplete
@@ -19,6 +20,13 @@ Set-PSReadLineKeyHandler -Key Alt+b -Function ShellBackwardWord
 Set-PSReadLineKeyHandler -Key Alt+f -Function ShellForwardWord
 Set-PSReadLineKeyHandler -Key Alt+B -Function SelectShellBackwardWord
 Set-PSReadLineKeyHandler -Key Alt+F -Function SelectShellForwardWord
+
+# From:
+# https://github.com/PowerShell/PSReadLine/issues/687#issuecomment-1068175455
+Set-PSReadLineKeyHandler -Chord "Ctrl+e" -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptSuggestion()
+    [Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
+}
 
 Set-PSReadLineKeyHandler -Key '(','{','[' `
                          -BriefDescription InsertPairedBraces `
@@ -109,6 +117,22 @@ Set-PSReadLineKeyHandler -Key Backspace `
     }
 }
 
-Set-Alias open explorer.exe
-Set-Alias app scoop.exe
-Set-Alias grep findstr.exe
+Set-Alias -Name "open" -Value "explorer"
+Set-Alias -Name "app" -Value "scoop"
+Set-Alias -Name "ll" -Value "dir"
+# Set-Alias -Name "grep" -Value "findstr"
+Set-Alias -Name "grep" -Value "rg"
+Set-Alias -Name "cat" -Value "type"
+Set-Alias -Name "v" -Value "nvim"
+Set-Alias -Name "vi" -Value "nvim"
+
+Function ap {
+	Param (
+		[string] $venv
+	)
+
+	Process
+	{
+		. C:\Users\"$env:USERNAME"\pyvenv\"$venv"\Scripts\Activate.ps1
+	}
+}

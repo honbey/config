@@ -26,7 +26,6 @@ wezterm.on('format-tab-title', function(tab) --, tabs, panes, config, hover, max
     }}
 end)
 
-
 local config = {
     check_for_updates = false,
     -- pane_focus_follows_mouse = true,
@@ -39,8 +38,7 @@ local config = {
         'Kaiti SC',
     },
 
-    -- color_scheme = 'Builtin Light',
-    color_scheme = 'Builtin Solarized Light',
+    color_scheme = 'Builtin Tango Light',
 
     -- Initial GUI size
     initial_cols = 90,
@@ -359,7 +357,18 @@ local config = {
 
     default_prog = default_prog,
     set_environment_variables = set_environment_variables,
-    launch_menu = launch_menu
+    launch_menu = launch_menu,
+    ssh_domains = {
+        {
+            name = 'mcdr',
+            remote_address = '192.168.1.5',
+            ssh_option = {
+                identityfile = '~/.ssh/z-admin',
+            },
+            multiplexing = 'WezTerm',
+        },
+    },
 }
 
 return config
+

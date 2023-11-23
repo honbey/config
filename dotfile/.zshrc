@@ -45,6 +45,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     export PATH="/opt/homebrew/opt/curl/bin:$PATH"
     # mtr
     export PATH="/opt/homebrew/opt/mtr/sbin:$PATH"
+    # Java
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home"
+    export PATH="$JAVA_HOME/bin:$PATH"
 
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then

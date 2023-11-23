@@ -5,7 +5,11 @@ function M.config()
 		-- ensure_installed = "maintained", -- for installing all maintained parsers
 		ensure_installed = {
       "c", "cpp", "rust", "lua",
-      "javascript", "php", "go", "python"
+      "python", "javascript",
+      "php", "go", "python",
+      "java", "kotlin",
+      "hjson", "json", "json5",
+      "toml", "xml", "yaml",
     }, -- for installing specific parsers
 		sync_install = true, -- install synchronously
 		ignore_install = {}, -- parsers to not install

@@ -2,6 +2,7 @@ local M = {}
 
 function M.config()
 	-- Setup nvim-cmp.
+  -- https://github.com/hrsh7th/nvim-cmp
 	local cmp = require("cmp")
 	cmp.setup({
 		snippet = {
@@ -173,18 +174,18 @@ function M.config()
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        -- g: general
+        -- k: general
         -- l: lsp
         -- s: workspace
-        vim.keymap.set('n', '<leader>gs', ':Lspsaga show_line_diagnostics<cr>')
-        vim.keymap.set('n', '<leader>gS', ':Lspsaga show_cursor_diagnostics<cr>')
-        vim.keymap.set('n', '<leader>gd', ':Lspsaga preview_definition<cr>')
-        vim.keymap.set('n', '<leader>gR', ':Lspsaga rename<cr>')
-        vim.keymap.set('n', '<leader>gc', ':Lspsaga code_action<cr>')
-        vim.keymap.set('n', '<leader>gl', ':Lspsaga lsp_finder<cr>')
-        vim.keymap.set('n', '<leader>gp', ':Lspsaga diagnostic_jump_prev<cr>')
-        vim.keymap.set('n', '<leader>gn', ':Lspsaga diagnostic_jump_next<cr>')
-        vim.keymap.set('n', '<leader>go', ':SymbolsOutline<cr>')
+        vim.keymap.set('n', '<leader>ks', ':Lspsaga show_line_diagnostics<cr>')
+        vim.keymap.set('n', '<leader>kS', ':Lspsaga show_cursor_diagnostics<cr>')
+        vim.keymap.set('n', '<leader>kd', ':Lspsaga preview_definition<cr>')
+        vim.keymap.set('n', '<leader>kR', ':Lspsaga rename<cr>')
+        vim.keymap.set('n', '<leader>kc', ':Lspsaga code_action<cr>')
+        vim.keymap.set('n', '<leader>kl', ':Lspsaga lsp_finder<cr>')
+        vim.keymap.set('n', '<leader>kp', ':Lspsaga diagnostic_jump_prev<cr>')
+        vim.keymap.set('n', '<leader>kn', ':Lspsaga diagnostic_jump_next<cr>')
+        vim.keymap.set('n', '<leader>ko', ':SymbolsOutline<cr>')
 
         vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, bufopts)
         vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, bufopts)
@@ -208,13 +209,16 @@ function M.config()
     end
 
 	require 'lspconfig'.gopls.setup {}
-	local servers = { 'clangd', 'pyright', 'lua_ls', 'bashls', 'tsserver',
-        'rust_analyzer' }
+	local servers = {
+    'clangd', 'pyright', 'lua_ls', 'bashls', 'tsserver',
+    'rust_analyzer', 'jdtls',
+  }
 	for _, lsp in pairs(servers) do
 		require('lspconfig')[lsp].setup {
 			-- on_attach = on_attach
 		}
 	end
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
   -- TypeScript / JavaScript: vscode-langservers-extracted / ts-language-server
 

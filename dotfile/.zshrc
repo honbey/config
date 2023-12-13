@@ -1,4 +1,6 @@
 ### Initial zi
+# add `source <(curl -sL init.zshell.dev); zzinit` to ~/.zshrc
+# then run `exec zsh -il`
 source "$HOME/.zi/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
@@ -25,29 +27,16 @@ WORDCHARS=''
 
 # set some environments
 export LANG=en_US.UTF-8
-export EDITOR=vim
+export EDITOR=nvim
 
 # Set different config such as prompt for different OS
 if [[ "$OSTYPE" == darwin* ]]; then
     # macOS
     PS1="%F{gray} %F{cyan}%c "
 
-    # Homebrew
-    export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-    # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
-    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-
-    # Minecraft
-    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-    alias minecraft='java -jar /opt/data/etc/minecraft/HMCL.jar'
-
-    # cURL
-    export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-    # mtr
-    export PATH="/opt/homebrew/opt/mtr/sbin:$PATH"
     # Java
-    export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home"
-    export PATH="$JAVA_HOME/bin:$PATH"
+    export MAC_JAVA_VM="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
+    export JAVA_HOME="$MAC_JAVA_VM"
 
 # Judge different distributions
 elif grep -Eq "Fedora|CentOS|Redhat|openEuler" /etc/*-release; then
@@ -108,5 +97,35 @@ if [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
 fi
 
-[[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'
+# Homebrew/Linuxbrew
+if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
+    # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+    export HOMEBREW_INSTALL_FROM_API=1
+    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+    export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
+    if [[ -d /home/linuxbrew ]]; then
+        # User environment PATH
+        export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+    else # macOS
+        export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+        # cURL, mtr
+        export PATH="/opt/homebrew/opt/mtr/sbin:/opt/homebrew/opt/curl/bin:$PATH"
+        # WezTerm(Terminal from Casks)
+        [[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'
+    fi
+fi
+
+# JAVA
+if [[ ! -n $JAVA_HOME ]]; then
+    export GRAAL_JDK17="/opt/data/java/graalvm-17.jdk"
+    export JAVA_HOME="$GRAAL_JDK17"
+fi
+if [[ -d $JAVA_HOME ]]; then
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi

@@ -27,7 +27,31 @@ WORDCHARS=''
 
 # set some environments
 export LANG=en_US.UTF-8
-export EDITOR=nvim
+export EDITOR=vim
+
+# Homebrew/Linuxbrew
+if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
+    # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+    export HOMEBREW_INSTALL_FROM_API=1
+    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+    export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+
+    if [[ -d /home/linuxbrew ]]; then
+        # User environment PATH
+        export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+    else # macOS
+        export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+        # cURL, mtr
+        export PATH="/opt/homebrew/opt/mtr/sbin:/opt/homebrew/opt/curl/bin:$PATH"
+        # WezTerm(Terminal from Casks)
+        [[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'
+    fi
+fi
 
 # Set different config such as prompt for different OS
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -91,36 +115,6 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST \
     HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS \
     HIST_VERIFY
 
-if [[ -f ~/.fzf.zsh ]]; then
-    export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git --exclude .cache'
-    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow'
-    source ~/.fzf.zsh
-fi
-
-# Homebrew/Linuxbrew
-if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
-    # https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
-    export HOMEBREW_INSTALL_FROM_API=1
-    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
-    export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
-
-    if [[ -d /home/linuxbrew ]]; then
-        # User environment PATH
-        export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-    else # macOS
-        export PATH="/opt/homebrew/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-        # cURL, mtr
-        export PATH="/opt/homebrew/opt/mtr/sbin:/opt/homebrew/opt/curl/bin:$PATH"
-        # WezTerm(Terminal from Casks)
-        [[ "$TERM_PROGRAM" == "WezTerm" ]] && alias imgcat='wezterm imgcat'
-    fi
-fi
-
 # JAVA
 if [[ ! -n $JAVA_HOME ]]; then
     export GRAAL_JDK17="/opt/data/java/graalvm-17.jdk"
@@ -129,3 +123,4 @@ fi
 if [[ -d $JAVA_HOME ]]; then
     export PATH="$JAVA_HOME/bin:$PATH"
 fi
+

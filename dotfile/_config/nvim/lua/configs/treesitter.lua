@@ -1,6 +1,9 @@
 local M = {}
 function M.config()
 	-- nvim-treesitter config
+    require("nvim-treesitter.install").command_extra_args = {
+        curl = { "--proxy", "http://127.0.0.1" },
+    }
 	require 'nvim-treesitter.configs'.setup {
 		-- ensure_installed = "maintained", -- for installing all maintained parsers
 		ensure_installed = {
@@ -9,6 +12,7 @@ function M.config()
       "php", "go", "python",
       "java", "kotlin",
       "hjson", "json", "json5",
+      "markdown", "markdown_inline",
       "toml", "xml", "yaml",
     }, -- for installing specific parsers
 		sync_install = true, -- install synchronously

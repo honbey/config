@@ -16,13 +16,14 @@ vim.keymap.set('i', '<C-;>', '::') -- for C++ and Rust
 vim.keymap.set('n', '<leader>vl', set_bg_light)
 vim.keymap.set('n', '<leader>vd', set_bg_dark)
 -- vim.keymap.set('n', '<leader>', ':')
--- f: file tree
+-- f: file tree / files
 vim.keymap.set('n', '<leader>ft', ':NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader>ff', ':NvimTreeFocus<cr>')
+vim.keymap.set('n', '<leader>fs', ':w<cr>')
 -- y: telescope
-vim.keymap.set('n', '<leader>fd', function() require 'telescope.builtin'.find_files {} end)
-vim.keymap.set('n', '<leader>fg', function() require 'telescope.builtin'.git_files {} end)
-vim.keymap.set('n', '<leader>fb', function() require 'telescope.builtin'.buffers {} end)
+vim.keymap.set('n', '<leader>yd', function() require 'telescope.builtin'.find_files {} end)
+vim.keymap.set('n', '<leader>yg', function() require 'telescope.builtin'.git_files {} end)
+vim.keymap.set('n', '<leader>yb', function() require 'telescope.builtin'.buffers {} end)
 vim.keymap.set({ 'n', 'i' }, '<C-p>', function() require 'telescope.builtin'.registers {} end)
 -- w: window
 vim.keymap.set('n', '<leader>ws', ':w<cr>')

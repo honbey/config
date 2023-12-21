@@ -78,7 +78,7 @@ fi
 zi wait lucid light-mode for \
   pick'mzt.plugins.zsh' from'gitee' \
     honbey/mzt \
-  pick'alias.zsh' src'tool.zsh' from'gitee' \
+  pick'tool.zsh' from'gitee' \
     honbey/start-zsh \
   pick'autopair.zsh' \
     hlissner/zsh-autopair

@@ -1,11 +1,11 @@
--- aleph is a stripped down version of goolord/alpha-nvim to improve startup time
+-- alpha is a stripped down version of goolord/alpha-nvim to improve startup time
 local M = {}
 function M.config()
-	local aleph = require("aleph")
-	local dashboard = require("aleph.themes.dashboard")
-	aleph.setup(dashboard.opts)
-	-- Disable folding on aleph buffer:
-	vim.cmd("autocmd FileType aleph setlocal nofoldenable")
+    local alpha = require("alpha")
+    local dashboard = require("alpha.themes.dashboard")
+    alpha.setup(dashboard.opts)
+    -- Disable folding on alpha buffer:
+    vim.cmd("autocmd FileType alpha setlocal nofoldenable")
 end
 
 return M

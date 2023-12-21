@@ -2,7 +2,7 @@ local M = {}
 function M.config()
 	-- nvim-treesitter config
     require("nvim-treesitter.install").command_extra_args = {
-        curl = { "--proxy", "http://127.0.0.1" },
+        curl = { "--proxy", "http://127.0.0.1:1080" },
     }
 	require 'nvim-treesitter.configs'.setup {
 		-- ensure_installed = "maintained", -- for installing all maintained parsers

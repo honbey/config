@@ -1,3 +1,16 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
 
   -- starup time optimise
@@ -25,17 +38,17 @@ require("lazy").setup({
 
   -- language
   "neovim/nvim-lspconfig",
-	"glepnir/lspsaga.nvim",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-cmdline",
-	"hrsh7th/nvim-cmp",
-	"L3MON4D3/LuaSnip",
-	"nvim-treesitter/nvim-treesitter",
-	"simrat39/rust-tools.nvim",
-	"simrat39/symbols-outline.nvim",
-  
+  "glepnir/lspsaga.nvim",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/nvim-cmp",
+  "L3MON4D3/LuaSnip",
+  "nvim-treesitter/nvim-treesitter",
+  "simrat39/rust-tools.nvim",
+  "simrat39/symbols-outline.nvim",
+
   -- git
   "lewis6991/gitsigns.nvim",
 
@@ -60,13 +73,13 @@ require("lazy").setup({
   "lukas-reineke/indent-blankline.nvim",
 
   -- startup screen
-	"leslie255/aleph-nvim",
+  "leslie255/aleph-nvim",
 
-	-- english grammar check
-	"rhysd/vim-grammarous",
+  -- english grammar check
+  "rhysd/vim-grammarous",
 
-	-- ascii image
-	"samodostal/image.nvim",
+  -- ascii image
+  "samodostal/image.nvim",
 
   -- autopairs
   "windwp/nvim-autopairs",

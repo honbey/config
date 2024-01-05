@@ -1,16 +1,28 @@
 local M = {}
 
 function M.config()
-    -- Setup nvim-cmp.
-    -- https://github.com/hrsh7th/nvim-cmp
+    vim.opt.completeopt = {"menu", "menuone", "noselect"}
+    require("luasnip.loaders.from_vscode").lazy_load()
+
+    -- Setup nvim-cmp. https://github.com/hrsh7th/nvim-cmp
     local cmp = require("cmp")
+    local luasnip = require("luasnip")
+
+    local has_words_before = function()
+        if table.unpack then
+            unpack = table.unpack
+        end
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
+
     cmp.setup(
         {
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
                     -- luasnip
-                    require("luasnip").lsp_expand(args.body)
+                    luasnip.lsp_expand(args.body)
                     -- vsnip
                     -- vim.fn["vsnip#anonymous"](args.body)
                     -- snippy
@@ -19,75 +31,41 @@ function M.config()
                     -- vim.fn["UltiSnips#Anon"](args.body)
                 end
             },
+            sources = {
+                {name = "buffer"},
+                {name = "luasnip"},
+                {name = "neorg"},
+                {name = "nvim_lsp"},
+                {name = "path"}
+            },
+            formatting = {
+                fields = {"menu", "abbr", "kind"},
+                format = function(entry, item)
+                    local menu_icon = {
+                        buffer = "ß",
+                        luasnip = "»",
+                        neorg = "∂",
+                        nvim_lsp = "λ",
+                        path = "˜"
+                    }
+
+                    item.menu = menu_icon[entry.source.name]
+                    return item
+                end
+            },
             mapping = {
-                ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-                ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
-                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+                ["<CR>"] = cmp.mapping.confirm({select = false}),
+                ["<C-m>"] = cmp.mapping.confirm({select = true}),
                 ["<C-y>"] = cmp.config.disable,
+                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
                 ["<C-e>"] = cmp.mapping(
                     {
                         i = cmp.mapping.abort(),
                         c = cmp.mapping.close()
                     }
                 ),
-                -- Accept currently selected item...
-                -- Set `select` to `false` to only confirm explicitly selected items:
-                ["<CR>"] = cmp.mapping.confirm({select = true})
-            },
-            sources = cmp.config.sources(
-                {
-                    {name = "nvim_lsp"}
-                    -- { name = 'luasnip' }, -- For luasnip users.
-                    -- { name = 'ultisnips' }, -- For ultisnips users.
-                    -- { name = 'snippy' }, -- For snippy users.
-                },
-                {{name = "buffer"}}
-            )
-        }
-    )
-
-    -- You can also set special config for specific filetypes:
-    --    cmp.setup.filetype('gitcommit', {
-    --        sources = cmp.config.sources({
-    --            { name = 'cmp_git' },
-    --        }, {
-    --            { name = 'buffer' },
-    --        })
-    --    })
-
-    -- nvim-cmp for commands
-    cmp.setup.cmdline(
-        "/",
-        {
-            sources = {
-                {name = "buffer"}
-            }
-        }
-    )
-    cmp.setup.cmdline(
-        ":",
-        {
-            sources = cmp.config.sources(
-                {
-                    {name = "path"}
-                },
-                {
-                    {name = "cmdline"}
-                }
-            )
-        }
-    )
-
-    local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
-    local luasnip = require("luasnip")
-
-    cmp.setup(
-        {
-            mapping = {
                 ["<C-n>"] = cmp.mapping(
                     function(fallback)
                         if cmp.visible() then
@@ -140,11 +118,42 @@ function M.config()
                     end,
                     {"i", "s"}
                 )
-
-                -- ... Your other mappings ...
+            },
+            window = {
+                documentation = cmp.config.window.bordered()
             }
+        }
+    )
 
-            -- ... Your other configuration ...
+    -- You can also set special config for specific filetypes:
+    --    cmp.setup.filetype('gitcommit', {
+    --        sources = cmp.config.sources({
+    --            { name = 'cmp_git' },
+    --        }, {
+    --            { name = 'buffer' },
+    --        })
+    --    })
+
+    -- nvim-cmp for commands
+    cmp.setup.cmdline(
+        "/",
+        {
+            sources = {
+                {name = "buffer"}
+            }
+        }
+    )
+    cmp.setup.cmdline(
+        ":",
+        {
+            sources = cmp.config.sources(
+                {
+                    {name = "path"}
+                },
+                {
+                    {name = "cmdline"}
+                }
+            )
         }
     )
 
@@ -176,105 +185,10 @@ function M.config()
         }
     }
 
-    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done {map_char = {tex = ""}})
 
-    -- nvim-lspconfig config
-    -- List of all pre-configured LSP servers:
-    -- github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    -- Mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    -- local opts = { noremap=true, silent=true }
-    -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
-    local on_attach = function(client, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = {noremap = true, silent = true, buffer = bufnr}
-        -- k: general
-        -- l: lsp
-        -- s: workspace
-        vim.keymap.set("n", "<leader>ks", ":Lspsaga show_line_diagnostics<cr>")
-        vim.keymap.set("n", "<leader>kS", ":Lspsaga show_cursor_diagnostics<cr>")
-        vim.keymap.set("n", "<leader>kd", ":Lspsaga preview_definition<cr>")
-        vim.keymap.set("n", "<leader>kR", ":Lspsaga rename<cr>")
-        vim.keymap.set("n", "<leader>kc", ":Lspsaga code_action<cr>")
-        vim.keymap.set("n", "<leader>kl", ":Lspsaga lsp_finder<cr>")
-        vim.keymap.set("n", "<leader>kp", ":Lspsaga diagnostic_jump_prev<cr>")
-        vim.keymap.set("n", "<leader>kn", ":Lspsaga diagnostic_jump_next<cr>")
-        vim.keymap.set("n", "<leader>ko", ":SymbolsOutline<cr>")
-
-        vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, bufopts)
-        vim.keymap.set("n", "<leader>lh", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set("n", "<leader>lc", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.formatting, bufopts)
-        vim.keymap.set("n", "<leader>ld", vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "<leader>lD", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, bufopts)
-
-        vim.keymap.set("n", "<leader>sa", vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set("n", "<leader>sr", vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set(
-            "n",
-            "<leader>sl",
-            function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end,
-            bufopts
-        )
-
-        vim.keymap.set(
-            "n",
-            "<leader>rt",
-            function()
-                require("rust-tools.inlay_hints").toggle_inlay_hints()
-            end
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>rs",
-            function()
-                require("rust-tools.inlay_hints").set_inlay_hints()
-            end
-        )
-        vim.keymap.set(
-            "n",
-            "<leader>rd",
-            function()
-                require("rust-tools.inlay_hints").diable_inlay_hints()
-            end
-        )
-    end
-
-    require "lspconfig".gopls.setup {}
-    local servers = {
-        "clangd",
-        "pyright",
-        "lua_ls",
-        "bashls",
-        "tsserver",
-        "rust_analyzer",
-        "jdtls"
-    }
-    for _, lsp in pairs(servers) do
-        require("lspconfig")[lsp].setup {}
-    end
-    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
-    -- TypeScript / JavaScript: vscode-langservers-extracted / ts-language-server
-
+    -- web-devicons
     local devicons = require("nvim-web-devicons")
     cmp.register_source(
         "devicons",
@@ -295,14 +209,6 @@ function M.config()
             end
         }
     )
-
-    -- change the lsp symbol kind
-    --local kind = require('lspsaga.lspkind')
-    --kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
-
-    -- use default config
-
-    require("rust-tools").setup()
 end
 
 return M

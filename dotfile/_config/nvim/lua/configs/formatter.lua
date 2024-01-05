@@ -1,10 +1,8 @@
--- https://github.com/mhartington/formatter.nvim
 local M = {}
-function M.config()
-    require("ibl").setup()
 
+function M.config()
     -- Utilities for creating configurations
-    local util = require "formatter.util"
+    local util = require("formatter.util")
 
     -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
     require("formatter").setup(
@@ -81,6 +79,7 @@ function M.config()
         true
     )
 
+    -- https://github.com/mhartington/formatter.nvim
     --local augroup = vim.api.nvim_create_augroup
     --local autocmd = vim.api.nvim_create_autocmd
     --augroup("__formatter__", { clear = true })

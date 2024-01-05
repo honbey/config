@@ -1,13 +1,13 @@
 -- basics
-vim.cmd("syntax on")
-vim.cmd("filetype plugin indent on")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.shiftround = true
-vim.opt.updatetime = 100
+vim.opt.updatetime = 300
 vim.opt.cursorline = true
 vim.opt.autowrite = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 if (vim.fn.has("termguicolors") == 1) then
     vim.opt.termguicolors = true
 end
@@ -17,16 +17,18 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
-vim.cmd("autocmd FileType sh,zsh,lua,python,nginx setlocal tabstop=4")
-vim.cmd("autocmd FileType sh,zsh,lua,python,nginx setlocal shiftwidth=4")
-vim.cmd("autocmd FileType sh,zsh,lua,python,nginx setlocal softtabstop=4")
+vim.cmd("autocmd FileType nginx setlocal tabstop=4")
+vim.cmd("autocmd FileType nginx setlocal shiftwidth=4")
+vim.cmd("autocmd FileType nginx setlocal softtabstop=4")
 -- listchar
 vim.opt.list = true
-vim.opt.listchars = "space:·,tab:->"
-
-vim.cmd("set colorcolumn=80,100")
-
+vim.opt.listchars = "tab:->"
+-- window
+vim.wo.colorcolumn = "80,120"
 vim.wo.signcolumn = "yes"
+-- search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- lazy.nvim
 -- https://github.com/folke/lazy.nvim
@@ -49,6 +51,9 @@ require("core.gui")
 require("core.keymaps")
 require("core.lazynvim")
 require("core.neorg")
+
+vim.loader.enable()
+
 -- disable some useless standard plugins to save startup time
 -- these features have been better covered by plugins
 vim.g.loaded_matchparen = 1
@@ -66,21 +71,13 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_remote_plugins = 1
 
-require("image").setup {
-    min_padding = 5,
-    show_label = true,
-    render_using_dither = true
-}
-
 -- Load plugin configs
--- plugins without extra configs are configured directly here
-require("impatient")
-
 require("configs.autocomplete").config()
 require("configs.bufferline").config()
 require("configs.filetree").config()
 require("configs.formatter").config()
 require("configs.git").config()
+require("configs.lspconfig").config()
 require("configs.startscreen").config()
 require("configs.statusline").config()
 require("configs.treesitter").config()

@@ -1,7 +1,7 @@
 local M = {}
 function M.config()
     -- nvim-tree config
-    require "nvim-tree".setup {
+    require("nvim-tree").setup {
         disable_netrw = true,
         hijack_netrw = true,
         -- open_on_setup        = true,

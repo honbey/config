@@ -1,4 +1,5 @@
 local M = {}
+
 function M.config()
     require("symbols-outline").setup {
         highlight_hovered_item = true,

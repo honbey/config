@@ -196,7 +196,6 @@ require("lazy").setup(
             end
         },
         -- ascii image
-        -- TODO https://github.com/3rd/image.nvim
         {
             "samodostal/image.nvim",
             event = "VeryLazy",
@@ -250,18 +249,10 @@ require("lazy").setup(
                 require("todo-comments").setup()
             end
         },
-        -- TODO GTD
-        -- https://github.com/nvim-neorg/neorg/issues/695
         -- zen mode
-        -- TODO config
         {
             "folke/zen-mode.nvim",
-            opts = {}
+            opts = {} -- TODO: config
         }
-
-        -- TODO add below plugins
-        -- monaqa/dial.nvim
-        -- folke/noice.nvim
-        -- dhruvasagar/vim-table-mode
     }
 )

@@ -57,4 +57,13 @@ https://www.cnblogs.com/dragonud/p/16201492.html
  }
 
  M.nvim_create_augroups(autoCommands)
+
+        -- TODO GTD
+        -- https://github.com/nvim-neorg/neorg/issues/695
+
+        -- TODO add below plugins
+        -- 3rd/image.nvim
+        -- monaqa/dial.nvim
+        -- folke/noice.nvim
+        -- dhruvasagar/vim-table-mode
 ```

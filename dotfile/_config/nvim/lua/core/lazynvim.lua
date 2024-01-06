@@ -213,35 +213,6 @@ require("lazy").setup(
         },
         -- neorg
         {
-            "nvim-neorg/neorg",
-            build = ":Neorg sync-parsers",
-            ft = "norg",
-            keys = {
-                {"<leader>oo", "<cmd>Neorg workspace<cr>", desc = "Open Neorg workspace"},
-                {"<leader>ojj", "<cmd>Neorg journal today<cr>", desc = "Journal of today"},
-                {"<leader>ojy", "<cmd>Neorg journal yesterday<cr>", desc = "Journal of yesterday"},
-                {"<leader>ojt", "<cmd>Neorg journal tomorrow<cr>", desc = "Journal of tomorrow"},
-                {"<leader>oji", "<cmd>Neorg templates journal<cr>", desc = "Generate journal"},
-                {
-                    "<leader>dc",
-                    "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>",
-                    desc = "Show calendar",
-                    ft = "norg"
-                }
-            },
-            dependencies = {
-                {"nvim-lua/plenary.nvim"},
-                {"nvim-neorg/neorg-telescope"},
-                {"pysan3/neorg-templates", dependencies = {"L3MON4D3/LuaSnip"}},
-                {"pritchett/neorg-capture"}
-            }
-        },
-        {
-            "lukas-reineke/headlines.nvim",
-            dependencies = "nvim-treesitter/nvim-treesitter",
-            opts = {}
-        },
-        {
             "folke/todo-comments.nvim",
             dependencies = {"nvim-lua/plenary.nvim"},
             event = "BufRead",

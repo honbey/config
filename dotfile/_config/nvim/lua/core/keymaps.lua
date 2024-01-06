@@ -45,12 +45,12 @@ vim.keymap.set("n", "<m-0>", "<c-w>>")
 vim.keymap.set("n", "<m-->", "<c-w>-")
 vim.keymap.set("n", "<m-=>", "<c-w>+")
 
-vim.api.nvim_exec(
-    [[
-         augroup FoldAutogroup
-         autocmd!
-         autocmd BufReadPost,FileReadPost * normal zR
-         augroup END
-  ]],
-    true
-)
+-- vim.api.nvim_exec(
+--     [[
+--          augroup FoldAutogroup
+--          autocmd!
+--          autocmd BufReadPost,FileReadPost * normal zR
+--          augroup END
+--   ]],
+--     true
+-- )

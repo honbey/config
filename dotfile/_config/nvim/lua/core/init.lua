@@ -50,6 +50,7 @@ vim.opt.rtp:prepend(lazypath)
 require("core.gui")
 require("core.keymaps")
 require("core.lazynvim")
+require("core.orgmode")
 
 vim.loader.enable()
 

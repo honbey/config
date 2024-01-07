@@ -27,13 +27,7 @@ require("lazy").setup(
         -- startup screen
         {
             "goolord/alpha-nvim",
-            dependencies = {
-                "nvim-tree/nvim-web-devicons",
-                lazy = true
-            },
-            config = function()
-                require("alpha").setup(require("alpha.themes.startify").config)
-            end
+            dependencies = {"nvim-tree/nvim-web-devicons", lazy = true}
         },
         -- lastplace
         {
@@ -42,10 +36,7 @@ require("lazy").setup(
         -- buffer
         {
             "akinsho/bufferline.nvim",
-            dependencies = {
-                "kyazdani42/nvim-web-devicons",
-                lazy = true
-            }
+            dependencies = {"nvim-tree/nvim-web-devicons", lazy = true}
         },
         -- file tree
         {
@@ -54,15 +45,15 @@ require("lazy").setup(
                 {"<leader>ft", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle"},
                 {"<leader>ff", "<cmd>NvimTreeFocus<cr>", desc = "NvimTreeToggle"}
             },
-            dependencies = {
-                "kyazdani42/nvim-web-devicons",
-                lazy = true
-            }
+            dependencies = {"kyazdani42/nvim-web-devicons", lazy = true}
         },
         -- language
         "neovim/nvim-lspconfig",
-        "nvimdev/lspsaga.nvim",
         "nvim-treesitter/nvim-treesitter",
+        {
+            "nvimdev/lspsaga.nvim",
+            opts = {}
+        },
         {
             "simrat39/symbols-outline.nvim",
             keys = {
@@ -72,12 +63,7 @@ require("lazy").setup(
         {
             "hrsh7th/nvim-cmp",
             event = "InsertEnter",
-            dependencies = {
-                "hrsh7th/cmp-nvim-lsp",
-                "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-path",
-                "hrsh7th/cmp-cmdline"
-            }
+            dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-cmdline"}
         },
         {
             "L3MON4D3/LuaSnip",
@@ -108,21 +94,13 @@ require("lazy").setup(
         },
         {
             "folke/trouble.nvim",
-            dependencies = {
-                "nvim-tree/nvim-web-devicons",
-                lazy = true
-            },
+            dependencies = {"nvim-tree/nvim-web-devicons", lazy = true},
             opts = {}
         },
         {
             "simrat39/rust-tools.nvim",
             ft = "rust",
-            config = function()
-                require("rust-tools").setup()
-                -- vim.keymap.set("n", "<leader>rt", "<cmd>lua require('rust-tools.inlay_hints').toggle_inlay_hints()<cr>")
-                -- vim.keymap.set("n", "<leader>rs", "<cmd>lua require('rust-tools.inlay_hints').set_inlay_hints()<cr>")
-                -- vim.keymap.set("n", "<leader>rd", "<cmd>lua require('rust-tools.inlay_hints').diable_inlay_hints()<cr>")
-            end
+            opts = {}
         },
         -- formatter
         {
@@ -147,10 +125,7 @@ require("lazy").setup(
         -- status line
         {
             "nvim-lualine/lualine.nvim",
-            dependencies = {
-                "kyazdani42/nvim-web-devicons",
-                lazy = true
-            }
+            dependencies = {"kyazdani42/nvim-web-devicons", lazy = true}
         },
         -- floating terminal
         {
@@ -167,9 +142,7 @@ require("lazy").setup(
         -- floating cmd line
         {
             "VonHeikemen/fine-cmdline.nvim",
-            dependencies = {
-                "MunifTanjim/nui.nvim"
-            },
+            dependencies = {"MunifTanjim/nui.nvim"},
             keys = {
                 {"<cr>", "<cmd>FineCmdline<cr>", desc = "Float CLI", noremap = true}
             }
@@ -177,9 +150,7 @@ require("lazy").setup(
         -- file telescope
         {
             "nvim-telescope/telescope.nvim",
-            dependencies = {
-                "nvim-lua/plenary.nvim"
-            },
+            dependencies = {"nvim-lua/plenary.nvim"},
             keys = {
                 {"<leader>sf", "<cmd>Telescope find_files<cr>"},
                 {"<leader>sg", "<cmd>Telescope git_files<cr>"},
@@ -191,9 +162,7 @@ require("lazy").setup(
         {
             "lukas-reineke/indent-blankline.nvim",
             main = "ibl",
-            config = function()
-                require("ibl").setup()
-            end
+            opts = {}
         },
         -- ascii image
         {
@@ -211,14 +180,22 @@ require("lazy").setup(
             "windwp/nvim-autopairs",
             event = "InsertEnter"
         },
-        -- neorg
+        -- org
+        {
+            "nvim-orgmode/orgmode",
+            dependencies = {"nvim-treesitter/nvim-treesitter", lazy = true},
+            event = "VeryLazy"
+        },
+        {
+            "lukas-reineke/headlines.nvim",
+            dependencies = {"nvim-treesitter/nvim-treesitter", lazy = true},
+            opts = {}
+        },
         {
             "folke/todo-comments.nvim",
-            dependencies = {"nvim-lua/plenary.nvim"},
+            dependencies = {"nvim-lua/plenary.nvim", lazy = true},
             event = "BufRead",
-            config = function()
-                require("todo-comments").setup()
-            end
+            opts = {}
         },
         -- zen mode
         {

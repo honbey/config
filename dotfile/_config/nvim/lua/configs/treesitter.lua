@@ -31,7 +31,6 @@ function M.config()
             "xml",
             "yaml",
             "org",
-            "norg",
             "markdown",
             "markdown_inline",
             "comment"
@@ -40,7 +39,7 @@ function M.config()
         ignore_install = {}, -- parsers to not install
         highlight = {
             enable = true,
-            additional_vim_regex_highlighting = false -- disable standard vim highlighting
+            additional_vim_regex_highlighting = {"org"} -- disable standard vim highlighting
         }
     }
     -- vim.opt.foldmethod = "expr"

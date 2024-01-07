@@ -34,7 +34,7 @@ function M.config()
             sources = {
                 {name = "buffer"},
                 {name = "luasnip"},
-                {name = "neorg"},
+                {name = "orgmode"},
                 {name = "nvim_lsp"},
                 {name = "path"}
             },
@@ -135,27 +135,8 @@ function M.config()
     --    })
 
     -- nvim-cmp for commands
-    cmp.setup.cmdline(
-        "/",
-        {
-            sources = {
-                {name = "buffer"}
-            }
-        }
-    )
-    cmp.setup.cmdline(
-        ":",
-        {
-            sources = cmp.config.sources(
-                {
-                    {name = "path"}
-                },
-                {
-                    {name = "cmdline"}
-                }
-            )
-        }
-    )
+    cmp.setup.cmdline("/", {sources = {{name = "buffer"}}})
+    cmp.setup.cmdline(":", {sources = cmp.config.sources({{name = "path"}}, {{name = "cmdline"}})})
 
     -- autopairs
     -- Reference: https://github.com/LunarVim/Neovim-from-scratch/blob/master/lua/user/autopairs.lua

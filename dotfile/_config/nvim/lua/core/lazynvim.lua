@@ -180,17 +180,7 @@ require("lazy").setup(
             "windwp/nvim-autopairs",
             event = "InsertEnter"
         },
-        -- org
-        {
-            "nvim-orgmode/orgmode",
-            dependencies = {"nvim-treesitter/nvim-treesitter", lazy = true},
-            event = "VeryLazy"
-        },
-        {
-            "lukas-reineke/headlines.nvim",
-            dependencies = {"nvim-treesitter/nvim-treesitter", lazy = true},
-            opts = {}
-        },
+        -- todo comments
         {
             "folke/todo-comments.nvim",
             dependencies = {"nvim-lua/plenary.nvim", lazy = true},

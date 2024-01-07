@@ -34,7 +34,6 @@ function M.config()
             sources = {
                 {name = "buffer"},
                 {name = "luasnip"},
-                {name = "orgmode"},
                 {name = "nvim_lsp"},
                 {name = "path"}
             },

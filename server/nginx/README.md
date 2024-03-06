@@ -6,19 +6,21 @@ I encrypted the configuration files for security.
 
 CentOS/Fedora/Euler
 ```bash
-sudo yum install -y pcre-devel zlib-devel libxslt-devel geoip-devel
+sudo yum install -y pcre-devel zlib-devel libxslt-devel geoip-devel libuuid-devel
 ```
 
 Debian/Ubuntu/Kali
 ```bash
-sudo apt install libxslt1-dev zlib1g-dev libpcre2-dev libgeoip-dev
+sudo apt install libxslt1-dev zlib1g-dev libpcre2-dev libgeoip-dev uuid-dev
 ```
 
 Source: [nginx(>= v1.25.0)](https://hg.nginx.org/nginx)
 
 Compile command(with LibreSSL by [Homebrew](https://brew.sh/)):
 ```bash
-./configure --prefix=/var/data/etc/nginx \
+export BREW_LIBRESSL_VERSION=3.8.2
+
+./configure --prefix=/opt/data/etc/nginx \
   --user=nobody --group=nobody \
   --with-http_v3_module \
   --with-http_ssl_module \
@@ -38,12 +40,14 @@ Compile command(with LibreSSL by [Homebrew](https://brew.sh/)):
   --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-http_gunzip_module --with-http_gzip_static_module \
   --add-module=../ngx_brotli --with-compat \
-  --with-cc-opt='-I/home/linuxbrew/.linuxbrew/Cellar/libressl/*/include' \
-  --with-ld-opt='-L/home/linuxbrew/.linuxbrew/Cellar/libressl/*/lib'
+  --add-module=../incubator-pagespeed-ngx \
+  --with-cc-opt="-I/home/linuxbrew/.linuxbrew/Cellar/libressl/${BREW_LIBRESSL_VERSION}/include" \
+  --with-ld-opt="-L/home/linuxbrew/.linuxbrew/Cellar/libressl/${BREW_LIBRESSL_VERSION}/lib"
 make -j2
 make install
 ```
 
+### Pagespeed
 
 ### [LibreSSL](https://www.libressl.org)
 
@@ -102,4 +106,5 @@ openssl s_client -connect example:443 -status -tlsextdebug < /dev/null 2>&1 | gr
 https://nova.moe/serve-webp-on-the-fly-with-nginx-and-mod_pagespeed/
 https://www.modpagespeed.com/doc/build_ngx_pagespeed_from_source
 https://github.com/apache/incubator-pagespeed-ngx/issues/1743
+https://github.com/apache/incubator-pagespeed-ngx/issues/1533
 ```

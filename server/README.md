@@ -53,8 +53,8 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
 ### nginx
 
 ```
-/data/logs/nginx/json_access.log
-/data/logs/nginx/error.log
+/opt/data/log/nginx/json_access.log
+/opt/data/log/nginx/error.log
 {
   daily
   rotate 365
@@ -62,10 +62,10 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
   notifempty
   dateext
   compress
-  olddir /data/logs/nginx/backups
+  olddir /opt/data/log/nginx/backups
   postrotate
-    if [[ -f /data/logs/nginx/pid ]]; then
-      kill -USR1 $(cat /data/logs/nginx/pid)
+    if [ -f /opt/data/log/nginx/pid ]; then
+      kill -USR1 $(cat /opt/data/log/nginx/pid)
     fi
   endscript
 }
@@ -74,7 +74,7 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
 ### monitor host
 
 ```
-/data/logs/host/json_host.log
+/opt/data/log/host/json_host.log
 {
   daily
   rotate 7
@@ -82,7 +82,7 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
   notifempty
   dateext
   compress
-  olddir /data/logs/host/backups
+  olddir /opt/data/log/host/backups
   copytruncate
 }
 ```

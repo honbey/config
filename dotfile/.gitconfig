@@ -1,16 +1,21 @@
 [user]
-  name = honbey
-  email = git@honbey.com
-  signingKey = git@honbey.com
+	name = honbey
+	email = git@honbey.com
+	signingKey = git@honbey.com
 [alias]
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
-  editor=vim
-  quotepath = false
-  safecrlf = true
-  # Unix / Linux 
-  autocrlf = input
-  # Windows 
-  # autocrlf = true
+	editor=vim
+	quotepath = false
+	safecrlf = true
+	# Unix / Linux 
+	autocrlf = input
+	# Windows 
+	# autocrlf = true
 [init]
-  defaultBranch = main
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

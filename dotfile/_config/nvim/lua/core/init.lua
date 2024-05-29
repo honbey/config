@@ -13,16 +13,16 @@ if (vim.fn.has("termguicolors") == 1) then
 end
 -- tabs
 vim.opt.autoindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-vim.cmd("autocmd FileType nginx setlocal tabstop=4")
-vim.cmd("autocmd FileType nginx setlocal shiftwidth=4")
-vim.cmd("autocmd FileType nginx setlocal softtabstop=4")
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.expandtab = true
+vim.cmd("autocmd FileType c setlocal tabstop=2")
+vim.cmd("autocmd FileType c setlocal shiftwidth=2")
+-- vim.cmd("autocmd FileType c setlocal softtabstop=4")
 -- listchar
 vim.opt.list = true
-vim.opt.listchars = "tab:->"
+vim.opt.listchars = "tab:│─"
 -- window
 vim.wo.colorcolumn = "80,120"
 vim.wo.signcolumn = "yes"

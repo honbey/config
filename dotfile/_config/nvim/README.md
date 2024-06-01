@@ -1,13 +1,12 @@
-# Reference
+# My personal modern NeoVim config
+## Reference
 
 - https://github.com/leslie255/nvim-config
 - https://zhuanlan.zhihu.com/p/467428462
 - https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 - https://www.cnblogs.com/dragonud/p/16201492.html
 
-# My personal modern NeoVim config
-
-# Some configs not used
+## Some configs not used
 ```lua
 -- GrammarousCheck
    vim.cmd([[

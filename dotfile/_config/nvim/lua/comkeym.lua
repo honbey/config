@@ -1,3 +1,5 @@
+-- Kep maps in this file inclue function by Neovim not plugins
+
 -- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -13,11 +15,8 @@ vim.keymap.set("n", "<leader>bh", ":bp<cr>")
 vim.keymap.set("n", "<leader>bd", ":bdelete<cr>")
 -- f: file tree / files | ft: toggle tree, ff: focus tree
 vim.keymap.set("n", "<leader>fs", ":w<cr>")
-vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<cr>")
+-- vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<cr>")
 -- g: git
--- l: lazy.nvim
-vim.keymap.set("n", "<leader>lz", ":Lazy<cr>")
-vim.keymap.set("n", "<leader>ls", ":Lazy sync<cr>")
 -- s: search
 vim.keymap.set("n", "<leader>ss", "/")
 vim.keymap.set("n", "<leader>sw", "/\\<lt>\\><left><left>")

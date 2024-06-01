@@ -1,4 +1,4 @@
-lua require('core.init')
+lua require('init')
 
 set clipboard^=unnamed,unnamedplus
 

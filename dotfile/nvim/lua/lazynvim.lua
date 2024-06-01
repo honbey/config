@@ -42,6 +42,7 @@ require("lazy").setup({
 		keys = {
 			{ "<leader>ft", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle" },
 			{ "<leader>ff", "<cmd>NvimTreeFocus<cr>", desc = "NvimTreeToggle" },
+			{ "<leader>bd", "<cmd>BufferClose<cr>", desc = "Close this Buffer" },
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 	},

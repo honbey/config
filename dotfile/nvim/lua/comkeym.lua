@@ -12,7 +12,7 @@ vim.keymap.set("n", "<leader>bn", ":bn<cr>")
 vim.keymap.set("n", "<leader>bp", ":bp<cr>")
 vim.keymap.set("n", "<leader>bl", ":bn<cr>")
 vim.keymap.set("n", "<leader>bh", ":bp<cr>")
-vim.keymap.set("n", "<leader>bd", ":bdelete<cr>")
+--vim.keymap.set("n", "<leader>bd", ":bdelete<cr>")
 -- f: file tree / files | ft: toggle tree, ff: focus tree
 vim.keymap.set("n", "<leader>fs", ":w<cr>")
 -- vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<cr>")

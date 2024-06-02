@@ -55,6 +55,7 @@ function M.config()
 	-- theme
 	-- vim.cmd("set background=light")
 	vim.cmd("colorscheme catppuccin")
+	vim.cmd("let g:honbey_syn_hl = 1")
 end
 
 return M

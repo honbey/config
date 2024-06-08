@@ -78,7 +78,7 @@ hi def link mndOperator Operator
 " It's unnecessary to syntax common varibles
 "syn match mndVariable /[^.$@]\<\zs\h\w*\ze\>/ contained
 syn match mndGlobalVar /\<\u\%(\u\|[_0-9]\)*\>/
-syn match mndInnerVar1 /\zs@\l\h*\ze\>/
+syn match mndInnerVar1 /\zs@\l[-a-z]*\ze\>/
 syn match mndInnerVar2 /\<\l\+\d\+\>/
 syn match mndExterVar /$\h\w*\>/
 
@@ -100,7 +100,7 @@ syntax match mndLogicFunc /\v<(getlink|enabled|shootp=|config(ure)=)\ze\s*\(/
 syntax match mndLogicFunc /\v<(radar|sensor|lookup|pickcolor|wait|stopProcessor)\ze\s*\(/
 syntax match mndLogicFunc /\v<(max|min|angle|len|noise|abs|log(10)=|floor|ceil|sqrt|rand)\ze\s*\(/
 syntax match mndLogicFunc /\v<(a=sin|a=cos|a=tan|)\ze\s*\(/
-syntax match mndLogicFunc /\v<(ubind|idle|stop|move|approach|(auto)=pathfind|boost|targetp=)\ze\s*\(/
+syntax match mndLogicFunc /\v<(ubind|idle|stop|move|approach|(auto)=[P|p]athfind|boost|targetp=)\ze\s*\(/
 syntax match mndLogicFunc /\v<((item|pay)(Drop|Take)|payEnter|mine|flag|build|within|getBlock|unbind)\ze\s*\(/
 syntax match mndLogicFunc /\v<(uradar|ulocate)\ze\s*\(/
 " XXX not provide functions of world processor

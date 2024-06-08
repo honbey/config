@@ -54,10 +54,11 @@ require("lazy").setup({
 	"neovim/nvim-lspconfig",
 	"nvim-treesitter/nvim-treesitter",
 	{
-		"simrat39/symbols-outline.nvim",
+		"hedyhli/outline.nvim", -- "simrat39/symbols-outline.nvim",
 		lazy = true,
+		cmd = { "Outline", "OutlineOpen" },
 		keys = {
-			{ "<leader>so", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
+			{ "<leader>so", "<cmd>Outline<CR>", desc = "Toggle outline" },
 		},
 	},
 	{
@@ -164,7 +165,7 @@ require("lazy").setup({
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		keys = {
-			{ "<cr>", "<cmd>FineCmdline<cr>", desc = "Float CLI", noremap = true },
+			{ "<C-.>", "<cmd>FineCmdline<cr>", desc = "Float CLI", noremap = true },
 		},
 	},
 	-- file telescope
@@ -177,6 +178,20 @@ require("lazy").setup({
 			{ "<leader>sb", "<cmd>Telescope buffers<cr>" },
 			{ "<C-p>", "<cmd>Telescope registers<cr>", mode = { "n", "i" } },
 		},
+	},
+	-- zk / markdown
+	{
+		"zk-org/zk-nvim",
+		ft = { "markdown" },
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
 	},
 	-- ascii image
 	{
@@ -204,6 +219,7 @@ require("lazy").setup({
 	-- zen mode
 	{
 		"folke/zen-mode.nvim",
+		lazy = true,
 		opts = {}, -- TODO: config
 	},
 })
@@ -215,7 +231,8 @@ require("plg.formatter").config()
 require("plg.git").config()
 require("plg.lspconfig").config()
 require("plg.statusline").config()
-require("plg.symbols_outline").config()
+require("plg.outline").config()
 require("plg.terminal").config()
 require("plg.theme").config()
 require("plg.treesitter").config()
+require("plg.zk").config()

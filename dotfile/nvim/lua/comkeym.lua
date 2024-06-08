@@ -7,6 +7,7 @@ vim.g.maplocalleader = " "
 -- keymaps
 vim.keymap.set("i", "<C-g>", "<esc>")
 vim.keymap.set("i", "<C-;>", "::") -- for C++ and Rust
+vim.keymap.set("n", "<C-,>", "<cmd>nohl<cr>")
 -- b: buffer
 vim.keymap.set("n", "<leader>bn", ":bn<cr>")
 vim.keymap.set("n", "<leader>bp", ":bp<cr>")

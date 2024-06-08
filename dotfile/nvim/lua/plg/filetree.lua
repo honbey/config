@@ -93,7 +93,7 @@ function M.config()
 		exclude_name = { "package.json" },
 		focus_on_close = "left",
 		icons = {
-			buffer_number = true,
+			buffer_number = false,
 			button = "",
 			preset = "default",
 			modified = { button = "" },

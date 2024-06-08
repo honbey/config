@@ -35,22 +35,27 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {},
+		keys = {
+			{ "<leader>bd", "<cmd>BufferClose<cr>", desc = "Close this Buffer" },
+			{ "<leader>bc", "<cmd>BufferCloseAllButCurrent<cr>", desc = "Close other Buffers" },
+			{ "<leader>br", "<cmd>BufferRestore<cr>", desc = "Restore Buffers" },
+		},
 	},
 	-- file tree
 	{
 		"kyazdani42/nvim-tree.lua",
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 		keys = {
 			{ "<leader>ft", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle" },
 			{ "<leader>ff", "<cmd>NvimTreeFocus<cr>", desc = "NvimTreeToggle" },
-			{ "<leader>bd", "<cmd>BufferClose<cr>", desc = "Close this Buffer" },
 		},
-		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 	},
 	-- language
 	"neovim/nvim-lspconfig",
 	"nvim-treesitter/nvim-treesitter",
 	{
 		"simrat39/symbols-outline.nvim",
+		lazy = true,
 		keys = {
 			{ "<leader>so", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
 		},
@@ -92,6 +97,9 @@ require("lazy").setup({
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 		opts = {},
+		keys = {
+			{ "<leader>dd", "<cmd>Trouble<cr>", desc = "Open Trouble" },
+		},
 	},
 	-- rust
 	{
@@ -126,6 +134,10 @@ require("lazy").setup({
 		"NeogitOrg/neogit",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 		config = true,
+		lazy = true,
+		keys = {
+			{ "<leader>gm", "<cmd>Neogit<cr>", desc = "Open Neogit(magit-like)" },
+		},
 	},
 	-- status line
 	{
@@ -143,6 +155,8 @@ require("lazy").setup({
 			{ "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>" },
 			{ "<leader>tn", "<cmd>lua require('toggleterm.terminal').Terminal:new():toggle()<cr>" },
 			{ "<C-g>", "<C-\\><C-n>", mode = { "t" } },
+			{ "<C-p>", "<C-p>", mode = { "t" } },
+			{ "<C-,>", "<cmd>ToggleTerm<cr>", mode = { "t" } },
 		},
 	},
 	-- floating cmd line

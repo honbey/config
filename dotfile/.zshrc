@@ -125,3 +125,6 @@ if [[ -d $JAVA_HOME ]]; then
     export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
+function ccc() {
+	echo $(("$@"))
+}

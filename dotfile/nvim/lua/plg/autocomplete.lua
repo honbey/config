@@ -2,7 +2,6 @@ local M = {}
 
 function M.config()
 	vim.opt.completeopt = { "menu", "menuone", "noselect" }
-	require("luasnip.loaders.from_vscode").lazy_load()
 
 	-- Setup nvim-cmp. https://github.com/hrsh7th/nvim-cmp
 	local cmp = require("cmp")
@@ -30,19 +29,18 @@ function M.config()
 				-- vim.fn["UltiSnips#Anon"](args.body)
 			end,
 		},
-		sources = {
-			{ name = "buffer" },
-			{ name = "luasnip" },
+		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
+			{ name = "luasnip" },
+			{ name = "buffer" },
 			{ name = "path" },
-		},
+		}),
 		formatting = {
 			fields = { "menu", "abbr", "kind" },
 			format = function(entry, item)
 				local menu_icon = {
 					buffer = "ß",
 					luasnip = "»",
-					neorg = "∂",
 					nvim_lsp = "λ",
 					path = "˜",
 				}
@@ -118,8 +116,22 @@ function M.config()
 	--    })
 
 	-- nvim-cmp for commands
-	cmp.setup.cmdline("/", { sources = { { name = "buffer" } } })
-	cmp.setup.cmdline(":", { sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }) })
+	cmp.setup.cmdline({ "/", "?" }, {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = { { name = "buffer" } },
+	})
+	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources(
+			{ { name = "path" } },
+			{ {
+				name = "cmdline",
+				option = {
+					ignore_cmds = { "Man", "!" },
+				},
+			} }
+		),
+	})
 
 	-- autopairs
 	-- Reference: https://github.com/LunarVim/Neovim-from-scratch/blob/master/lua/user/autopairs.lua

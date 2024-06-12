@@ -6,7 +6,7 @@ function M.config()
 		"clangd",
 		"pyright",
 		"lua_ls",
-		"bashls",
+		"bashls", -- bash-language-server@5.0.0
 		"tsserver",
 		"rust_analyzer",
 		"jdtls",

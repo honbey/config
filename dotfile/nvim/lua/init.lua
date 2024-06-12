@@ -16,11 +16,10 @@ end
 vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
--- vim.opt.softtabstop = 4
--- vim.opt.expandtab = true
-vim.cmd("autocmd FileType c setlocal tabstop=2")
-vim.cmd("autocmd FileType c setlocal shiftwidth=2")
--- vim.cmd("autocmd FileType c setlocal softtabstop=4")
+vim.cmd("autocmd FileType c,markdown,org,nginx,yaml setlocal tabstop=2")
+vim.cmd("autocmd FileType c,markdown,org,nginx,yaml setlocal softtabstop=2")
+vim.cmd("autocmd FileType c,markdown,org,nginx,yaml setlocal shiftwidth=2")
+vim.cmd("autocmd FileType markdown,org,nginx,yaml setlocal expandtab")
 -- listchar
 vim.opt.list = true
 vim.opt.listchars = "tab: ,space:·"

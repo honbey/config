@@ -6,5 +6,5 @@ if has('unix')
 	set thesaurus+=/usr/share/dict/words
 endif
 
-autocmd FileType markdown setlocal spell
+"autocmd FileType markdown setlocal spell
 

@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    environment:
+      - TZ=Asia/Shanghai
+      - PASSWORD=*ME#BY*hjK4
+      - SUDO_PASSWORD=*ME#BY*hjK4
+      - PROXY_DOMAIN=coderserver.freewisdom.cn
+      - DEFAULT_WORKSPACE=/home/coder/project
+    volumes:
+      - ./data:/home/coder:Z
+    ports:
+      - 127.0.0.1:1180:8080
+    restart: always
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

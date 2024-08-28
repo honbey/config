@@ -1,4 +1,4 @@
-# Nginx with QUIC
+# Nginx
 
 I encrypted the configuration files for security.
 
@@ -14,11 +14,11 @@ Debian/Ubuntu/Kali
 sudo apt install libxslt1-dev zlib1g-dev libpcre2-dev libgeoip-dev uuid-dev
 ```
 
-Source: [nginx(>= v1.25.0)](https://hg.nginx.org/nginx)
+Source: [nginx(>= v1.25.0, builtin HTTP/3 support)](https://hg.nginx.org/nginx)
 
 Compile command(with LibreSSL by [Homebrew](https://brew.sh/)):
 ```bash
-export BREW_LIBRESSL_VERSION=3.8.2
+export BREW_LIBRESSL_VERSION=3.9.2
 
 ./configure --prefix=/opt/data/etc/nginx \
   --user=nobody --group=nobody \
@@ -37,7 +37,6 @@ export BREW_LIBRESSL_VERSION=3.8.2
   --with-threads --with-file-aio \
   --with-pcre --with-mail --with-stream \
   --with-mail_ssl_module --with-stream_ssl_module \
-  --with-http_dav_module --add-module=../nginx-dav-ext-module \
   --with-http_gunzip_module --with-http_gzip_static_module \
   --add-module=../ngx_brotli --with-compat \
   --add-module=../incubator-pagespeed-ngx \
@@ -49,13 +48,24 @@ make install
 
 ### Pagespeed
 
+```txt
+https://nova.moe/serve-webp-on-the-fly-with-nginx-and-mod_pagespeed/
+https://www.modpagespeed.com/doc/build_ngx_pagespeed_from_source
+https://github.com/apache/incubator-pagespeed-ngx/issues/1743
+https://github.com/apache/incubator-pagespeed-ngx/issues/1533
+```
+
+### Webdav
+
+Using `dufs` instead of `nginx-dav-ext-module`.
+
 ### [LibreSSL](https://www.libressl.org)
 
 ```bash
 brew install libressl
 ```
 
-Move library of OpenSSL to `/usr/lib64`:
+Move library of OpenSSL to `/usr/lib`(Ubuntu):
 ```bash
 sudo cp /home/linuxbrew/.linuxbrew/Cellar/libressl/*/lib/libcrypto.so.52 /usr/lib64 
 sudo cp /home/linuxbrew/.linuxbrew/Cellar/libressl/*/lib/libssl.so.55 /usr/lib64 
@@ -67,17 +77,19 @@ sudo cp /home/linuxbrew/.linuxbrew/Cellar/libressl/*/lib/libssl.so.55 /usr/lib64
 
 
 ```bash
+export LE_DIR="/opt/data/letsencrypt"
+
 certbot certonly \
   -d example.com -d *.example.com \
   --manual \
   --preferred-challenges dns-01 \
   --email no-reply@example.com \
   --server https://acme-v02.api.letsencrypt.org/directory \
-  --manual-auth-hook /opt/data/letsencrypt/certbot-auth-dnspod.sh \
-  --manual-cleanup-hook "/opt/data/letsencrypt/certbot-auth-dnspod.sh clean" \
-  --config-dir /opt/data/letsencrypt \
-  --work-dir /opt/data/letsencrypt \
-  --logs-dir /opt/data/letsencrypt
+  --manual-auth-hook ${LE_DIR}/certbot-auth-dnspod.sh \
+  --manual-cleanup-hook "${LE_DIR}/certbot-auth-dnspod.sh clean" \
+  --config-dir ${LE_DIR} \
+  --work-dir ${LE_DIR} \
+  --logs-dir ${LE_DIR}
 ```
 
 ### Self-sign Certificate
@@ -100,11 +112,3 @@ cert.zip
 openssl s_client -connect example:443 -status -tlsextdebug < /dev/null 2>&1 | grep "OCSP response"
 ```
 
-### TODO Pagespeed
-
-```txt
-https://nova.moe/serve-webp-on-the-fly-with-nginx-and-mod_pagespeed/
-https://www.modpagespeed.com/doc/build_ngx_pagespeed_from_source
-https://github.com/apache/incubator-pagespeed-ngx/issues/1743
-https://github.com/apache/incubator-pagespeed-ngx/issues/1533
-```

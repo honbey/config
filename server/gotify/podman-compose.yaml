@@ -1,16 +1,16 @@
 version: "3"
 
 services:
-  code-server:
-    image: codercom/code-server:latest
-    container_name: code-server
+  gotify:
+    image: gotify/server:latest
+    container_name: gotify
     restart: always
     env_file:
       - .env
     ports:
-      - 127.0.0.1:1180:8080
+      - 127.0.0.1:1160:80
     volumes:
-      - ./data:/home/coder
+      - ./data:/app/data
     logging:
       driver: k8s-file
       options:

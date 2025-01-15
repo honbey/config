@@ -1,16 +1,17 @@
 version: "3"
 
 services:
-  code-server:
-    image: codercom/code-server:latest
-    container_name: code-server
+  snapdrop:
+    image: sigoden/dufs
+    container_name: dufs
+    command: /data -A -a ${ADMIN}@/:rw -a ${USER1}@/public:rw -a @/public/pub
     restart: always
     env_file:
       - .env
     ports:
-      - 127.0.0.1:1180:8080
+      - 127.0.0.1:1190:5000
     volumes:
-      - ./data:/home/coder
+      - ./data:/data:Z
     logging:
       driver: k8s-file
       options:

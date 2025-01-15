@@ -1,33 +1,21 @@
-version: '3.8'
-
-networks:
-  podman-br-con:
-    external: true
+version: "3"
 
 services:
   bitwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: always
-    environment:
-      DOMAIN: https://vault.example.com
-      SIGNUPS_ALLOWED: true
-      WEB_VAULT_ENABLED: true
-      WEBSOCKET_ENABLED: true
-      ADMIN_TOKEN: SECRET_TOKEN
-      DATABASE_URL: /data/vaultwarden.db
-      LOG_FILE: /data/vaultwarden.log
+    env_file:
+      - .env
     volumes:
-      - ./data:/data:Z
-    #env_file:
-    #  - config.env
-    networks:
-      - podman-br-con
+      - ./data:/data
     ports:
       - 127.0.0.1:1120:80
       - 127.0.0.1:1121:3012
+    networks:
+      - podman-br-con
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"
+        max-file: "3"

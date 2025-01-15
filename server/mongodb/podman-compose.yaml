@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3"
 
 networks:
   podman-br-con:
@@ -9,17 +9,16 @@ services:
     image: library/mongo:4.2
     container_name: mongo
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: mongodb_root_passwd
-    volumes:
-      - ./data:/data/db:Z
-    networks:
-      - podman-br-con
+    env_file:
+      - .env
     ports:
       - 0.0.0.0:1112:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - podman-br-con
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"
+        max-file: "3"

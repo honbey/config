@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3"
 
 networks:
   podman-br-con:
@@ -9,16 +9,16 @@ services:
     image: library/mysql:8
     container_name: mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: mysql_root_passwd
+    env_file:
+      - .env
     volumes:
-      - ./data:/var/lib/mysql:Z
-    networks:
-      - podman-br-con
+      - ./data:/var/lib/mysql
     ports:
       - 0.0.0.0:1110:3306
+    networks:
+      - podman-br-con
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"
+        max-file: "3"

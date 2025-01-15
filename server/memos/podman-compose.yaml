@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3"
 
 services:
   memos:
@@ -7,14 +7,14 @@ services:
     restart: always
     environment:
       LOG_FILE: /data/memos.log
-    volumes:
-      - ./data:/var/opt/memos:Z
-    #env_file:
-    #  - config.env
+    env_file:
+      - .env
     ports:
       - 127.0.0.1:1130:5230
+    volumes:
+      - ./data:/var/opt/memos
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"
+        max-file: "3"

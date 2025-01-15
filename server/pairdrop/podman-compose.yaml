@@ -1,16 +1,16 @@
 version: "3"
 
 services:
-  code-server:
-    image: codercom/code-server:latest
-    container_name: code-server
+  snapdrop:
+    image: linuxserver/pairdrop:latest
+    container_name: pairdrop
     restart: always
     env_file:
       - .env
-    ports:
-      - 127.0.0.1:1180:8080
     volumes:
-      - ./data:/home/coder
+      - ./data:/config:Z
+    ports:
+      - 127.0.0.1:1140:80
     logging:
       driver: k8s-file
       options:

@@ -16,6 +16,7 @@ zi wait lucid light-mode for \
 
 zi wait lucid for \
     z-shell/zsh-unique-id \
+    OMZL::async_prompt.zsh \
     OMZL::git.zsh \
  atload nocd \
     OMZP::git
@@ -123,6 +124,16 @@ if [[ ! -n $JAVA_HOME ]]; then
 fi
 if [[ -d $JAVA_HOME ]]; then
     export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# Rust
+if [[ -d $HOME/.cargo/bin ]]; then
+	export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Custom config for specific machine
+if [[ -f $HOME/.custom.zsh ]]; then
+	source "$HOME/.custom.zsh"
 fi
 
 function ccc() {

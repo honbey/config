@@ -44,7 +44,7 @@ local config = {
 	-- https://wezfurlong.org/wezterm/colorschemes/b/index.html
 	color_scheme = "Catppuccin Frappe",
 	-- Initial GUI size
-	initial_cols = 90,
+	initial_cols = 96,
 	initial_rows = 30,
 	native_macos_fullscreen_mode = true,
 	adjust_window_size_when_changing_font_size = true,

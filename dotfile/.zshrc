@@ -29,7 +29,6 @@ WORDCHARS=''
 # set some environments
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export EDITOR=vim
 
 # Homebrew/Linuxbrew
 if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
@@ -80,7 +79,7 @@ fi
 zi wait lucid light-mode for \
   pick'mzt.plugins.zsh' from'gitee' \
     honbey/mzt \
-  pick'tool.zsh' from'gitee' \
+  pick'config.zsh' from'gitee' \
     honbey/start-zsh \
   pick'autopair.zsh' \
     hlissner/zsh-autopair
@@ -117,25 +116,8 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_EXPIRE_DUPS_FIRST \
     HIST_IGNORE_SPACE HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS \
     HIST_VERIFY
 
-# JAVA
-if [[ ! -n $JAVA_HOME ]]; then
-    export GRAAL_JDK17="/opt/data/java/graalvm-17.jdk"
-    export JAVA_HOME="$GRAAL_JDK17"
-fi
-if [[ -d $JAVA_HOME ]]; then
-    export PATH="$JAVA_HOME/bin:$PATH"
-fi
-
-# Rust
-if [[ -d $HOME/.cargo/bin ]]; then
-	export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
 # Custom config for specific machine
 if [[ -f $HOME/.custom.zsh ]]; then
 	source "$HOME/.custom.zsh"
 fi
 
-function ccc() {
-	echo $(("$@"))
-}

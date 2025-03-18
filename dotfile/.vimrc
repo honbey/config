@@ -1,15 +1,12 @@
 set encoding=utf-8
 set number
-"set relativenumber
+set relativenumber
 
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 "set autowriteall
-autocmd FileType sh,zsh,python,nginx setlocal tabstop=4
-autocmd FileType sh,zsh,python,nginx setlocal softtabstop=4
-autocmd FileType sh,zsh,python,nginx setlocal shiftwidth=4
 
 if has("autocmd")
   autocmd BufReadPost *
@@ -42,3 +39,7 @@ endif
 "call plug#begin('~/.vim/plugged')
 "call plug#end()
 
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+nnoremap q: <nop>

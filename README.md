@@ -1,55 +1,63 @@
 # config
 
-This repository contains my configurations of editor, system, language and so on, including some notes or tips related them that I want to record too.
+This repository contains my configurations of editor, system, language and so on,
+including some notes or tips related them that I want to record too.
+
+## archive
+
+The configurations that I no longer use are placed in this folder.
 
 ## browser
 
-1. The extensions I used in the browser with Chromium kernel.
-2. Config of Proxy SwitchyOmega.
-3. Config of User-Agent Switcher and Manager.
+This folder includes the extensions I used in the browser with Chromium kernel in
+a txt file, some backups of extensions' config.
 
 ## dotfile
 
-1. Environment variales which I want to add to system.
-2. Global config of git.
-3. Config of Tmux.
-4. Config of Vim.
-5. Config of Zsh.
-6. ...
+This folder includes the config which has only single file and filename begin with
+a dot under the `$HOME`, the exception is `.ssh_config`.
 
-## editor
+## git
 
-1. Config of Emacs, include doom-emacs, mu4e with offlineimap, and org-mobile.
-2. Preferences and plugins of Sublime Text 4.
-3. Setting and plugins of VSCode.
+This folder includes the config of Git and a common gitignore file integrated
+from [gitignore](https://github.com/github/gitignore).
+
+## go
+
+This folder includes the config of [GoLang](https://go.dev).
 
 ## ms
 
-1. Config of Powershell.
-2. Setting of Windows Terminal.
+This folder includes the config only in Windows OS or the software develop by
+[Microsoft](https://www.microsoft.com/).
+
+## nginx
+
+This folder includes the config of [Nginx](https://nginx.org) applied in my personal domain and
+tips of how to compile it from source.
+
+## nvim
+
+This folder includes the config of [LazyVim](https://www.lazyvim.org/) which provides a IDE exprience to
+[NeoVim](https://neovim.io).
 
 ## python
 
-List virtual environments of Python I used and their requirements.
+This folder includes the `requirements.txt` which lists requirements of python
+packages of the venv I used and the config of [pip](https://pypi.org).
+
+## rime
+
+This folder includes the config of input method implemented by [Rime](https://rime.io)
 
 ## server
 
-Some tips of Application running with Podman or Docker, crontab, logrotate and so on. Config of Nginx and tips of how to compile it from source, experiences and tips.
+This folder includes many directories, each contains a `compose.yaml` file using
+[Docker](https://www.docker.com)/[Podman](https://podman.io) and tips of the contains or memos and config of logrotate in
+`README.md`.
 
-Applications:
+TODO: crontab move to Qinglong, keeping only necessary entries.
 
-- Ghost for blog
-- Grafana, loki and promtail for monitoring and analyzing data
-- Minio for object storage
-- MySQL for database
-- Nginx for HTTP server
+## vim
 
-## tool
-
-### brew
-
-Cask and formula and their version installed by brew.
-
-### git
-
-Common gitignore integrated from [gitignore](https://github.com/github/gitignore).
+This folder includes the config of [Vim](https://www.vim.org).

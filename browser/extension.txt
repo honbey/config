@@ -1,6 +1,0 @@
-Bitwarden
-CORS Unblock
-Proxy SwitchyOmega
-Tampermonkey
-User-Agent Switcher and Manager
-uBlock Origin

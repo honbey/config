@@ -1,0 +1,24 @@
+{
+  "blacklist": [],
+  "custom": {
+    "*": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15",
+    "example.com": "Test-UA"
+  },
+  "last-update": 1742297322161,
+  "mode": "custom",
+  "parser": {},
+  "protected": [
+    "google.com/recaptcha",
+    "gstatic.com/recaptcha",
+    "accounts.google.com",
+    "accounts.youtube.com",
+    "gitlab.com/users/sign_in",
+    "challenges.cloudflare.com"
+  ],
+  "remote-address": "",
+  "ua": "",
+  "userAgentData": true,
+  "whitelist": [],
+  "json-guid": "55272be3-0d4d-4bf8-9e0d-5127d81276a1",
+  "json-forced": false
+}

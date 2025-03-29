@@ -1,8 +1,0 @@
-basictex
-minecraft
-multitouch
-obs
-sublime-text
-wireshark
-iina
-iterm2

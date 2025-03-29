@@ -1,0 +1,38 @@
+
+Host h0l
+  User zhang
+  Port 8989
+  HostName 192.168.3.87
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-admin
+
+Host h0v
+  User zhang
+  Port 8989
+  HostName freewisdom.cn
+  LocalForward 127.0.0.1:33891 192.168.3.87:3389
+  #RemoteForward 127.0.0.1:1080 127.0.0.1:1080
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-admin
+
+Host h1
+  User zhang
+  HostName 139.159.248.88
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-admin
+
+Host gitee.com
+  HostName gitee.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-honbey-2022
+
+Host github.com
+  HostName github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-honbey-2022
+
+Host *
+  ServerAliveCountMax 10
+  ServerAliveInterval 60
+  ControlMaster auto
+  ControlPath ~/.ssh/master-%r@%h:%p

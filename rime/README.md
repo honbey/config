@@ -49,6 +49,29 @@ Windows: 用的很少，暂时没配置。
 
 ### `custom_phrase.txt`
 ```txt
+# Rime table
+# coding: utf-8
+#@/db_name      custom_phrase.txt
+#@/db_type      tabledb
+#
+# 自定义短语
+# 可为方案增加一些要置顶的词汇及短语，例如邮箱、手机号、常用短语等等。编码可以随便起，不限于拼音。
+#
+# 适用于全拼。双拼默认为 custom_phrase_double.txt 需要手动创建，并更改上面的 db_name 为 custom_phrase_double.txt
+#
+# 以下固定的词汇及顺序纯属个人偏好，仅作示例，
+# 可以增加自己的 .txt 文件，并在方案的 custom_phrase/user_dict 指定为自己的文件。
+#
+# 以 Tab 分割：词汇<Tab>编码<Tab>权重
+#
+# 这个文件内的字词会占据最高权重（即排在候选项的最前面，因为指定了权重 custom_phrase/initial_quality）。
+# 但不与其他翻译器互相造词，如果使用了完整编码，那么这个字或词将无法参与造词，即自造词无法被记住。
+# 所以只建议固定非完整拼音的编码，如果需求是置顶指定拼音的候选项，请参考方案中的 pin_cand_filter。
+#
+# version: "2025-03-29"
+#
+# 此行之后不能写注释
+
 Rime    rime    4
 鼠须管  rime    3
 https://rime.im/        rime    2

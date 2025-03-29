@@ -7,7 +7,7 @@ local set_environment_variables = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	default_prog = { "pwsh.exe", "-NoLogo" }
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
-	default_prog = { "/bin/zsh", "-l" }
+	default_prog = { "/opt/homebrew/bin/bash" }
 end
 
 -- based on https://github.com/ivaquero/oxidizer.sh/blob/master/defaults/wezterm.lua
@@ -38,7 +38,7 @@ local config = {
 	font = wezterm.font_with_fallback({
 		-- "CodeNewRoman Nerd Font Mono",
 		"ComicShannsMono Nerd Font Mono",
-		"Kaiti SC",
+		"LXGW WenKai Mono",
 	}),
 	-- Colorschemes:
 	-- https://wezfurlong.org/wezterm/colorschemes/b/index.html
@@ -125,11 +125,6 @@ local config = {
 				ActivatePaneDirection = "Right",
 			}),
 		}, -- Tab navigation
-		{
-			key = "z",
-			mods = "LEADER",
-			action = "TogglePaneZoomState",
-		},
 		{
 			key = "1",
 			mods = "LEADER",

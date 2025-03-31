@@ -14,3 +14,5 @@ window-height = 30
 window-width = 90
 
 theme = catppuccin-frappe
+
+auto-update = off

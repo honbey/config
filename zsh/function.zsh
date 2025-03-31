@@ -65,3 +65,13 @@ function set-proxy() {
 function unset-proxy() {
   unset ALL_PROXY HTTP_PROXY HTTPS_PROXY
 }
+
+# rsync -> cp / scp
+function cp() {
+  rsync -pogbrv -hhh --backup-dir="/tmp/rsync-${USERNAME}" -e /dev/null --progress "$@"
+}
+compdef _files cp
+function scp() {
+  rsync -poglazv -hhh --progress "$@"
+}
+compdef _files scp

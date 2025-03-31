@@ -1,13 +1,18 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+bindkey -e
+
 # Aliases
 alias ls='ls --color=auto' la='ls -A' ll='ls -Ahl' l.='ls -d .*' l='ls -alF'
-alias rm='rm -i' cp='cp -v' mv='mv -v'
+alias mv='mv -v'
 alias grep='grep --color=auto' diff='diff --color=auto'
 alias ..='cd ..' ...='cd ../..'
 alias :q='exit' :wq='exit'
 alias dl='du -h --max-depth=1'
+# Safe rm
+alias del="rip -i" trash="rip -i"
+alias rm="echo Use 'del', or the full path i.e. '/bin/rm'."
 
 # History
 setopt inc_append_history

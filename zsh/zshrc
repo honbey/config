@@ -1,0 +1,76 @@
+# Install zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+#[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+#[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+###################
+# My configs      #
+###################
+# Specific zsh config's directory
+ZSH_CONFIG="${HOME}/.config/zsh"
+# My functions
+zinit snippet "${ZSH_CONFIG}/function.zsh"
+# The Homebrew is *necessary* in macOS  
+[[ -d /opt/homebrew/bin ]] && add-path "/opt/homebrew/bin"
+
+# Load starship theme
+zinit ice nocompletions
+zinit snippet "${ZSH_CONFIG}/_starship.zsh"
+
+# Everything after prompt
+zinit wait lucid is-snippet for \
+  nocompletions \
+  "${ZSH_CONFIG}/_fzf.zsh" \
+  "${ZSH_CONFIG}/_zoxide.zsh"
+zinit wait lucid is-snippet for \
+  "${ZSH_CONFIG}/brew.zsh" \
+  "${ZSH_CONFIG}/common.zsh" \
+  "${ZSH_CONFIG}/go.zsh" \
+  "${ZSH_CONFIG}/nodejs.zsh" \
+  "${ZSH_CONFIG}/python.zsh" \
+  "${ZSH_CONFIG}/rust.zsh" \
+  "${ZSH_CONFIG}/vim.zsh"
+
+###################
+# Plugins(wait 0) #
+###################
+zinit wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
+  zdharma-continuum/fast-syntax-highlighting \
+    atload"_zsh_autosuggest_start" \
+  zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+  zsh-users/zsh-completions \
+    atload"export FZF_CTRL_R_OPTS=''" \
+  zdharma-continuum/history-search-multi-word \
+    atclone"
+      local P=${${(M)OSTYPE:#*darwin*}:+g}
+      \${P}dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
+  trapd00r/LS_COLORS \
+    pick'autopair.zsh' \
+  hlissner/zsh-autopair
+
+zinit wait lucid light-mode for \
+  OMZL::clipboard.zsh \
+	OMZL::compfix.zsh \
+	OMZL::completion.zsh \
+	OMZL::functions.zsh \
+  OMZL::spectrum.zsh \
+	OMZL::termsupport.zsh \
+    atinit"HIST_STAMPS=yyyy-mm-dd" \
+  OMZL::history.zsh \
+
+zinit wait lucid light-mode for \
+  OMZP::git
+
+###################
+# Plugins(wait 1) #
+###################
+zinit wait'1' lucid light-mode for \
+  voronkovich/gitignore.plugin.zsh \
+  MichaelAquilina/zsh-you-should-use \
+    has'fzf' \
+  Aloxaf/fzf-tab

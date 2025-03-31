@@ -1,4 +1,4 @@
-dotfile/.env filter=git-crypt diff=git-crypt
+dotfile/env filter=git-crypt diff=git-crypt
 nginx/freewisdom.cn.conf/*.conf filter=git-crypt diff=git-crypt
 nginx/freewisdom.cn.conf/web/*.conf filter=git-crypt diff=git-crypt
 nginx/freewisdom.cn.conf/web/*.conf_ filter=git-crypt diff=git-crypt

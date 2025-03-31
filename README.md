@@ -17,6 +17,10 @@ a txt file, some backups of extensions' config.
 This folder includes the config which has only single file and filename begin with
 a dot under the `$HOME`, the exception is `.ssh_config`.
 
+## ghostty
+
+This folder includes the config of [Ghostty](https://ghostty.org).
+
 ## git
 
 This folder includes the config of Git and a common gitignore file integrated
@@ -61,3 +65,11 @@ TODO: crontab move to Qinglong, keeping only necessary entries.
 ## vim
 
 This folder includes the config of [Vim](https://www.vim.org).
+
+## zed
+
+This folder includes the config of [Zed](https://zed.dev).
+
+## zsh
+
+This folder includes the config of [Zsh](https://www.zsh.org/), plugin manager using [Zinit](https://github.com/zdharma-continuum/zinit).

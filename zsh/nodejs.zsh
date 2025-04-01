@@ -1,7 +1,7 @@
 # PNPM
 if type pnpm &>/dev/null; then
   export PNPM_HOME="/opt/data/pnpm"
-  export PATH="$PNPM_HOME:$PATH"
+  add-path "$PNPM_HOME"
   alias npm='pnpm'
 fi
 

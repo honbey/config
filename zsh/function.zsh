@@ -16,16 +16,16 @@ function add-path() {
 }
 
 # Base64 encode/decode
-function be() {
+function b64e() {
   base64 <(echo "$1")
 }
-function bd() {
+function b64d() {
   base64 --decode <(echo "$1")
 }
 
 # URL encode/decode
 # https://unix.stackexchange.com/a/678894
-function ue() {
+function urle() {
   LC_ALL=C awk -- '
     BEGIN {
       for (i = 1; i <= 255; i++) hex[sprintf("%c", i)] = sprintf("%%%02X", i)
@@ -43,7 +43,7 @@ function ue() {
         print urlencode(ARGV[i])
     }' "$@"
 }
-function ud() { echo -e "${1//\%/\\x}" }
+function urld() { echo -e "${1//\%/\\x}" }
 
 # Timestamp to datetime or inversely
 function ts() {
@@ -66,7 +66,7 @@ function unset-proxy() {
   unset ALL_PROXY HTTP_PROXY HTTPS_PROXY
 }
 
-# rsync -> cp / scp
+# rsync -> cp / scp (Like OMZ's cpv)
 function cp() {
   rsync -pogbrv -hhh --backup-dir="/tmp/rsync-${USERNAME}" -e /dev/null --progress "$@"
 }
@@ -75,3 +75,11 @@ function scp() {
   rsync -poglazv -hhh --progress "$@"
 }
 compdef _files scp
+
+# Better $PATH
+function show-path() {
+  echo ${PATH//:/\\n}
+}
+function show-fpath() {
+  echo ${FPATH//:/\\n}
+}

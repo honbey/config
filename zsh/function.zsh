@@ -83,3 +83,21 @@ function show-path() {
 function show-fpath() {
   echo ${FPATH//:/\\n}
 }
+
+# Because the network problem of GitHub, I choose to update
+# the snippets that are local.
+#   *return null
+function update-local-snippets() {
+  if [[ -z ${ZSH_CONFIG} ]]; then
+    ZSH_CONFIG='$HOME/.config/zsh'
+  fi
+  local ZI_SNIPPETS_PATH
+  ZI_SNIPPETS_PATH=${ZSH_CONFIG#/}
+  ZI_SNIPPETS_PATH=${ZI_SNIPPETS_PATH//\//--}
+  for i in $(ls ${HOME}/.config/zsh/[^_]*); do
+    local BASE_NAME="$(basename ${i})"
+    if [[ $(basename ${i}) != 'zshrc' ]]; then
+      zinit update "${ZI_SNIPPETS_PATH}/${BASE_NAME}"
+    fi
+  done
+}

@@ -1,7 +1,18 @@
 # Python
-# venv
+# acticate Python venv
+#   $1 string  name of venv
+#   $2 string  path of venv
+#   *return null
 function ap() {
-  source "/opt/data/pyvenv/${1}/bin/activate"
+  if [[ -z ${1} ]]; then
+    return
+  fi
+  if [[ -z ${2} ]]; then
+    PYVENV_PATH="/opt/data/pyvenv/"
+  else
+    PYVENV_PATH=${2}
+  fi
+  source "${PYVENV_PATH}/${1}/bin/activate"
 }
 
 # pip

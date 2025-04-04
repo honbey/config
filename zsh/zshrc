@@ -55,11 +55,11 @@ zinit wait lucid light-mode for \
 
 zinit wait lucid light-mode for \
   OMZL::clipboard.zsh \
-	OMZL::compfix.zsh \
-	OMZL::completion.zsh \
-	OMZL::functions.zsh \
+  OMZL::compfix.zsh \
+  OMZL::completion.zsh \
+  OMZL::functions.zsh \
   OMZL::spectrum.zsh \
-	OMZL::termsupport.zsh \
+  OMZL::termsupport.zsh \
     atinit"HIST_STAMPS=yyyy-mm-dd" \
   OMZL::history.zsh \
 

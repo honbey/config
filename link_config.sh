@@ -2,10 +2,16 @@
 
 set -x
 
-rm -f ~/.zshrc ~/.gitconfig ~/.vimrc ~/.tmux.conf ~/.sqliterc ~/.npmrc \
+if type rip &>/dev/null; then
+  alias local_rm='/bin/rm'
+else
+  alias local_rm='rm -f'
+fi
+
+local_rm ~/.zshrc ~/.gitconfig ~/.vimrc ~/.tmux.conf ~/.sqliterc ~/.npmrc \
   ~/.env ~/.ssh/config
 
-rm -rf ~/.config/nvim ~/.config/pip ~/.config/go ~/.config/ghostty \
+local_rm -r ~/.config/nvim ~/.config/pip ~/.config/go ~/.config/ghostty \
   ~/.config/zed ~/.config/zsh
 
 CONFIG_DIR="$1"
@@ -27,3 +33,4 @@ ln -s "${CONFIG_DIR}"/pip ~/.config/pip
 ln -s "${CONFIG_DIR}"/go ~/.config/go
 ln -s "${CONFIG_DIR}"/ghostyy ~/.config/ghostty
 ln -s "${CONFIG_DIR}"/zed ~/.config/zed
+unalias local_rm

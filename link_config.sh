@@ -3,7 +3,7 @@
 set -x
 
 if type rip &>/dev/null; then
-  alias local_rm='/bin/rm'
+  alias local_rm='/bin/rm -f'
 else
   alias local_rm='rm -f'
 fi
@@ -11,7 +11,7 @@ fi
 local_rm ~/.zshrc ~/.gitconfig ~/.vimrc ~/.tmux.conf ~/.sqliterc ~/.npmrc \
   ~/.env ~/.ssh/config
 
-local_rm -r ~/.config/nvim ~/.config/pip ~/.config/go ~/.config/ghostty \
+local_rm -r ~/.config/nvim ~/.vim ~/.config/pip ~/.config/go ~/.config/ghostty \
   ~/.config/zed ~/.config/zsh
 
 CONFIG_DIR="$1"
@@ -27,10 +27,11 @@ ln -s "${CONFIG_DIR}"/zsh ~/.config/zsh
 
 ln -s "${CONFIG_DIR}"/git/gitconfig ~/.gitconfig
 ln -s "${CONFIG_DIR}"/vim/vimrc ~/.vimrc
+ln -s "${CONFIG_DIR}"/vim ~/.vim
 
 ln -s "${CONFIG_DIR}"/nvim ~/.config/nvim
-ln -s "${CONFIG_DIR}"/pip ~/.config/pip
 ln -s "${CONFIG_DIR}"/go ~/.config/go
 ln -s "${CONFIG_DIR}"/ghostyy ~/.config/ghostty
 ln -s "${CONFIG_DIR}"/zed ~/.config/zed
+ln -s "${CONFIG_DIR}"/python/pip ~/.config/pip
 unalias local_rm

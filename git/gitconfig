@@ -2,15 +2,13 @@
 	name = honbey
 	email = honbey@qq.com
 	signingKey = honbey@qq.com
-[alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
-	editor=vim
+	editor = nvim
 	quotepath = false
 	safecrlf = true
-	# Unix / Linux 
+	# Unix / Linux
 	autocrlf = input
-	# Windows 
+	# Windows
 	# autocrlf = true
 [init]
 	defaultBranch = main
@@ -19,3 +17,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[alias]
+	logc = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

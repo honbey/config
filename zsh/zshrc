@@ -27,7 +27,6 @@ zinit wait lucid is-snippet for \
   "${ZSH_CONFIG}/brew.zsh" \
   "${ZSH_CONFIG}/common.zsh" \
   "${ZSH_CONFIG}/go.zsh" \
-  "${ZSH_CONFIG}/nodejs.zsh" \
   "${ZSH_CONFIG}/python.zsh" \
   "${ZSH_CONFIG}/rust.zsh" \
   "${ZSH_CONFIG}/vim.zsh"
@@ -62,9 +61,6 @@ zinit wait lucid light-mode for \
   OMZL::termsupport.zsh \
     atinit"HIST_STAMPS=yyyy-mm-dd" \
   OMZL::history.zsh \
-
-zinit wait lucid light-mode for \
-  OMZP::git
 
 ###################
 # Plugins(wait 1) #

@@ -89,7 +89,7 @@ function show-fpath() {
 #   *return null
 function update-local-snippets() {
   if [[ -z ${ZSH_CONFIG} ]]; then
-    ZSH_CONFIG='$HOME/.config/zsh'
+    ZSH_CONFIG="${HOME}/.config/zsh"
   fi
   local ZI_SNIPPETS_PATH
   ZI_SNIPPETS_PATH=${ZSH_CONFIG#/}

@@ -25,10 +25,10 @@ setopt hist_save_no_dups
 type gpg &>/dev/null && export GPG_TTY="$(tty)"
 
 # Custom bin
-[[ -d "$HOME/.bin" ]] && add-path "$HOME/.bin"
-[[ -d "$HOME/.local/share/nvim/mason/bin" ]] && add-path "$HOME/.local/share/nvim/mason/bin"
+[[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"
+[[ -d "${HOME}/.local/share/nvim/mason/bin" ]] && add-path "${HOME}/.local/share/nvim/mason/bin"
 
 # Environment
-[[ -f "$HOME/.env" ]] && source "$HOME/.env"
+[[ -f "${HOME}/.env" ]] && source "${HOME}/.env"
 # Custom config for specific machine
-[[ -f "$HOME/.custom.zsh" ]] && source "$HOME/.custom.zsh"
+[[ -f "${ZSH_CONFIG}/_custom.zsh" ]] && source "${ZSH_CONFIG}/_custom.zsh"

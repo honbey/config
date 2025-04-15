@@ -101,3 +101,17 @@ function update-local-snippets() {
     fi
   done
 }
+
+# Transale English word to Chinese
+# I find a wonderful dictionary from [skywind3000](https://skywind.me/).
+# The author's recommand way to use is use [GoldenDict](https://github.com/goldendict/goldendict)
+# But it has no official universal releases for macOS, I choose to use sqlite3 at present.
+# Dictionary from https://github.com/skywind3000/ECDICT-ultimate/releases/tag/1.0.0
+#    $1 word
+#    * return null
+function t() {
+  # TODO: use python to beautify output
+  sqlite3 \
+    /opt/data/workspace/EC-DICT-Ultimate.db \
+    "select word,phonetic,definition,exchange,translation from stardict where word like '${1:-China}'"
+}

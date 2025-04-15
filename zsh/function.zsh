@@ -112,6 +112,6 @@ function update-local-snippets() {
 function t() {
   # TODO: use python to beautify output
   sqlite3 \
-    /opt/data/workspace/EC-DICT-Ultimate.db \
+    /opt/data/resources/EC-DICT-Ultimate.db \
     "select word,phonetic,definition,exchange,translation from stardict where word like '${1:-China}'"
 }

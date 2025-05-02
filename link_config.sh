@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
+shopt -s expand_aliases
 
 if type rip &>/dev/null; then
   alias local_rm='/bin/rm -f'

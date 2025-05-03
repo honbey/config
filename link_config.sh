@@ -32,7 +32,7 @@ ln -s "${CONFIG_DIR}"/vim ~/.vim
 
 ln -s "${CONFIG_DIR}"/nvim ~/.config/nvim
 ln -s "${CONFIG_DIR}"/go ~/.config/go
-ln -s "${CONFIG_DIR}"/ghostyy ~/.config/ghostty
+ln -s "${CONFIG_DIR}"/ghostty ~/.config/ghostty
 ln -s "${CONFIG_DIR}"/zed ~/.config/zed
 ln -s "${CONFIG_DIR}"/python/pip ~/.config/pip
 unalias local_rm

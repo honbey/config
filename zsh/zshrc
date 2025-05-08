@@ -70,3 +70,6 @@ zinit wait'1' lucid light-mode for \
   MichaelAquilina/zsh-you-should-use \
     has'fzf' \
   Aloxaf/fzf-tab
+
+# Load custom config in different machine
+[[ -f ${HOME}/.custom.zsh ]] && source ${HOME}/.custom.zsh

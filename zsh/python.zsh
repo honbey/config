@@ -15,6 +15,14 @@ function ap() {
   source "${PYVENV_PATH}/${1}/bin/activate"
 }
 
+_ap() {
+  local -a venvs
+  local venvs=( $(find /opt/data/pyvenv -mindepth 1 -maxdepth 1 -type d -printf "%f\n") )
+  _describe 'virtual environments' venvs
+}
+
+compdef _ap ap
+
 # pip
 alias pip='pip3'
 alias pip-ali='pip3 -i https://mirrors.aliyun.com/pypi/simple'

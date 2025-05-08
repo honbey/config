@@ -10,7 +10,7 @@
   "assistant": {
     "default_model": {
       "provider": "ollama",
-      "model": "deepseek-r1:1.5b"
+      "model": "qwen2.5-coder:7b"
     },
     "version": "2"
   },
@@ -34,5 +34,12 @@
     "LXGW WenKai Mono"
   ],
   "ui_font_family": "LXGW WenKai Mono",
-  "ui_font_weight": 600
+  "ui_font_weight": 600,
+  "language_models": {
+    "ollama": {
+      // modify hosts to access
+      // IP whitelist for security or law
+      "api_url": "https://ollama.local.zhang:9090"
+    }
+  }
 }

@@ -17,7 +17,8 @@ function ap() {
 
 _ap() {
   local -a venvs
-  local venvs=( $(find /opt/data/pyvenv -mindepth 1 -maxdepth 1 -type d -printf "%f\n") )
+  local venvs=( $(find /opt/data/pyvenv -mindepth 1 -maxdepth 1 -type d \
+    | awk -v FS='/' '{printf "%s\n", $NF}') )
   _describe 'virtual environments' venvs
 }
 

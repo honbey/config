@@ -1,0 +1,25 @@
+version: "3"
+
+networks:
+  local_containers:
+    external: true
+
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./data:/home/coder
+    ports:
+      - 127.0.0.1:1130:8080
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.30
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

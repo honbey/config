@@ -1,0 +1,26 @@
+version: "3"
+
+networks:
+  local_containers:
+    external: true
+
+services:
+  bitwarden:
+    image: vaultwarden/server:latest
+    container_name: vault
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data:Z
+    ports:
+      - 127.0.0.1:1120:80
+      - 127.0.0.1:1121:3012
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.20
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+        max-file: "10"

@@ -1,20 +1,25 @@
 version: "3"
 
+networks:
+  local_containers:
+    external: true
+
 services:
   memos:
     image: neosmemo/memos:latest
     container_name: memos
     restart: always
-    environment:
-      LOG_FILE: /data/memos.log
     env_file:
       - .env
-    ports:
-      - 127.0.0.1:1130:5230
     volumes:
       - ./data:/var/opt/memos
+    ports:
+      - 127.0.0.1:1160:5230
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.60
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "3"
+        max-file: "10"

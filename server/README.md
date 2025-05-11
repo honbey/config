@@ -1,4 +1,3 @@
-# TODO: NEED UPDATE
 # Server
 
 Application/Service running on Linux server.
@@ -18,30 +17,12 @@ Application/Service running on Linux server.
 
 ## hosts
 
-```
+```txt
 # Main interface
-192.168.1.100 local
+192.168.1.1 local
 
-# podman-br-con NET 10.1.0.0/16
-10.1.1.10 mysql
-
-10.1.2.10 vaultwarden
-
-10.1.3.10 promtail
-
-10.1.5.10 ghost
-
-# docker-br-con NET 10.2.0.0/16
-10.2.0.10 mailserver
-
-10.2.3.10 promtail
-10.2.3.20 loki
-10.2.3.30 grafana
-
-10.2.4.10 minio
-
-# GITHUB BEGIN
-# GITHUB END
+# GITHUB HOSTS BEGIN
+# GITHUB HOSTS END
 ```
 
 ## logrotate
@@ -57,8 +38,9 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
 /opt/data/log/nginx/json_access.log
 /opt/data/log/nginx/error.log
 {
+  su zhang zhang
   daily
-  rotate 365
+  rotate 185
   missingok
   notifempty
   dateext
@@ -72,30 +54,13 @@ Logrotate can rotate log daily/weekly/monthly, can also detect log size and rota
 }
 ```
 
-### monitor host
-
-```
-/opt/data/log/host/json_host.log
-{
-  daily
-  rotate 7
-  missingok
-  notifempty
-  dateext
-  compress
-  olddir /opt/data/log/host/backups
-  copytruncate
-}
-```
-
-## Docker
+## Docker / Podman
 
 Runing a container:
 
 ```bash
-docker run -itd --name <container_name> \
+podman run -itd --name <container_name> \
   --restart always \
-  --privileged \
   -p <host_port>:<container_port> \
   -e <CONTAINER_ENV_NAME>=<value> \
   -v <host_path>:<container_path> \
@@ -103,43 +68,34 @@ docker run -itd --name <container_name> \
 ```
 
 State of container:
+
 ```
                     running
      `pause/unpause`       `kill/start`
  paused                               stoped
 ```
 
-## Podman
+### networks
 
-Some containers with `podman-compose` need add parameters for `podman-run`:
-
-### MySQL
+Create a newtork.
 
 ```bash
-podman-compose --podman-run-args '--ip 10.1.1.10' up -d
+podman network create local_containers --driver bridge --gateway 10.25.0.1 --subnet 10.25.0.0/20
 ```
 
-### MongoDB
+Allocate IP address for containers or services:
 
-```bash
-podman-compose --podman-run-args '--ip 10.1.1.20 --privileged' up -d
-```
-
-### Vaultwarden
-
-```bash
-podman-compose --podman-run-args '--ip 10.1.2.10' up -d
-```
-
-### Promtail
-
-```bash
-podman-compose --podman-run-args '--ip 10.1.3.10' up -d
-```
-
-### Ghost
-
-```bash
-podman-compose --podman-run-args '--ip 10.1.5.10' up -d
-```
-
+| Service | Port| IP| Comment |
+| --------------- | --------------- | --------------- |--------------- |
+|ollama|1030|10.25.10.30| unprivilege port |
+|redis|1040|10.25.10.40| |
+|mongo/sql|1050|10.25.10.50| |
+|anki|1060| | by Python |
+|ledger|1070| | by Python |
+|proxy|1080| | by Go |
+|dufs|1110|10.25.11.10| |
+|vault|1120|10.25.11.20| |
+|code|1130|10.25.11.30| |
+|drop|1140|10.25.11.40| |
+|gotify|1150|10.25.11.50| |
+|memos|1160|10.25.11.60| |

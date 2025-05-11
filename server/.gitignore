@@ -7,3 +7,6 @@ anki/*
 
 ledger/*
 !ledger/.gitkeep
+
+www/*
+!www/.gitkeep

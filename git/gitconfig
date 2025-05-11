@@ -1,7 +1,7 @@
 [user]
 	name = honbey
 	email = honbey@qq.com
-	signingKey = honbey@qq.com
+	signingkey = 5ABC1EC6EC89D1CF
 [core]
 	editor = nvim
 	quotepath = false

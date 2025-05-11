@@ -68,11 +68,11 @@ function unset-proxy() {
 
 # rsync -> cp / scp (Like OMZ's cpv)
 function cp() {
-  rsync -pogbrv -hhh --backup-dir="/tmp/rsync-${USERNAME}" -e /dev/null --progress "$@"
+  rsync -ahv --backup-dir="/tmp/rsync-${USERNAME}" --progress "$@"
 }
 compdef _files cp
 function scp() {
-  rsync -poglazv -hhh --progress "$@"
+  rsync -ahv -z --progress "$@"
 }
 compdef _files scp
 

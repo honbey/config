@@ -1,0 +1,9 @@
+_*
+*/.env
+*/data
+
+anki/*
+!anki/.gitkeep
+
+ledger/*
+!ledger/.gitkeep

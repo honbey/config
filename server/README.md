@@ -99,3 +99,16 @@ Allocate IP address for containers or services:
 |drop|1140|10.25.11.40| |
 |gotify|1150|10.25.11.50| |
 |memos|1160|10.25.11.60| |
+
+
+## Disabled Services
+
+- QingLong
+- RustDesk
+- MySQL
+- MongoDB
+- Redis
+- Grafana
+- Minio
+- Immich
+- Technitium

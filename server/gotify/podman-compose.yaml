@@ -1,5 +1,9 @@
 version: "3"
 
+networks:
+  local_containers:
+    external: true
+
 services:
   gotify:
     image: gotify/server:latest
@@ -7,12 +11,15 @@ services:
     restart: always
     env_file:
       - .env
-    ports:
-      - 127.0.0.1:1160:80
     volumes:
       - ./data:/app/data
+    ports:
+      - 127.0.0.1:1150:80
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.50
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "3"
+        max-file: "10"

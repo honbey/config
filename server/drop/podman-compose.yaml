@@ -1,18 +1,25 @@
 version: "3"
 
+networks:
+  local_containers:
+    external: true
+
 services:
-  snapdrop:
+  pairdrop:
     image: linuxserver/pairdrop:latest
-    container_name: pairdrop
+    container_name: drop
     restart: always
     env_file:
       - .env
     volumes:
-      - ./data:/config:Z
+      - ./data:/config
     ports:
-      - 127.0.0.1:1140:80
+      - 127.0.0.1:1140:3000
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.40
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "3"
+        max-file: "10"

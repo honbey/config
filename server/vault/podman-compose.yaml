@@ -1,21 +1,26 @@
 version: "3"
 
+networks:
+  local_containers:
+    external: true
+
 services:
   bitwarden:
     image: vaultwarden/server:latest
-    container_name: vaultwarden
+    container_name: vault
     restart: always
     env_file:
       - .env
     volumes:
-      - ./data:/data
+      - ./data:/data:Z
     ports:
       - 127.0.0.1:1120:80
       - 127.0.0.1:1121:3012
     networks:
-      - podman-br-con
+      local_containers:
+        ipv4_address: 10.25.11.20
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "3"
+        max-file: "10"

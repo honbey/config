@@ -1,19 +1,26 @@
-version: "3"
+version: "3.8"
+
+networks:
+  local_containers:
+    external: true
 
 services:
-  snapdrop:
+  dufs:
     image: sigoden/dufs
     container_name: dufs
-    command: /data -A -a ${ADMIN}@/:rw -a ${USER1}@/public:rw -a @/public/pub
     restart: always
     env_file:
       - .env
-    ports:
-      - 127.0.0.1:1190:5000
     volumes:
-      - ./data:/data:Z
+      - ./data:/data
+    ports:
+      - 127.0.0.1:1110:5000
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.10
+    command: /data -A -a ${ADMIN}@/:rw -a ${USER1}@/tmp:rw -a @/public
     logging:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "3"
+        max-file: "10"

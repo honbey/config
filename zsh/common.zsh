@@ -20,7 +20,7 @@ alias gp='git push'
 alias gl='git pull'
 alias gst='git status'
 alias glog='git log'
-alias gck='git checout'
+alias gck='git checkout'
 alias gb='git branch'
 alias gt='git tag'
 

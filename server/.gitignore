@@ -1,6 +1,7 @@
 _*
 */.env
 */data
+*/backups
 
 anki/*
 !anki/.gitkeep

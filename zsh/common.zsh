@@ -13,6 +13,16 @@ alias dl='du -h --max-depth=1'
 # Safe rm
 alias del="rip -i" trash="rip -i"
 alias rm="echo Use 'del', or the full path i.e. '/bin/rm'."
+# Git
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gst='git status'
+alias glog='git log'
+alias gck='git checout'
+alias gb='git branch'
+alias gt='git tag'
 
 # History
 setopt inc_append_history

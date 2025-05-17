@@ -3,7 +3,7 @@
 	email = honbey@qq.com
 	signingkey = 5ABC1EC6EC89D1CF
 [core]
-	editor = nvim
+	editor = vim
 	quotepath = false
 	safecrlf = true
 	# Unix / Linux

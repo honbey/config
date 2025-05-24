@@ -6,15 +6,16 @@
 function ap() {
   if [[ -z ${1} ]]; then
     if [[ -d ./venv ]]; then
-      PYVENV_PATH="./venv"
+      source "./venv/bin/activate"
     elif [[ -d ./.venv ]]; then
-      PYVENV_PATH="./.venv"
+      source "./.venv/bin/activate"
     else
       echo "No virtual env!"
     fi
+    return
   fi
   if [[ -z ${2} ]]; then
-      PYVENV_PATH="/opt/data/pyvenv"
+    PYVENV_PATH="/opt/data/pyvenv"
   else
     PYVENV_PATH=${2}
   fi
@@ -23,8 +24,8 @@ function ap() {
 
 _ap() {
   local -a venvs
-  local venvs=( $(find /opt/data/pyvenv -mindepth 1 -maxdepth 1 -type d \
-    | awk -v FS='/' '{printf "%s\n", $NF}') )
+  local venvs=($(find /opt/data/pyvenv -mindepth 1 -maxdepth 1 -type d |
+    awk -v FS='/' '{printf "%s\n", $NF}'))
   _describe 'virtual environments' venvs
 }
 

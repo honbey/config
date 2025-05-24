@@ -5,10 +5,16 @@
 #   *return null
 function ap() {
   if [[ -z ${1} ]]; then
-    return
+    if [[ -d ./venv ]]; then
+      PYVENV_PATH="./venv"
+    elif [[ -d ./.venv ]]; then
+      PYVENV_PATH="./.venv"
+    else
+      echo "No virtual env!"
+    fi
   fi
   if [[ -z ${2} ]]; then
-    PYVENV_PATH="/opt/data/pyvenv/"
+      PYVENV_PATH="/opt/data/pyvenv"
   else
     PYVENV_PATH=${2}
   fi

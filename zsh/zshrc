@@ -26,6 +26,7 @@ zinit wait lucid is-snippet for \
 zinit wait lucid is-snippet for \
   "${ZSH_CONFIG}/brew.zsh" \
   "${ZSH_CONFIG}/common.zsh" \
+  "${ZSH_CONFIG}/git.zsh" \
   "${ZSH_CONFIG}/go.zsh" \
   "${ZSH_CONFIG}/gnupg.zsh" \
   "${ZSH_CONFIG}/python.zsh" \

@@ -17,4 +17,7 @@ if type gpg &>/dev/null; then
 
   # Refresh gpg-agent tty in case user switches into an X session
   gpg-connect-agent updatestartuptty /bye >/dev/null
+
+  # aliases
+  alias gnupg='gpg'
 fi

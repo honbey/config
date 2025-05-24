@@ -115,3 +115,13 @@ function t() {
     /opt/data/resources/EC-DICT-Ultimate.db \
     "select word,phonetic,definition,exchange,translation from stardict where word like '${1:-China}'"
 }
+
+# Provide the ability to change the current working directory when exiting Yazi.
+#    * return null
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}

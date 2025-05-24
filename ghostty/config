@@ -11,7 +11,7 @@ quit-after-last-window-closed = true
 macos-option-as-alt = true
 
 window-height = 30
-window-width = 90
+window-width = 100
 
 theme = catppuccin-frappe
 

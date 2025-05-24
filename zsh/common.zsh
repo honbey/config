@@ -11,7 +11,7 @@ alias ..='cd ..' ...='cd ../..'
 alias :q='exit' :wq='exit'
 alias dl='du -h --max-depth=1'
 # Safe rm
-alias del="rip -i" trash="rip -i"
+alias del="rip -i --graveyard /opt/data/graveyard" trash="rip -i --graveyard /opt/data/graveyard"
 alias rm="echo Use 'del', or the full path i.e. '/bin/rm'."
 # Git
 alias ga='git add'

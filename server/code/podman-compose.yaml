@@ -12,7 +12,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/home/coder
+      - ./data:/home
+      - /home/linuxbrew:/home/linuxbrew
     ports:
       - 127.0.0.1:1130:8080
     networks:

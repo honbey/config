@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data/ollama:/root/.ollama
+      - ./data:/root/.ollama
     ports:
       - 127.0.0.1:1030:11434
     # https://github.com/containers/podman-compose/pull/867

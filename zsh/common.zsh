@@ -31,9 +31,6 @@ setopt hist_ignore_all_dups
 setopt hist_reduce_blanks 
 setopt hist_save_no_dups
 
-# GnuPG
-type gpg &>/dev/null && export GPG_TTY="$(tty)"
-
 # Custom bin
 [[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"
 [[ -d "${HOME}/.local/share/nvim/mason/bin" ]] && add-path "${HOME}/.local/share/nvim/mason/bin"

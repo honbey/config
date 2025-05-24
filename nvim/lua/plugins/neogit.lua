@@ -9,9 +9,7 @@ return {
         snacks = true,
       },
     },
+    lazy = true,
     cmd = "Neogit",
-    keys = {
-      { "<leader>gm", "<cmd>Neogit<cr>", desc = "Open Neogit(magit-like)" },
-    },
   },
 }

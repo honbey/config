@@ -1,16 +1,44 @@
+-- snacks.vim has many configs need to set
 return {
   {
     "folke/snacks.nvim",
+    dependencies = { "LazyVim/LazyVim" },
+    priority = 1000,
+    lazy = false,
     opts = {
-      terminal = {
-        win = {
-          keys = {
-            nav_h = false,
-            nav_j = false,
-            nav_k = false,
-            nav_l = false,
-          },
-        },
+      statuscolumn = { enabled = false }, -- we set this in options.lua
+      indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      scope = { enabled = true },
+      scroll = { enabled = true },
+      bigfile = { enabled = true },
+      quickfile = { enabled = true },
+      words = { enabled = true },
+      terminal = { enabled = true },
+      explorer = {},
+      toggle = {
+        map = function(mode, lhs, rhs, opts)
+          local keys = require("lazy.core.handler").handlers.keys
+          ---@cast keys LazyKeysHandler
+          local modes = type(mode) == "string" and { mode } or mode
+
+          ---@param m string
+          modes = vim.tbl_filter(function(m)
+            return not (keys.have and keys:have(lhs, m))
+          end, modes)
+
+          -- do not create the keymap if a lazy keys handler exists
+          if #modes > 0 then
+            opts = opts or {}
+            opts.silent = opts.silent ~= false
+            if opts.remap and not vim.g.vscode then
+              ---@diagnostic disable-next-line: no-unknown
+              opts.remap = nil
+            end
+            vim.keymap.set(modes, lhs, rhs, opts)
+          end
+        end,
       },
       picker = {
         win = {
@@ -20,8 +48,8 @@ return {
               ["<esc>"] = { "cancel", desc = "escape" },
               ["<tab>"] = { "cycle_win", mode = { "i", "n" } }, -- { "select_and_next", mode = { "i", "n" } },
               ["<cr>"] = { "confirm", mode = { "i", "n" } },
-              ["<down>"] = { "list_down", mode = { "i", "n" } }, -- { "list_down", mode = { "i", "n" } },
-              ["<up>"] = { "list_up", mode = { "i", "n" } }, -- { "list_up", mode = { "i", "n" } },
+              ["<down>"] = { "preview_scroll_down", mode = { "i", "n" } }, -- { "list_down", mode = { "i", "n" } },
+              ["<up>"] = { "preview_scroll_up", mode = { "i", "n" } }, -- { "list_up", mode = { "i", "n" } },
               ["<c-c>"] = { "cancel", mode = "i" },
               ["<c-w>"] = { "<c-s-w>", mode = "i", expr = true, desc = "delete word" },
               ["<c-p>"] = { "list_up", mode = { "i", "n" } },
@@ -31,6 +59,7 @@ return {
               ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } }, -- { "list_scroll_up", mode = { "i", "n" } },
               ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } }, -- { "list_scroll_down", mode = { "i", "n" } },
               ["<c-g>"] = { "<c-[>", mode = { "i", "n" }, expr = true }, -- { "toggle_live", mode = { "i", "n" } },
+              -- compare to raw trouble_open, i removed vim.tbl_deep_extend
               ["<c-t>"] = { "trouble_open", mode = { "i", "n" } }, -- { "tab", mode = { "n", "i" } },
               ["<c-q>"] = { "qflist", mode = { "i", "n" } },
               ["."] = "toggle_focus",
@@ -72,7 +101,6 @@ return {
               ["<c-w>J"] = false, -- "layout_bottom",
               ["<c-w>K"] = false, -- "layout_top",
               ["<c-w>L"] = false, -- "layout_right",
-              ["<s-t>"] = false,
             },
           },
           list = {
@@ -84,7 +112,6 @@ return {
               ["<tab>"] = { "cycle_win", mode = "n", "x" }, -- { "select_and_next", mode = { "n", "x" } },
               ["<down>"] = "list_down",
               ["<up>"] = "list_up",
-              ["<c-t>"] = { "trouble_open", mode = { "i", "n" } }, -- "tab"
               ["<c-q>"] = "qflist",
               ["."] = "toggle_focus",
               ["s"] = { "select_and_next", desc = "select and next" },
@@ -99,7 +126,6 @@ return {
               ["zt"] = "list_scroll_top",
               ["zz"] = "list_scroll_center",
               ["q"] = "close",
-              ["P"] = "toggle_preview",
               -- disabled keys
               ["/"] = false, -- "toggle_focus",
               ["<s-cr>"] = false, -- { { "pick_win", "jump" } },
@@ -120,6 +146,7 @@ return {
               ["<c-n>"] = false, -- "list_down",
               ["<c-p>"] = false, -- "list_up",
               ["<c-s>"] = false, -- "edit_split",
+              ["<c-t>"] = false, -- "tab",
               ["<c-u>"] = false, -- "list_scroll_up",
               ["<c-v>"] = false, -- "edit_vsplit",
               ["<c-w>H"] = false, -- "layout_left",
@@ -148,6 +175,37 @@ return {
               ["<a-w>"] = false, -- "cycle_win",
             },
           },
+        },
+        actions = {
+          ---@param p snacks.Picker
+          toggle_cwd = function(p)
+            local root = LazyVim.root({ buf = p.input.filter.current_buf, normalize = true })
+            local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or ".")
+            local current = p:cwd()
+            p:set_cwd(current == root and cwd or root)
+            p:find()
+          end,
+          trouble_open = function(...)
+            return require("trouble.sources.snacks").actions.trouble_open.action(...)
+          end,
+          flash = function(picker)
+            require("flash").jump({
+              pattern = "^",
+              label = { after = { 0, 0 } },
+              search = {
+                mode = "search",
+                exclude = {
+                  function(win)
+                    return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+                  end,
+                },
+              },
+              action = function(match)
+                local idx = picker.list:row2idx(match.pos[1])
+                picker.list:_move(idx, true, true)
+              end,
+            })
+          end,
         },
         sources = {
           explorer = {
@@ -207,18 +265,65 @@ return {
                   ["l"] = false,
                   ["o"] = false,
                   ["h"] = false,
+                  ["q"] = false,
                   ["."] = false,
                   ["<C-t>"] = false,
                   ["<C-c>"] = false,
                   ["<leader>/"] = false,
                   ["<Esc>"] = false,
-                  -- ["q"] = false,
                 },
               },
             },
           },
         },
       },
+      dashboard = {
+        preset = {
+          pick = function(cmd, opts)
+            return LazyVim.pick(cmd, opts)()
+          end,
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick()" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
     },
+    config = function(_, opts)
+      -- delay notifications till vim.notify was replaced or after 500ms
+      LazyVim.lazy_notify()
+
+      -- picker for LazyVim
+      ---@type LazyPicker
+      local picker = {
+        name = "snacks",
+        commands = {
+          files = "files",
+          live_grep = "grep",
+          oldfiles = "recent",
+        },
+
+        ---@param source string
+        ---@param options? snacks.picker.Config
+        open = function(source, options)
+          return Snacks.picker.pick(source, options)
+        end,
+      }
+      LazyVim.pick.register(picker)
+
+      -- noise.nvim
+      local notify = vim.notify
+      require("snacks").setup(opts)
+      vim.notify = notify
+    end,
   },
 }

@@ -46,12 +46,12 @@ return {
           desc = "Recent (cwd)",
           hidden = true,
         },
-        { "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir ^cw)" },
+        { "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir) (^cwd)" },
         { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)", hidden = true },
         {
           "<leader>sw",
           LazyVim.pick("grep_word"),
-          desc = "Visual selection or word (Root Dir ^cwd)",
+          desc = "Visual selection or word (Root Dir) (^cwd)",
           mode = { "n", "x" },
         },
         {

@@ -5,7 +5,7 @@
 schema:
   schema_id: rime_ice
   name: 雾凇拼音
-  version: "2025-02-24"
+  version: "2025-05-25"
   author:
     - Dvel
   description: |
@@ -428,6 +428,7 @@ translator:
     # - xform/([nl])ue/$1üe/   # 显示为 nüe lüe
     - xform/([nl])v/$1v/ # 显示为 nv lv
     - xform/([nl])ue/$1ve/ # 显示为 nve lve
+    - xform/(?<=[A-Z])\s(?=[A-Z])//
   # 关闭词频，自定义词添加到 cn_dict/custom.dict.yaml 中
   enable_sentence: false # 禁止造句
   enable_user_dict: false # 禁用用户词典

@@ -20,4 +20,20 @@ if type gpg &>/dev/null; then
 
   # aliases
   alias gnupg='gpg'
+
+  [[ -d "${HOME}/.gnupg" ]] || mkdir ${HOME}/.gnupg
+
+  # https://github.com/NeogitOrg/neogit/blob/master/doc/neogit.txt#L323
+  if ! [[ -f "${HOME}/.gnupg/gpg.conf" ]]; then
+    echo -e 'pinentry-mode loopback' >"${HOME}/.gnupg/gpg.conf"
+  fi
+  if ! [[ -f "${HOME}/.gnupg/gpg-agent.conf" ]]; then
+    if [[ -d /opt/homebrew ]]; then
+      echo -e "enable-ssh-support\npinentry-program /opt/homebrew/bin/pinentry-tty\nallow-loopback-pinentry" \
+        >"${HOME}/.gnupg/gpg-agent.conf"
+    elif [[ -d /home/linuxbrew ]]; then
+      echo -e "enable-ssh-support\npinentry-program /home/linuxbrew/.linuxbrew/bin/pinentry-tty\nallow-loopback-pinentry" \
+        >"${HOME}/.gnupg/gpg-agent.conf"
+    fi
+  fi
 fi

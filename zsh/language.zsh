@@ -1,4 +1,6 @@
-# Python
+###################
+# Python          #
+###################
 # acticate Python venv
 #   $1 string  name of venv
 #   $2 string  path of venv
@@ -36,3 +38,21 @@ alias pip='pip3'
 alias pip-ali='pip3 -i https://mirrors.aliyun.com/pypi/simple'
 alias pip-ustc='pip3 -i https://mirrors.ustc.edu.cn/pypi/simple'
 alias pip-tsinghua='pip3 -i https://pypi.tuna.tsinghua.edu.cn/simple'
+
+###################
+# Rust            #
+###################
+if type rustc &>/dev/null; then
+  export RUSTPATH="/opt/data/rust"
+  export CARGO_HOME="$RUSTPATH/cargo"
+  export RUST_HOME="$RUSTPATH/rustup"
+  add-path "$CARGO_HOME/bin"
+fi
+
+###################
+# Golang          #
+###################
+if type go &>/dev/null; then
+  export GOPATH="/opt/data/go"
+  add-path "$GOPATH/bin"
+fi

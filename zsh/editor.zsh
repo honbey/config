@@ -1,4 +1,6 @@
-# Vim/NeoVim
+###################
+# Vim/NeoVim      #
+###################
 if type nvim &>/dev/null; then
   alias vi='nvim' vim='nvim'
   export EDITOR=nvim

@@ -10,8 +10,7 @@ return {
           },
           python = {
             analysis = {
-              ignore = { "*" }, -- Using Ruff
-              typeCheckingMode = "on", -- checking type
+              typeCheckingMode = "standard", -- checking type
             },
           },
         },

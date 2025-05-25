@@ -14,6 +14,16 @@ Host h0
   #RemoteForward 127.0.0.1:1080 127.0.0.1:1080
   #PreferredAuthentications publickey
 
+Host gitee.com gitee
+  HostName gitee.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-git-2025
+
+Host github.com github
+  HostName github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/z-git-2025
+
 Host *
   ServerAliveCountMax 10
   ServerAliveInterval 60

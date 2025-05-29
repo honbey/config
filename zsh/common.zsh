@@ -75,6 +75,7 @@ function change-brew-mirror() {
 if type gpg &>/dev/null; then
 
   # GPG-Agent
+  # https://wiki.archlinux.org/title/GnuPG#SSH_agent
   # https://bbs.archlinux.org/viewtopic.php?id=224973
   if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
     gpg-connect-agent /bye >/dev/null 2>&1
@@ -119,7 +120,7 @@ fi
 alias g='git'
 alias ga='git add'
 alias gc='git commit'
-alias gc='git commit --amend'
+alias gca='git commit --amend'
 alias gcs='git commit -S'
 alias gcsa='git commit -S --amend'
 alias gp='git push'

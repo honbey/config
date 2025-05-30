@@ -5,24 +5,27 @@ including some notes or tips related them that I want to record too.
 
 ## archive
 
-The configurations that I no longer use are placed in this folder.
+The configurations that I no longer use are placed in this folder and config backups
+
+### browser
+
+This folder includes the extensions I used in the browser with Chromium kernel in
+a txt file, some backups of extensions' config.
 
 ### zed
 
 This folder includes the config of [Zed](https://zed.dev).
 
+### ms
+
+This folder includes the config only in Windows OS or the software develop by
+[Microsoft](https://www.microsoft.com/).
+
 ### emacs
 
 ### sublime-text
 
-### vscode
-
 ### vaultwarden_bak*
-
-## browser
-
-This folder includes the extensions I used in the browser with Chromium kernel in
-a txt file, some backups of extensions' config.
 
 ## dotfile
 
@@ -41,11 +44,6 @@ from [gitignore](https://github.com/github/gitignore).
 ## go
 
 This folder includes the config of [GoLang](https://go.dev).
-
-## ms
-
-This folder includes the config only in Windows OS or the software develop by
-[Microsoft](https://www.microsoft.com/).
 
 ## nginx
 
@@ -71,8 +69,6 @@ This folder includes the config of input method implemented by [Rime](https://ri
 This folder includes many directories, each contains a `compose.yaml` file using
 [Docker](https://www.docker.com)/[Podman](https://podman.io) and tips of the contains or memos and config of logrotate in
 `README.md`.
-
-TODO: crontab move to Qinglong, keeping only necessary entries.
 
 ## vim
 

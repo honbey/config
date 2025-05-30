@@ -7,6 +7,18 @@ including some notes or tips related them that I want to record too.
 
 The configurations that I no longer use are placed in this folder.
 
+### zed
+
+This folder includes the config of [Zed](https://zed.dev).
+
+### emacs
+
+### sublime-text
+
+### vscode
+
+### vaultwarden_bak*
+
 ## browser
 
 This folder includes the extensions I used in the browser with Chromium kernel in
@@ -65,10 +77,6 @@ TODO: crontab move to Qinglong, keeping only necessary entries.
 ## vim
 
 This folder includes the config of [Vim](https://www.vim.org).
-
-## zed
-
-This folder includes the config of [Zed](https://zed.dev).
 
 ## zsh
 

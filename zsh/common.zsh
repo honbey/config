@@ -132,7 +132,7 @@ alias gt='git tag'
 
 ### Custom ###
 [[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"
-# Environment
+# Environment varibles(emails, api tokens etc.)
 [[ -f "${HOME}/.env" ]] && source "${HOME}/.env"
 # Custom config for specific machine
 [[ -f "${ZSH_CONFIG}/_custom.zsh" ]] && source "${ZSH_CONFIG}/_custom.zsh"

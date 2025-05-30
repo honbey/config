@@ -6,3 +6,16 @@ function _count_graveyard() {
 }
 
 _count_graveyard
+
+function _extra_complement() {
+  local BREW
+  BREW="/opt/homebrew"
+  # curl's complement not load on macOS.
+  if [[ -d "${BREW}/opt/curl/share/zsh/site-functions" ]]; then
+    [[ -f "${BREW}/share/zsh/site-functions/_curl" ]] ||
+      ln -s "${BREW}/opt/curl/share/zsh/site-functions/_curl" \
+        "${BREW}/share/zsh/site-functions/_curl"
+  fi
+}
+
+_extra_complement

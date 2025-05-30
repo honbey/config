@@ -17,7 +17,7 @@ function ap() {
     return
   fi
   if [[ -z $2 ]]; then
-    PYVENV_PATH="/opt/data/pyvenv"
+    PYVENV_PATH="${DATA_DIR}/pyvenv"
   else
     PYVENV_PATH=$2
   fi
@@ -43,7 +43,7 @@ alias pip-tsinghua='pip3 -i https://pypi.tuna.tsinghua.edu.cn/simple'
 # Rust            #
 ###################
 if type rustc &>/dev/null; then
-  export RUSTPATH="/opt/data/rust"
+  export RUSTPATH="${DATA_DIR}/rust"
   export CARGO_HOME="${RUSTPATH}/cargo"
   export RUST_HOME="${RUSTPATH}/rustup"
   add-path "${CARGO_HOME}/bin"
@@ -53,6 +53,6 @@ fi
 # Golang          #
 ###################
 if type go &>/dev/null; then
-  export GOPATH="/opt/data/go"
+  export GOPATH="${DATA_DIR}/go"
   add-path "${GOPATH}/bin"
 fi

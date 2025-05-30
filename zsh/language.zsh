@@ -1,12 +1,12 @@
 ###################
 # Python          #
 ###################
-# acticate Python venv
-#   $1 string  name of venv
-#   $2 string  path of venv
+# Acticate Python virtual environments.
+#   $1 string: name of venv
+#   $2 string: path of venv
 #   *return null
 function ap() {
-  if [[ -z ${1} ]]; then
+  if [[ -z $1 ]]; then
     if [[ -d ./venv ]]; then
       source "./venv/bin/activate"
     elif [[ -d ./.venv ]]; then
@@ -16,12 +16,12 @@ function ap() {
     fi
     return
   fi
-  if [[ -z ${2} ]]; then
+  if [[ -z $2 ]]; then
     PYVENV_PATH="/opt/data/pyvenv"
   else
-    PYVENV_PATH=${2}
+    PYVENV_PATH=$2
   fi
-  source "${PYVENV_PATH}/${1}/bin/activate"
+  source "${PYVENV_PATH}/$1/bin/activate"
 }
 
 _ap() {
@@ -44,9 +44,9 @@ alias pip-tsinghua='pip3 -i https://pypi.tuna.tsinghua.edu.cn/simple'
 ###################
 if type rustc &>/dev/null; then
   export RUSTPATH="/opt/data/rust"
-  export CARGO_HOME="$RUSTPATH/cargo"
-  export RUST_HOME="$RUSTPATH/rustup"
-  add-path "$CARGO_HOME/bin"
+  export CARGO_HOME="${RUSTPATH}/cargo"
+  export RUST_HOME="${RUSTPATH}/rustup"
+  add-path "${CARGO_HOME}/bin"
 fi
 
 ###################
@@ -54,5 +54,5 @@ fi
 ###################
 if type go &>/dev/null; then
   export GOPATH="/opt/data/go"
-  add-path "$GOPATH/bin"
+  add-path "${GOPATH}/bin"
 fi

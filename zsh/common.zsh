@@ -34,24 +34,20 @@ if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
 
   if [[ -d /home/linuxbrew ]]; then # linux
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  else # macOS, make sure you have installed coreutils, mtr, gnu-sed, curl
+  else # macOS, make sure you have installed coreutils, gnu-sed
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     add-path "/opt/homebrew/opt/coreutils/libexec/gnubin"
-    add-path "/opt/homebrew/opt/mtr/sbin"
-    add-path "/opt/homebrew/opt/gnu-sed/bin"
-    add-path "/opt/homebrew/opt/curl/bin"
-
-    zinit add-fpath "/opt/homebrew/share/zsh/site-functions"
-
-    # TODO: MANPATH
+    add-path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
   fi
 fi
 
-# To change the mirror of Homebrew to escalate download speed.
+# Change the mirror of Homebrew to escalate download speed.
 # Because the Tsinghua mirror can not be accessed in some public WiFi.
 # The HOMEBREW_BREW_GIT_REMOTE's PATH is different in different mirror.
-#   $1 string  mirror's name ['ustc', 'ali']
+#   $1 string: mirror's name, support lists: ["ustc", "ali"]
 #   *return null
 function change-brew-mirror() {
+  type brew &>/dev/null || echo "Please install Homebrew!" && return
   local MIRROR_URL
   if [[ "$1" == "ustc" ]]; then
     MIRROR_URL='https://mirrors.ustc.edu.cn'
@@ -62,7 +58,7 @@ function change-brew-mirror() {
     export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"
     #export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"
   else
-    echo "Please provide mirror name, only support $(ustc) or $(ali) now."
+    echo 'Please provide mirror name, only support "ustc" or "ali" now.'
   fi
   export HOMEBREW_API_DOMAIN="${MIRROR_URL}/homebrew-bottles/api"
   export HOMEBREW_BOTTLE_DOMAIN="${MIRROR_URL}/homebrew-bottles"
@@ -73,10 +69,16 @@ function change-brew-mirror() {
 # GnuPG           #
 ###################
 if type gpg &>/dev/null; then
+  # aliases
+  alias gnupg='gpg'
+
+  [[ -d "${HOME}/.gnupg" ]] || mkdir ${HOME}/.gnupg
 
   # GPG-Agent
-  # https://wiki.archlinux.org/title/GnuPG#SSH_agent
-  # https://bbs.archlinux.org/viewtopic.php?id=224973
+  # Reference:
+  #   https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html
+  #   https://wiki.archlinux.org/title/GnuPG#SSH_agent
+  #   https://github.com/NeogitOrg/neogit/blob/master/doc/neogit.txt#L323
   if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
     gpg-connect-agent /bye >/dev/null 2>&1
   fi
@@ -93,12 +95,6 @@ if type gpg &>/dev/null; then
   # Refresh gpg-agent tty in case user switches into an X session
   gpg-connect-agent updatestartuptty /bye >/dev/null
 
-  # aliases
-  alias gnupg='gpg'
-
-  [[ -d "${HOME}/.gnupg" ]] || mkdir ${HOME}/.gnupg
-
-  # https://github.com/NeogitOrg/neogit/blob/master/doc/neogit.txt#L323
   if ! [[ -f "${HOME}/.gnupg/gpg.conf" ]]; then
     echo -e 'pinentry-mode loopback' >"${HOME}/.gnupg/gpg.conf"
   fi

@@ -9,9 +9,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 ###################
 # Specific zsh config's directory
 ZSH_CONFIG="${HOME}/.config/zsh"
-# My functions
+# The functions need loaded as soon as possible
 zinit snippet "${ZSH_CONFIG}/function.zsh"
-# The Homebrew is *necessary* in macOS  
+# The Homebrew is *necessary* in macOS
 [[ -d /opt/homebrew/bin ]] && add-path "/opt/homebrew/bin"
 
 # Load starship theme
@@ -28,6 +28,10 @@ zinit wait lucid is-snippet for \
   "${ZSH_CONFIG}/editor.zsh" \
   "${ZSH_CONFIG}/language.zsh"
 
+# My functions(implemention)
+zinit wait lucid is-snippet for \
+  "${ZSH_CONFIG}/ice00.zsh"
+# Functions need to be executed
 zinit wait'1' lucid is-snippet for \
   "${ZSH_CONFIG}/ice01.zsh"
 

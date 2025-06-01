@@ -66,6 +66,10 @@ packages of the venv I used and the config of [pip](https://pypi.org).
 
 This folder includes the config of input method implemented by [Rime](https://rime.io)
 
+## script
+
+Many scripts.
+
 ## server
 
 This folder includes many directories, each contains a `compose.yaml` file using

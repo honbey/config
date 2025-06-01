@@ -113,9 +113,9 @@ function t() {
   if [[ $2 == "full" ]]; then
     sqlite3 --init /dev/null "${RESOURCES}/EC-DICT-Ultimate.db" \
       "select * from stardict where word like '${1:-China}'"
-  elif [[ -f "${WORKSPACE}/script/python/query_english_word_from_dict.py" ]]; then
+  elif [[ -f "${WORKSPACE}/config/script/python/query_english_word_from_dict.py" ]]; then
     "${DATA_DIR}/pyvenv/work/bin/python" \
-      "${WORKSPACE}/script/python/query_english_word_from_dict.py" \
+      "${WORKSPACE}/config/script/python/query_english_word_from_dict.py" \
       "${1:-China}" -d "${RESOURCES}/EC-DICT-Ultimate.db"
   else
     sqlite3 "${RESOURCES}/EC-DICT-Ultimate.db" \

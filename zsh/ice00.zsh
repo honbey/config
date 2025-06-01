@@ -107,15 +107,18 @@ compdef _files scp
 # But it has no official universal releases for macOS, I choose to use sqlite3 at present.
 # Dictionary from https://github.com/skywind3000/ECDICT-ultimate/releases/tag/1.0.0
 #   $1 string: English word, default China
+#   $2 string: "full" or null, control whether to query all column by sqlite3
 #   *return string
 function t() {
-  if [[ -f "${WORKSPACE}/script/python/query_english_word_from_dict.py" ]]; then
+  if [[ $2 == "full" ]]; then
+    sqlite3 --init /dev/null "${RESOURCES}/EC-DICT-Ultimate.db" \
+      "select * from stardict where word like '${1:-China}'"
+  elif [[ -f "${WORKSPACE}/script/python/query_english_word_from_dict.py" ]]; then
     "${DATA_DIR}/pyvenv/work/bin/python" \
       "${WORKSPACE}/script/python/query_english_word_from_dict.py" \
       "${1:-China}" -d "${RESOURCES}/EC-DICT-Ultimate.db"
   else
-    sqlite3 \
-      "${RESOURCES}/EC-DICT-Ultimate.db" \
+    sqlite3 "${RESOURCES}/EC-DICT-Ultimate.db" \
       "select word,phonetic,definition,exchange,translation from stardict where word like '${1:-China}'"
   fi
 }

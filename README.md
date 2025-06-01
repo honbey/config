@@ -25,7 +25,9 @@ This folder includes the config only in Windows OS or the software develop by
 
 ### sublime-text
 
-### vaultwarden_bak*
+### backups
+
+- vaultwarden_bak*
 
 ## dotfile
 

@@ -1,0 +1,31 @@
+{
+	"name": "Vimium C",
+	"@time": "6/1/2025, 10:02:58 AM",
+	"time": 1748743378938,
+	"environment": {
+		"extension": "2.12.3",
+		"platform": "mac",
+		"firefox": 139
+	},
+	"exclusionRules": [
+		{
+			"passKeys": "",
+			"pattern": ":https://mail.google.com/"
+		},
+		{
+			"passKeys": "",
+			"pattern": ":https://code.example.com/"
+		}
+	],
+	"keyLayout": 2,
+	"keyMappings": [
+		"#!no-check",
+		"# https://github.com/gdh1995/vimium-c/wiki/List-of-all-commands",
+		"map ch closeTabsOnLeft $count=1",
+		"map cl closeTabsOnRight $count=1",
+		"map cah closeTabsOnLeft",
+		"map cal closeTabsOnRight",
+		""
+	],
+	"vimSync": true
+}

@@ -12,8 +12,12 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/home
+      - ./data/opt:/opt
+      - ./data/coder:/home/coder
       - /home/linuxbrew:/home/linuxbrew
+      - /home/zhang/.local/share/nvim/lazy:/home/coder/.local/share/nvim/lazy
+      - /home/zhang/.local/share/nvim/mason:/home/coder/.local/share/nvim/mason
+      - /opt/data/workspace/config:/config
     ports:
       - 127.0.0.1:1130:8080
     networks:

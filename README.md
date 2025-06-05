@@ -66,9 +66,19 @@ packages of the venv I used and the config of [pip](https://pypi.org).
 
 This folder includes the config of input method implemented by [Rime](https://rime.io)
 
-## script
+## scripts
 
-Many scripts.
+My scripts written by bash/python/javascripts etc.
+
+update(2025-06-04): use subtree instead of submodule.
+update(2025-06-05): use `git format-patch` and `git am`(merge commits have been omitted).
+
+> Reference(subtree/submodule):
+>
+> - <https://www.atlassian.com/zh/git/tutorials/git-subtree>
+> - <https://einverne.github.io/post/2020/04/git-subtree-usage.html>
+> - <https://git-scm.com/docs/git-submodule>
+> - <https://git-scm.com/docs/git-format-patch>
 
 ## server
 

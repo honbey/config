@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import json
-import os
 import random
 import sys
 import time
@@ -9,12 +8,14 @@ from datetime import datetime, timezone
 
 import requests
 
-CHERY_ACCESS_TOKEN = os.getenv("CHERY_ACCESS_TOKEN", "XXXXXX")
-
 
 def main():
     # 处理命令行参数
-    force_mode = len(sys.argv) > 1 and sys.argv[1] == "force"
+    if not len(sys.argv) > 1:
+        print("Please provide ACCESS TOKEN.")
+        sys.exit(1)
+    token = sys.argv[1]
+    force_mode = len(sys.argv) > 2 and sys.argv[2] == "force"
 
     # 非强制模式时随机等待
     if not force_mode:
@@ -41,7 +42,7 @@ def main():
     }
 
     # 构建URL
-    url = f"https/mobile-consumer-sapp.chery.cn/web/event/trigger?access_token={CHERY_ACCESS_TOKEN}"
+    url = f"https/mobile-consumer-sapp.chery.cn/web/event/trigger?access_token={token}"
 
     try:
         # 发送OPTIONS请求 (预检请求)
@@ -59,7 +60,7 @@ def main():
         post_headers = common_headers.copy()
         post_headers.update(
             {
-                "Authorization": f"Bearer {CHERY_ACCESS_TOKEN}",
+                "Authorization": f"Bearer {token}",
                 "Content-Type": "application/json",
                 "Accept-Language": "zh-CN,zh",
             }

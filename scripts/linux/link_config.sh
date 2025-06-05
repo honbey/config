@@ -17,16 +17,16 @@ local_rm -r ~/.config/nvim ~/.vim ~/.config/pip ~/.config/go ~/.config/ghostty \
 
 CONFIG_DIR="$1"
 
+ln -s "${CONFIG_DIR}"/dotfile/gitconfig ~/.gitconfig
 ln -s "${CONFIG_DIR}"/dotfile/tmux.conf ~/.tmux.conf
 ln -s "${CONFIG_DIR}"/dotfile/sqliterc ~/.sqliterc
 ln -s "${CONFIG_DIR}"/dotfile/npmrc ~/.npmrc
 ln -s "${CONFIG_DIR}"/dotfile/env ~/.env
-ln -s "${CONFIG_DIR}"/dotfile/ssh_config ~/.ssh/config
+ln -s "${CONFIG_DIR}"/dotfile/sshconfig ~/.ssh/config
 
 ln -s "${CONFIG_DIR}"/zsh/zshrc ~/.zshrc
 ln -s "${CONFIG_DIR}"/zsh ~/.config/zsh
 
-ln -s "${CONFIG_DIR}"/git/gitconfig ~/.gitconfig
 ln -s "${CONFIG_DIR}"/vim/vimrc ~/.vimrc
 ln -s "${CONFIG_DIR}"/vim ~/.vim
 

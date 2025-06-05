@@ -89,6 +89,32 @@ function unset-proxy() {
   unset ALL_PROXY HTTP_PROXY HTTPS_PROXY
 }
 
+# Generate random passphrase
+#   $1 int: passphrase length
+#   $2 string: passphrase charset
+#   $3 string: whether to hash passphrase
+#   $4 string: provide specfic salt
+#   *return string: passphrase or hashed
+function generate_passwd() {
+  local length charset hashed salt openssl_existed
+  length="${1:-16}"
+  charset="${2:-A-Za-z0-9!&^._}" # A-Za-z0-9!@#$%^&*()_+{}[]|:;<>,.?~
+  type openssl &>/dev/null && openssl_existed=true || openssl_existed=""
+  [[ -n "$3" && "${openssl_existed}" ]] && hashed=true || hashed=""
+  [[ -n "$4" && "${hashed}" ]] && salt="$4" || salt=""
+  passphrase=$(LC_ALL=C tr -dc "${charset}" </dev/urandom | head -c "${length}")
+  echo -n "Plain: ${passphrase}"
+  if [[ -n "${hashed}" ]]; then
+    if [[ -n "${salt}" ]]; then
+      openssl passwd -5 -salt "${salt}" "${passphrase}"
+    else
+      openssl passwd -5 "${passphrase}"
+    fi
+  fi
+}
+alias generate_password='generate_passwd'
+alias generate_passphrase='generate_passwd'
+
 # Use rsync to implement cp and scp, like OMZ's cpv.
 #   $@ string: file or directory
 #   *return null

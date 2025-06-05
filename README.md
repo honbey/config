@@ -16,10 +16,10 @@ a txt file, some backups of extensions' config.
 
 This folder includes the config of [Zed](https://zed.dev).
 
-### ms
+### microsoft
 
-This folder includes the config only in Windows OS or the software develop by
-[Microsoft](https://www.microsoft.com/).
+This folder includes the config or scripts only in Windows OS or the software
+develop by [Microsoft](https://www.microsoft.com/).
 
 ### emacs
 
@@ -55,7 +55,7 @@ This folder includes the config of [LazyVim](https://www.lazyvim.org/) which pro
 ## python
 
 This folder includes the `requirements.txt` which lists requirements of python
-packages of the venv I used and the config of [pip](https://pypi.org).
+packages of the venv I used, the config of [pip](https://pypi.org) and scripts.
 
 ## rime
 
@@ -63,7 +63,7 @@ This folder includes the config of input method implemented by [Rime](https://ri
 
 ## scripts
 
-My scripts written by bash/python/javascripts etc.
+My scripts written by bash.
 
 update(2025-06-04): use subtree instead of submodule.
 update(2025-06-05): use `git format-patch` and `git am`(merge commits have been omitted).

@@ -6,10 +6,11 @@ Application/Service running on Linux server.
 
 ```
 # Main User
-* 1-6 * * * /usr/bin/env bash /data/ddns-dnspod/dnspod_ddns.sh >> /data/logs/ddns/log 2>&1
-0 2 1 * *   /usr/bin/env bash /data/certbot-auth-dnspod/certbot_renew.sh >> /data/logs/letsencrypt/certbot_renew.log 2>&1
-0 0 15 * *  /usr/bin/env bash /data/server/vaultwarden/auto_bak_config.sh /data/server/vaultwarden > /dev/null 2>&1
-0 3 */5 * * cd /data/byte-unixbench/UnixBench && ./Run >> /data/logs/unixbench/stress_test.log 2>&1
+0 2 1 * *   /usr/bin/env bash /opt/data/etc/certbot_renew.sh >> /opt/data/log/certbot_renew.log 2>&1
+0 8 * * *   /usr/bin/env bash /opt/data/etc/chery_auto_checkout.sh >> /opt/data/log/auto_checkout.log 2>&1
+0 0 15 * *  /usr/bin/env bash /opt/data/etc/vault_auto_backup.sh /opt/data/server/vault > /dev/null 2>&1
+*/5 * * * * /opt/data/workspace/ddns-by-dnspod/.venv/bin/python /opt/data/workspace/ddns-by-dnspod/ddns.py /opt/data/workspace/ddns-by-dnspod/config.yaml >> /opt/data/log/ddns.log 2>&1
+#0 3 */5 * * cd /data/byte-unixbench/UnixBench && ./Run >> /data/logs/unixbench/stress_test.log 2>&1
 
 # Root
 0 */12 * * * /usr/bin/env bash /root/update-hosts/update_hosts.sh > /dev/null 2>&1
@@ -74,6 +75,14 @@ State of container:
      `pause/unpause`       `kill/start`
  paused                               stoped
 ```
+
+### logs
+
+Execute `sed -i 's%driver: json-file%driver: k8s-file%'` to use k8s-file driver because
+the [Podman not support JSON log](https://github.com/containers/podman/issues/16317).
+
+Execute `podman inspect --format='{{.HostConfig.LogConfig}}' <container_name>`
+to show the location of the log file.
 
 ### networks
 

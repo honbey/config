@@ -22,4 +22,3 @@ services:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"

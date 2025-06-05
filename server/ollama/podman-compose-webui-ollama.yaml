@@ -15,7 +15,6 @@ services:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"
   ollama:
     image: ollama/ollama:latest
     container_name: ollama
@@ -37,4 +36,3 @@ services:
       driver: k8s-file
       options:
         max-size: "10M"
-        max-file: "10"

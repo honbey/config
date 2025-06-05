@@ -38,11 +38,6 @@ a dot under the `$HOME`, the exception is `.ssh_config`.
 
 This folder includes the config of [Ghostty](https://ghostty.org).
 
-## git
-
-This folder includes the config of Git and a common gitignore file integrated
-from [gitignore](https://github.com/github/gitignore).
-
 ## go
 
 This folder includes the config of [GoLang](https://go.dev).

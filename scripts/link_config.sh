@@ -24,6 +24,9 @@ ln -s "${CONFIG_DIR}"/dotfile/npmrc ~/.npmrc
 ln -s "${CONFIG_DIR}"/dotfile/env ~/.env
 ln -s "${CONFIG_DIR}"/dotfile/sshconfig ~/.ssh/config
 
+mkdir ~/config/go
+ln -s "${CONFIG_DIR}"/dotfile/goenv ~/.config/go/env
+
 ln -s "${CONFIG_DIR}"/zsh/zshrc ~/.zshrc
 ln -s "${CONFIG_DIR}"/zsh ~/.config/zsh
 
@@ -31,7 +34,6 @@ ln -s "${CONFIG_DIR}"/vim/vimrc ~/.vimrc
 ln -s "${CONFIG_DIR}"/vim ~/.vim
 
 ln -s "${CONFIG_DIR}"/nvim ~/.config/nvim
-ln -s "${CONFIG_DIR}"/go ~/.config/go
 ln -s "${CONFIG_DIR}"/ghostty ~/.config/ghostty
 ln -s "${CONFIG_DIR}"/zed ~/.config/zed
 ln -s "${CONFIG_DIR}"/python/pip ~/.config/pip

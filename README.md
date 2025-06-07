@@ -66,6 +66,7 @@ This folder includes the config of input method implemented by [Rime](https://ri
 My scripts written by bash.
 
 update(2025-06-04): use subtree instead of submodule.
+
 update(2025-06-05): use `git format-patch` and `git am`(merge commits have been omitted).
 
 > Reference(subtree/submodule):

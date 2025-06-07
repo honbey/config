@@ -58,9 +58,9 @@ function run() {
   fi
   if [[ -n "${SUBSCRIPT_LINK}" ]]; then
     if [[ -f "${CONFIG}" ]]; then
-      /bin/cp "${CONFIG}" "${CONFIG}-$(date '+%s')"
+      /usr/bin/env -i cp "${CONFIG}" "${CONFIG}-$(date '+%s')"
     fi
-    curl -fL "${SUBSCRIPT_LINK}&flag=clash" \
+    /usr/bin/env -i curl -fL "${SUBSCRIPT_LINK}&flag=clash" \
       -A 'clashX' -o "${CONFIG}"
     process-config
   fi
@@ -101,10 +101,11 @@ function process-config() {
 }
 
 function msg() {
-  echo "Message:"
-  echo "  show proxies:  curl 'http://127.0.0.1:1081/proxies'"
-  echo "  show logs:     curl 'http://127.0.0.1:1081/logs'"
-  echo '  change proxy:  curl -XPUT -d {"name": "<name>"} "http://127.0.0.1:1081/proxies/<NAME>"'
+  echo "Controller message:"
+  echo "  external-controller: 127.0.0.1:1081"
+  echo "  - show proxies:  curl 'http://127.0.0.1:1081/proxies'"
+  echo "  - show logs:     curl 'http://127.0.0.1:1081/logs'"
+  echo '  - change proxy:  curl -XPUT -d {"name": "<name>"} "http://127.0.0.1:1081/proxies/<NAME>"'
   exit 0
 }
 
@@ -115,9 +116,9 @@ function usage() {
   echo "    -d | --directory path    directory for clash"
   echo "    -h | --help              show this help message"
   echo "    -l | --lan               allow lan to connect"
+  echo "    -m | --message           show message of controller"
   echo "    -s | --signal            control the process"
   echo "    -6 | --ipv6              allow use IPv6"
-  echo "    --zzz"
   exit 0
 }
 
@@ -135,16 +136,16 @@ while [[ $# -gt 0 ]]; do
     ALLOW_LAN=true
     shift
     ;;
+  -m | --message)
+    msg
+    shift
+    ;;
   -s | --signal)
     SIGNAL_PARAM="$2"
     shift 2
     ;;
   -6 | --ipv6)
     IPV6=true
-    shift
-    ;;
-  --zzz)
-    msg
     shift
     ;;
   --)

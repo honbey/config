@@ -38,10 +38,6 @@ a dot under the `$HOME`, the exception is `.ssh_config`.
 
 This folder includes the config of [Ghostty](https://ghostty.org).
 
-## go
-
-This folder includes the config of [GoLang](https://go.dev).
-
 ## nginx
 
 This folder includes the config of [Nginx](https://nginx.org) applied in my personal domain and

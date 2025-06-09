@@ -7,9 +7,9 @@ Application/Service running on Linux server.
 ```
 # Main User
 0 2 1 * *   /usr/bin/env bash /opt/data/etc/certbot_renew.sh >> /opt/data/log/certbot_renew.log 2>&1
-0 8 * * *   /usr/bin/env bash /opt/data/etc/chery_auto_checkout.sh >> /opt/data/log/auto_checkout.log 2>&1
 0 0 15 * *  /usr/bin/env bash /opt/data/etc/vault_auto_backup.sh /opt/data/server/vault > /dev/null 2>&1
 */5 * * * * /opt/data/workspace/ddns-by-dnspod/.venv/bin/python /opt/data/workspace/ddns-by-dnspod/ddns.py /opt/data/workspace/ddns-by-dnspod/config.yaml >> /opt/data/log/ddns.log 2>&1
+0 8 * * *   /opt/data/pyvenv/work/bin/python /opt/data/workspace/config/python/chery_auto_checkout.py /opt/data/etc/chery_auto_checkout.yaml >> /opt/data/log/auto_checkout.log 2>&1
 #0 3 */5 * * cd /data/byte-unixbench/UnixBench && ./Run >> /data/logs/unixbench/stress_test.log 2>&1
 
 # Root

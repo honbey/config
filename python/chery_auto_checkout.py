@@ -123,10 +123,10 @@ def main():
                 "status": status,
                 "message": message,
             }
-            if message != "操作成功s":
+            if message != "操作成功":
                 push2gotify(
                     "Chery Auto Checkout",
-                    "Token is expired, please change!",
+                    f"Token is expired, please change! msg: {message}",
                     gotify.get("url"),
                     gotify.get("token"),
                     priority=8,

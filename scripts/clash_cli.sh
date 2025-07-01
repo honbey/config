@@ -62,8 +62,8 @@ function run() {
     fi
     /usr/bin/env -i curl -fL "${SUBSCRIPT_LINK}&flag=clash" \
       -A 'clashX' -o "${CONFIG}"
-    process-config
   fi
+  process-config
 
   nohup "${CLASH}" -f "${CONFIG}" -d "${DIRECTORY}" >/dev/null 2>&1 &
   echo "$!" >"${DIRECTORY}/pid"
@@ -93,7 +93,7 @@ function process-config() {
   fi
   if [[ "${ALLOW_LAN}" == "true" ]]; then
     ${G}sed -i "/^allow-lan:/ c\allow-lan: true" "${CONFIG}"
-    ${G}sed -i "/^bind-address:/ c\bind-address: *" "${CONFIG}"
+    ${G}sed -i "/^bind-address:/ c\bind-address: '*'" "${CONFIG}"
   else
     ${G}sed -i "/^allow-lan:/ c\allow-lan: false" "${CONFIG}"
     ${G}sed -i "/^bind-address:/ c\bind-address: 127.0.0.1" "${CONFIG}"

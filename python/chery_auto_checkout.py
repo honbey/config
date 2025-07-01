@@ -30,9 +30,11 @@ def push2gotify(title: str, msg: str, url: str, token: str, priority: int = 5):
     try:
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
-        print("Push update notification to Gotify...")
+        print('{"gotify":"Push update notification to Gotify..."}')
     except requests.exceptions.RequestException as e:
-        print(f"[error]: Push notification to Gotify failed. error msg: {e}")
+        print(
+            f'{"gotify":"[error]: Push notification to Gotify failed. error msg: {e}"}'
+        )
 
 
 def main():
@@ -83,6 +85,13 @@ def main():
         f"https://mobile-consumer-sapp.chery.cn/web/event/trigger?access_token={token}"
     )
 
+    result = {
+        "time": start_time,
+    }
+    message = ""
+    notify = False
+    exit_code = 0
+
     try:
         # 发送OPTIONS请求 (预检请求)
         options_headers = common_headers.copy()
@@ -112,34 +121,59 @@ def main():
 
         # 记录响应处理时间 (UTC)
         check_time = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        result.update(
+            {
+                "check_time": check_time,
+            }
+        )
 
         # 解析JSON响应
         try:
             res_data = response.json()
             status, message = res_data.get("status"), res_data.get("message")
-            result = {
-                "time": start_time,
-                "check_time": check_time,
-                "status": status,
-                "message": message,
-            }
-            if message != "操作成功":
-                push2gotify(
-                    "Chery Auto Checkout",
-                    f"Token is expired, please change! msg: {message}",
-                    gotify.get("url"),
-                    gotify.get("token"),
-                    priority=8,
-                )
-            print(json.dumps(result, separators=(",", ":"), ensure_ascii=False))
+            result.update(
+                {
+                    "status": status,
+                    "message": message,
+                }
+            )
+            notify = True if message != "操作成功" else False
         except ValueError:
-            # JSON解析失败时输出原始响应
-            print(response.text)
-            sys.exit(0)
+            # JSON解析失败时输出错误信息
+            message = response.text
+            result.update(
+                {
+                    "status": response.status_code,  # pyright: ignore
+                    "message": f"Parse failed: {message}",
+                }
+            )
+            notify = True
+        print(json.dumps(result, separators=(",", ":"), ensure_ascii=False))
 
     except requests.exceptions.RequestException as e:
-        print(f"Request failed: {str(e)}", file=sys.stderr)
-        sys.exit(1)
+        message = str(e)
+        result.update(
+            {
+                "check_time": start_time,
+                "status": 999,  # pyright: ignore
+                "message": f"Request failed: {message}",
+            }
+        )
+        print(
+            json.dumps(result, separators=(",", ":"), ensure_ascii=False),
+            file=sys.stderr,
+        )
+        notify = True
+        exit_code = 1
+    if notify:
+        push2gotify(
+            "Chery Auto Checkout",
+            f"Checkout failed! Msg: {message}",
+            gotify.get("url"),
+            gotify.get("token"),
+            priority=8,
+        )
+    sys.exit(exit_code)
 
 
 if __name__ == "__main__":

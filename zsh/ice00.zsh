@@ -89,6 +89,14 @@ function unset-proxy() {
   unset ALL_PROXY HTTP_PROXY HTTPS_PROXY
 }
 
+function check-proxy() {
+  if [[ -n ${ALL_PROXY} || -n ${HTTP_PROXY} || -n ${HTTPS_PROXY} ]]; then
+    echo "${ALL_PROXY}"
+  else
+    echo "Not set proxy!"
+  fi
+}
+
 # Generate random passphrase
 #   $1 int: passphrase length
 #   $2 string: passphrase charset

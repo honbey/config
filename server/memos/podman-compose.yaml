@@ -6,7 +6,7 @@ networks:
 
 services:
   memos:
-    image: neosmemo/memos:latest
+    image: neosmemo/memos:stable
     container_name: memos
     restart: always
     env_file:

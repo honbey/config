@@ -3,12 +3,13 @@
 
 ---
 name: rime_ice
-version: "2024-11-27"
+version: "2025-12-02"
 import_tables:
   - cn_dicts/custom   # 自定义词库
   - cn_dicts/8105     # 字表
   - cn_dicts/base     # 基础词库
   - cn_dicts/ext      # 扩展词库
+  - cn_dicts/others
 ...
 
 # 按需启用：
@@ -58,6 +59,8 @@ Z	Z
 9	jiu
 
 # 示例：输入 sanDdayin 得到 3D打印
+1G
+2G
 3G
 4G
 5G

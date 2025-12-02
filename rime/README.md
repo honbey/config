@@ -37,17 +37,24 @@ Windows: 用的很少，暂时没配置。
 对于中文词库：
 
 - custom: 自己添加的词组，不想放 custom_phrase 里，没权重也就没放 ext 中了。
-- 8105: 删除一些注释和小改动
-- base: 保持原样，雾凇拼音的作者还在更新，有时需要同步下改动
+- 8105: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/8105.dict.yaml)
+- base: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/8105.dict.yaml)
 - ext: 计算机科学相关的词库，取自搜狗词库并去重
 
 其他词库一律舍弃。
+
+对于英文词库：
+
+- cn_en.txt: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/en_dicts/cn_en.txt)
+- en: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/en_dicts/en.dict.yaml)
+- en_ext: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/en_dicts/en_ext.dict.yaml)
 
 ### 快捷键
 
 启用 Emacs 风格的快捷键，又配置 `Ctrl-g` `Ctrl-[` 切换英文模式。
 
 ### `custom_phrase.txt`
+
 ```txt
 # Rime table
 # coding: utf-8

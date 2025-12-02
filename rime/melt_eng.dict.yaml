@@ -8,6 +8,5 @@
 name: melt_eng
 version: "2023-05-09"
 import_tables:
-  - en_dicts/custom
-  - en_dicts/en     # 英文主词库
-...
+  - en_dicts/en_ext
+  - en_dicts/en # 英文主词库

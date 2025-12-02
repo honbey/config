@@ -9,7 +9,7 @@
 # 鼠须管作者写的图形化的皮肤设计器： https://github.com/LEOYoon-Tsaw/Squirrel-Designer
 
 # 要比共享目录的同名文件的 config_version 大才可以生效
-config_version: "2025-03-25" # config_version: '1.0'
+config_version: "2025-12-02" # config_version: '1.0.3'
 
 # options: last | default | _custom_
 # last: the last used latin keyboard layout
@@ -52,6 +52,8 @@ style:
   mutual_exclusive: false
   # Whether to use a translucent background. Only visible when background color is transparent
   translucency: false
+  # Enable to show small arrows that indicates if paging up/down is possible
+  show_paging: false
 
   corner_radius: 6
   hilited_corner_radius: 5

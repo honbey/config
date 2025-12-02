@@ -56,13 +56,13 @@ def main():
         token = cfg.get("token")
         gotify = cfg.get("gotify")
 
+    # 脚本执行时间 (UTC)
+    start_time = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
     # 非强制模式时随机等待
     if not args.force:
-        wait_seconds = random.randint(300, 1499)  # 300~1499秒
+        wait_seconds = random.randint(30, 1499)  # 30~1499秒
         time.sleep(wait_seconds)
-
-    # 记录请求开始时间 (UTC)
-    start_time = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     # 公共请求头
     common_headers = {

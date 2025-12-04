@@ -39,6 +39,7 @@ Windows: 用的很少，暂时没配置。
 - custom: 自己添加的词组，不想放 custom_phrase 里，没权重也就没放 ext 中了。
 - 8105: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/8105.dict.yaml)
 - base: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/base.dict.yaml)
+- others: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/others.dict.yaml)
 - ext: 计算机科学相关的词库，取自搜狗词库并去重
 
 其他词库一律舍弃。

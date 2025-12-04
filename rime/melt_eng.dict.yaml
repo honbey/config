@@ -6,7 +6,8 @@
 
 ---
 name: melt_eng
-version: "2023-05-09"
+version: "2025-12-04"
 import_tables:
-  - en_dicts/en_ext
+  - en_dicts/en_custom # 自定义英文词库
+  - en_dicts/en_ext # 英文扩展词库
   - en_dicts/en # 英文主词库

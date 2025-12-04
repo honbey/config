@@ -38,7 +38,7 @@ Windows: 用的很少，暂时没配置。
 
 - custom: 自己添加的词组，不想放 custom_phrase 里，没权重也就没放 ext 中了。
 - 8105: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/8105.dict.yaml)
-- base: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/8105.dict.yaml)
+- base: [保持原样](https://raw.githubusercontent.com/iDvel/rime-ice/refs/heads/main/cn_dicts/base.dict.yaml)
 - ext: 计算机科学相关的词库，取自搜狗词库并去重
 
 其他词库一律舍弃。
@@ -51,9 +51,25 @@ Windows: 用的很少，暂时没配置。
 
 ### 快捷键
 
-启用 Emacs 风格的快捷键，又配置 `Ctrl-g` `Ctrl-[` 切换英文模式。
+启用 Emacs 风格的快捷键，又配置 `Ctrl-g` `Ctrl-[` 为 `escape` 键。
 
 ### `custom_phrase.txt`
+
+自定义短语，包含个人信息，使用 `git-crypt` 加密。
+
+可为方案增加一些要置顶的词汇及短语，
+例如邮箱、手机号、常用短语等等。编码可以随便起，不限于拼音。
+可以增加自己的 .txt 文件，并在方案的 custom_phrase/user_dict
+指定为自己的文件。
+
+以 Tab 分割：`词汇<Tab>编码<Tab>权重`
+
+这个文件内的字词会占据最高权重（即排在候选项的最前面，
+因为指定了权重 custom_phrase/initial_quality）。
+但不与其他翻译器互相造词，如果使用了完整编码，
+那么这个字或词将无法参与造词，即自造词无法被记住。
+所以只建议固定非完整拼音的编码，
+如果需求是置顶指定拼音的候选项，请参考方案中的 pin_cand_filter 。
 
 ```txt
 # Rime table
@@ -61,23 +77,10 @@ Windows: 用的很少，暂时没配置。
 #@/db_name      custom_phrase.txt
 #@/db_type      tabledb
 #
-# 自定义短语
-# 可为方案增加一些要置顶的词汇及短语，例如邮箱、手机号、常用短语等等。编码可以随便起，不限于拼音。
 #
-# 适用于全拼。双拼默认为 custom_phrase_double.txt 需要手动创建，并更改上面的 db_name 为 custom_phrase_double.txt
+# version: "2025-12-04"
 #
-# 以下固定的词汇及顺序纯属个人偏好，仅作示例，
-# 可以增加自己的 .txt 文件，并在方案的 custom_phrase/user_dict 指定为自己的文件。
-#
-# 以 Tab 分割：词汇<Tab>编码<Tab>权重
-#
-# 这个文件内的字词会占据最高权重（即排在候选项的最前面，因为指定了权重 custom_phrase/initial_quality）。
-# 但不与其他翻译器互相造词，如果使用了完整编码，那么这个字或词将无法参与造词，即自造词无法被记住。
-# 所以只建议固定非完整拼音的编码，如果需求是置顶指定拼音的候选项，请参考方案中的 pin_cand_filter。
-#
-# version: "2025-03-29"
-#
-# 此行之后不能写注释
+# no comment
 
 Rime    rime    4
 鼠须管  rime    3
@@ -96,11 +99,16 @@ Squirrel        rime    1
 ●       ldot    2
 §       section 2
 
-又双叒叕        uuuu
-
 TODO    todo
 
-# 同时改动了 symbol_v.yaml 的 `vi` -> `vii` ，主要有时在终端没切输入法的可以打出 vi
+# 修改了 symbol_v.yaml 的 `vi` -> `vii`
+# 为了有时在终端没切输入法的可以打出 vi
 # 不改的话没法生效，用 pin 固定也无效
-vi      vi      1
+vi      vi      9
+
+# 个人信息
+# ...
+
+# 身边一些人的名字，不包含姓氏
+# ...
 ```

@@ -1,16 +1,16 @@
 
 Host h0l
   User zhang
-  Port 8989
+  Port 22
   HostName 192.168.3.87
-  LocalForward 127.0.0.1:33891 192.168.3.87:3389
+  #LocalForward 127.0.0.1:33891 192.168.3.87:3389
   #PreferredAuthentications publickey
 
 Host h0
   User zhang
-  Port 8989
+  Port 22
   HostName freewisdom.cn
-  LocalForward 127.0.0.1:33891 192.168.3.87:3389
+  #LocalForward 127.0.0.1:33891 192.168.3.87:3389
   #RemoteForward 127.0.0.1:1080 127.0.0.1:1080
   #PreferredAuthentications publickey
 

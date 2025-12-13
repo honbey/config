@@ -17,11 +17,8 @@ function update-local-snippets() {
   local ZI_SNIPPETS_PATH
   ZI_SNIPPETS_PATH=${ZSH_CONFIG#/}
   ZI_SNIPPETS_PATH=${ZI_SNIPPETS_PATH//\//--}
-  for i in $(ls ${HOME}/.config/zsh/[^_]*); do
-    local BASE_NAME="$(basename $i)"
-    if [[ $(basename $i) != 'zshrc' ]]; then
-      zinit update "${ZI_SNIPPETS_PATH}/${BASE_NAME}"
-    fi
+  for i in $(ls ${HOME}/.config/zsh/[^_]*.zsh); do
+    zinit update "${ZI_SNIPPETS_PATH}/${BASE_NAME}"
   done
 }
 

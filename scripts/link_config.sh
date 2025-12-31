@@ -22,7 +22,7 @@ ln -s "${CONFIG_DIR}"/dotfile/tmux.conf ~/.tmux.conf
 ln -s "${CONFIG_DIR}"/dotfile/sqliterc ~/.sqliterc
 ln -s "${CONFIG_DIR}"/dotfile/npmrc ~/.npmrc
 ln -s "${CONFIG_DIR}"/dotfile/env ~/.env
-ln -s "${CONFIG_DIR}"/dotfile/sshconfig ~/.ssh/config
+ln -s "${CONFIG_DIR}"/dotfile/ssh ~/.ssh/config
 
 mkdir ~/config/go
 ln -s "${CONFIG_DIR}"/dotfile/goenv ~/.config/go/env

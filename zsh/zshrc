@@ -11,8 +11,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 ZSH_CONFIG="${HOME}/.config/zsh"
 # The functions need loaded as soon as possible
 zinit snippet "${ZSH_CONFIG}/function.zsh"
-# The Homebrew is *necessary* in macOS
-[[ -d /opt/homebrew/bin ]] && add-path "/opt/homebrew/bin"
+
+# Homebrew/Linuxbrew
+[[ -d /opt/homebrew/bin ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Load starship theme
 zinit ice nocompletions

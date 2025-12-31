@@ -32,10 +32,7 @@ if [[ -d /opt/homebrew || -d /home/linuxbrew ]]; then
   #export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
   export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
-  if [[ -d /home/linuxbrew ]]; then # linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  else # macOS, make sure you have installed coreutils, gnu-sed
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+  if [[ -d /opt/homebrew/bin ]]; then # macOS
     add-path "/opt/homebrew/opt/coreutils/libexec/gnubin"
     add-path "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
   fi

@@ -1,6 +1,7 @@
 dotfile/env filter=git-crypt diff=git-crypt
+dotfile/ssh filter=git-crypt diff=git-crypt
+dotfile/sshd_config filter=git-crypt diff=git-crypt
 nginx/freewisdom.cn.conf/server.key filter=git-crypt diff=git-crypt
 nginx/freewisdom.cn.conf/server.crt filter=git-crypt diff=git-crypt
-ssh/config filter=git-crypt diff=git-crypt 
 rime/custom_phrase.txt filter=git-crypt diff=git-crypt
 archive/vaultwarden_bak* filter=git-crypt diff=git-crypt

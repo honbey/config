@@ -109,6 +109,25 @@ Allocate IP address for containers or services:
 |gotify|1150|10.25.11.50| |
 |memos|1160|10.25.11.60| |
 
+### mirrors
+
+```
+unqualified-search-registries = ["docker.io", "ghcr.io"]
+
+[[registry]]
+prefix = "docker.io"
+location = "docker.1ms.run"
+#location = "docker.xuanyuan.me"
+#location = "docker-0.unsee.tech"
+#location = "docker.m.daocloud.io"
+insecure = true
+
+[[registry]]
+prefix = "ghcr.io"
+location = "ghcr.nju.edu.cn"
+insecure = true
+```
+
 ## Disabled Services
 
 - QingLong
@@ -143,7 +162,7 @@ Change the above text to the following:
 git:x:100x:100x::/home/git:/usr/bin/git-shell
 ```
 
-2. Dirtecory setting
+1. Dirtecory setting
 
 ```bash
 sudo mkdir /home/git/.ssh /home/git/git-shell-commands
@@ -169,7 +188,7 @@ sudo git init --bare /home/git/gitroot/test.git
 sudo chown -R git:git /home/git
 ```
 
-3. Test
+1. Test
 In client:
 
 ```bash

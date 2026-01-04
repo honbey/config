@@ -11,3 +11,9 @@ ledger/*
 
 www/*
 !www/.gitkeep
+
+dl/*
+!dl/.gitkeep
+
+mailserver
+docker-mailserver

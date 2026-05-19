@@ -1,0 +1,6 @@
+_*
+*/.env
+*/*.sql
+
+# ignore folders
+*/*/

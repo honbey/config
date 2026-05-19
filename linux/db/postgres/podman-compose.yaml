@@ -1,0 +1,29 @@
+version: "3.9"
+
+networks:
+  local_containers:
+    external: true
+
+services:
+  postgres:
+    image: docker.io/library/postgres:18-alpine
+    container_name: postgres
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql:Z
+    ports:
+      - 127.0.0.1:1210:5432
+    networks:
+      local_containers:
+        ipv4_address: 10.25.12.10
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 300s
+      timeout: 3s
+      retries: 3

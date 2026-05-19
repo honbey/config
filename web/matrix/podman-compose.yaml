@@ -5,19 +5,20 @@ networks:
     external: true
 
 services:
-  anki-sync:
-    image: quay.io/topthink/anki-sync:25.09.2
-    container_name: anki-sync
+  matrix-synapse:
+    image: ghcr.io/element-hq/synapse:latest
+    container_name: matrix-synapse
     restart: unless-stopped
+    # command: generate
     env_file:
       - .env
     volumes:
-      - ./anki_data:/anki_data:Z
+      - ./data:/data:Z
     ports:
-      - 0.0.0.0:1150:8080
+      - 0.0.0.0:1170:8008
     networks:
       local_containers:
-        ipv4_address: 10.25.11.50
+        ipv4_address: 10.25.11.70
     logging:
       driver: k8s-file
       options:

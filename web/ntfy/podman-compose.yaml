@@ -5,19 +5,21 @@ networks:
     external: true
 
 services:
-  anki-sync:
-    image: quay.io/topthink/anki-sync:25.09.2
-    container_name: anki-sync
-    restart: unless-stopped
+  ntfy:
+    image: binwiederhier/ntfy:latest
+    container_name: ntfy
+    command:
+      - serve
+    restart: always
     env_file:
       - .env
     volumes:
-      - ./anki_data:/anki_data:Z
+      - ./data:/var/cache/ntfy/attachments:Z
     ports:
-      - 0.0.0.0:1150:8080
+      - 0.0.0.0:1180:80
     networks:
       local_containers:
-        ipv4_address: 10.25.11.50
+        ipv4_address: 10.25.11.80
     logging:
       driver: k8s-file
       options:

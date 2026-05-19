@@ -17,3 +17,6 @@ dl/*
 
 mailserver
 docker-mailserver
+
+/*/**
+!/*/podman-compose.yaml

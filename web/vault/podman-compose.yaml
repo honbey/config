@@ -1,24 +1,23 @@
-version: "3.8"
+version: "3.9"
 
 networks:
   local_containers:
     external: true
 
 services:
-  dufs:
-    image: sigoden/dufs
-    container_name: dufs
+  bitwarden:
+    image: vaultwarden/server:latest
+    container_name: vault
     restart: always
     env_file:
       - .env
     volumes:
-      - ./data:/data
+      - ./data:/data:Z
     ports:
-      - 127.0.0.1:1110:5000
+      - 0.0.0.0:1120:80
     networks:
       local_containers:
-        ipv4_address: 10.25.11.10
-    command: /data -A -a ${ADMIN}@/:rw -a ${USER1}@/tmp:rw -a @/public
+        ipv4_address: 10.25.11.20
     logging:
       driver: k8s-file
       options:

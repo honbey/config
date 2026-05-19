@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  local_containers:
+    external: true
+
+services:
+  dufs:
+    image: sigoden/dufs
+    container_name: dufs
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    ports:
+      - 0.0.0.0:1110:5000
+    networks:
+      local_containers:
+        ipv4_address: 10.25.11.10
+    command: /data -A -a ${ADMIN}@/:rw -a ${USER1}@/tmp:rw -a @/public
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"

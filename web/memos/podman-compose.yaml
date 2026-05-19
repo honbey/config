@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 networks:
   local_containers:
@@ -8,13 +8,13 @@ services:
   memos:
     image: neosmemo/memos:stable
     container_name: memos
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
-      - ./data:/var/opt/memos
+      - ./data:/var/opt/memos:Z
     ports:
-      - 127.0.0.1:1160:5230
+      - 0.0.0.0:1160:5230
     networks:
       local_containers:
         ipv4_address: 10.25.11.60

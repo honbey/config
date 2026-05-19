@@ -1,0 +1,51 @@
+version: "3.9"
+
+networks:
+  local_containers:
+    external: true
+
+services:
+  llama-cpp:
+    image: localhost/llama.cpp:full-cuda13
+    container_name: llama-cpp
+    restart: always
+    entrypoint: /app/llama-server
+    command:
+      [
+        "-m",
+        "/models/qwen3.5-4b-q4_k_m.gguf",
+        "--port",
+        "8080",
+        "--host",
+        "0.0.0.0",
+        "-ngl",
+        "99",
+        "-c",
+        "10240",
+        "-t",
+        "4",
+        "-b",
+        "512",
+        "--reasoning-budget",
+        "0",
+      ]
+    env_file:
+      - .env
+    volumes:
+      - ./models:/models
+    ports:
+      - 0.0.0.0:1040:8080
+    networks:
+      local_containers:
+        ipv4_address: 10.25.10.40
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    logging:
+      driver: k8s-file
+      options:
+        max-size: "10M"

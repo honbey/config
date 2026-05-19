@@ -1,23 +1,23 @@
-version: "3"
+version: "3.9"
 
 networks:
   local_containers:
     external: true
 
 services:
-  gotify:
-    image: gotify/server:latest
-    container_name: gotify
-    restart: always
+  pairdrop:
+    image: linuxserver/pairdrop:latest
+    container_name: drop
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
-      - ./data:/app/data
+      - ./data:/config
     ports:
-      - 127.0.0.1:1150:80
+      - 0.0.0.0:1140:3000
     networks:
       local_containers:
-        ipv4_address: 10.25.11.50
+        ipv4_address: 10.25.11.40
     logging:
       driver: k8s-file
       options:

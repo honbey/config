@@ -41,21 +41,21 @@ zinit wait'1' lucid is-snippet for \
 # Plugins(wait 0) #
 ###################
 zinit wait lucid light-mode for \
-    atinit"zicompinit; zicdreplay" \
+  atinit"zicompinit; zicdreplay" \
   zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
+  atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
+  blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
-    atload"export FZF_CTRL_R_OPTS=''" \
+  atload"export FZF_CTRL_R_OPTS=''" \
   zdharma-continuum/history-search-multi-word \
-    atclone"
+  atclone"
       local P=${${(M)OSTYPE:#*darwin*}:+g}
       \${P}dircolors -b LS_COLORS > clrs.zsh" \
-    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
+  atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+  atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
   trapd00r/LS_COLORS \
-    pick'autopair.zsh' \
+  pick'autopair.zsh' \
   hlissner/zsh-autopair
 
 zinit wait lucid light-mode for \
@@ -65,8 +65,8 @@ zinit wait lucid light-mode for \
   OMZL::functions.zsh \
   OMZL::spectrum.zsh \
   OMZL::termsupport.zsh \
-    atinit"HIST_STAMPS=yyyy-mm-dd" \
-  OMZL::history.zsh \
+  atinit"HIST_STAMPS=yyyy-mm-dd" \
+  OMZL::history.zsh
 
 ###################
 # Plugins(wait 1) #
@@ -74,5 +74,5 @@ zinit wait lucid light-mode for \
 zinit wait'1' lucid light-mode for \
   voronkovich/gitignore.plugin.zsh \
   MichaelAquilina/zsh-you-should-use \
-    has'fzf' \
+  has'fzf' \
   Aloxaf/fzf-tab

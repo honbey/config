@@ -21,13 +21,15 @@ This folder includes the config of [Zed](https://zed.dev).
 This folder includes the config or scripts only in Windows OS or the software
 develop by [Microsoft](https://www.microsoft.com/).
 
+### nginx
+
+Tips of how to compile nginx from source.
+
 ### emacs
 
 ### sublime-text
 
 ### backups
-
-- vaultwarden_bak*
 
 ## dotfile
 
@@ -38,10 +40,23 @@ a dot under the `$HOME`, the exception is `.ssh_config`.
 
 This folder includes the config of [Ghostty](https://ghostty.org).
 
-## nginx
+## linux
 
-This folder includes the config of [Nginx](https://nginx.org) applied in my personal domain and
-tips of how to compile it from source.
+This folder includes the config of linux server(Debian 13) and:
+
+- scripts
+- web
+- ...
+
+### scripts
+
+My scripts written by bash and some scripts on macOS/wsl.
+
+### web
+
+This folder includes many directories, each contains a `compose.yaml` file using
+[Docker](https://www.docker.com)/[Podman](https://podman.io) and tips of the contains or memos and config of logrotate in
+`README.md`.
 
 ## nvim
 
@@ -57,27 +72,6 @@ packages of the venv I used, the config of [pip](https://pypi.org) and scripts.
 
 This folder includes the config of input method implemented by [Rime](https://rime.io)
 
-## scripts
-
-My scripts written by bash.
-
-update(2025-06-04): use subtree instead of submodule.
-
-update(2025-06-05): use `git format-patch` and `git am`(merge commits have been omitted).
-
-> Reference(subtree/submodule):
->
-> - <https://www.atlassian.com/zh/git/tutorials/git-subtree>
-> - <https://einverne.github.io/post/2020/04/git-subtree-usage.html>
-> - <https://git-scm.com/docs/git-submodule>
-> - <https://git-scm.com/docs/git-format-patch>
-
-## server
-
-This folder includes many directories, each contains a `compose.yaml` file using
-[Docker](https://www.docker.com)/[Podman](https://podman.io) and tips of the contains or memos and config of logrotate in
-`README.md`.
-
 ## vim
 
 This folder includes the config of [Vim](https://www.vim.org).
@@ -85,3 +79,4 @@ This folder includes the config of [Vim](https://www.vim.org).
 ## zsh
 
 This folder includes the config of [Zsh](https://www.zsh.org/), plugin manager using [Zinit](https://github.com/zdharma-continuum/zinit).
+Not included by `[linux](#linux)`

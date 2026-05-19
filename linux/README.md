@@ -28,3 +28,14 @@ Add:
 * soft memlock unlimited
 * hard memlock unlimited
 ```
+
+## Disabled Service
+
+- avahi-daemon.socket
+- avahi-daemon.service
+- cups.path
+- cups.socket
+- cups.service
+- cups-browsed.service
+- bluetooth.target
+- bluetooth.service

@@ -4,3 +4,5 @@ _*
 
 # ignore folders
 */*/
+
+rsync_to_config.sh

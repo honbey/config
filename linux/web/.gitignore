@@ -1,8 +1,8 @@
-mailserver
-docker-mailserver
-
 _*
 */.env
-/*/**
-!/*/podman-compose.yaml
-!/*/.gitkeep
+*/.env*
+*/*/
+
+www/*
+
+*.DS_Store*

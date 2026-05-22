@@ -3,6 +3,14 @@
 
 # crontab -e
 # 0 0 15 * * /path/vaultwarden_auto_bak.sh $1
+#
+# rename backup files
+# for i in $(ls ./);
+# do
+#   j=`echo ${i} \
+#   | sed 's#\(vaultwarden\)_bak_\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\)#\1-\2\3\4#'`
+#   mv ${i} ${j}
+# done
 
 set -e
 

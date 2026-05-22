@@ -2,11 +2,11 @@
 # 此脚本用于自动备份 Vaultwarden(Bitwarden) 的文件
 
 # crontab -e
-# 0 0 15 * * /path/bitwarden_auto_bak.sh $1
+# 0 0 15 * * /path/vaultwarden_auto_bak.sh $1
 
 set -e
 
-FILE_NAME="vaultwarden_bak_$(date +"%Y-%m-%d").tar.gz"
+FILE_NAME="vaultwarden-$(date +"%Y%m%d").tar.gz"
 
 file_path="${1}"
 cd "${file_path}/data/"

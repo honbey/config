@@ -35,6 +35,8 @@ ln -s "${CONFIG_DIR}"/vim ~/.vim
 
 ln -s "${CONFIG_DIR}"/nvim ~/.config/nvim
 ln -s "${CONFIG_DIR}"/ghostty ~/.config/ghostty
-ln -s "${CONFIG_DIR}"/zed ~/.config/zed
 ln -s "${CONFIG_DIR}"/python/pip ~/.config/pip
 unalias local_rm
+
+# unused
+# ln -s "${CONFIG_DIR}"/zed ~/.config/zed

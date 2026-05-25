@@ -12,6 +12,9 @@ ZSH_CONFIG="${HOME}/.config/zsh"
 # The functions need loaded as soon as possible
 zinit snippet "${ZSH_CONFIG}/function.zsh"
 
+# let Ctrl+U clear the text before cursor
+bindkey "^U" backward-kill-line
+
 # Homebrew/Linuxbrew
 [[ -d /opt/homebrew/bin ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

@@ -16,3 +16,5 @@ window-width = 100
 theme = catppuccin-frappe.conf
 
 auto-update = off
+
+shell-integration-features = ssh-terminfo,ssh-env

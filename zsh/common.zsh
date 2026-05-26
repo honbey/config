@@ -2,6 +2,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 bindkey -e
+# let Ctrl+U clear the text before cursor
+bindkey "^U" backward-kill-line
 
 # Aliases
 alias ls='ls --color=auto' la='ls -A' ll='ls -Ahl' l.='ls -d .*' l='ls -alF'
@@ -44,7 +46,7 @@ fi
 #   $1 string: mirror's name, support lists: ["ustc", "ali"]
 #   *return null
 function change-brew-mirror() {
-  type brew &>/dev/null || echo "Please install Homebrew!" && return
+  type brew &>/dev/null || (echo "Please install Homebrew!" && return)
   local MIRROR_URL
   if [[ "$1" == "ustc" ]]; then
     MIRROR_URL='https://mirrors.ustc.edu.cn'
@@ -126,6 +128,11 @@ alias glogc='git logc'
 alias gck='git checkout'
 alias gb='git branch'
 alias gt='git tag'
+
+###################
+# Ollama          #
+###################
+alias start_ollama='OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /opt/homebrew/opt/ollama/bin/ollama serve'
 
 ### Custom ###
 [[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"

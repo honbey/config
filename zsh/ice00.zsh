@@ -18,7 +18,7 @@ function update-local-snippets() {
   ZI_SNIPPETS_PATH=${ZSH_CONFIG#/}
   ZI_SNIPPETS_PATH=${ZI_SNIPPETS_PATH//\//--}
   for i in $(ls ${HOME}/.config/zsh/[^_]*.zsh); do
-    zinit update "${ZI_SNIPPETS_PATH}/${BASE_NAME}"
+    zinit update "${ZI_SNIPPETS_PATH}/$(basename ${i})"
   done
 }
 
@@ -155,11 +155,18 @@ function t() {
 }
 
 # Provide the ability to change the current working directory when exiting Yazi.
-#    * return null
+# From [yazi - quick-start](https://yazi-rs.github.io/docs/quick-start).
+#   *return null
+# function y() {
+#   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+#   yazi "$@" --cwd-file="${tmp}"
+#   IFS= read -r -d '' cwd <"${tmp}"
+#   [ -n "${cwd}" ] && [ "${cwd}" != "${PWD}" ] && builtin cd -- "${cwd}"
+#   rm -f -- "${tmp}"
+# }
+
+# Use yazi to browser directory and file.
+#   *return null
 function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="${tmp}"
-  IFS= read -r -d '' cwd <"${tmp}"
-  [ -n "${cwd}" ] && [ "${cwd}" != "${PWD}" ] && builtin cd -- "${cwd}"
-  rm -f -- "${tmp}"
+  yazi "$@"
 }

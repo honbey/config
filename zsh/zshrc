@@ -14,7 +14,7 @@ zinit snippet "${ZSH_CONFIG}/function.zsh"
 
 # Homebrew/Linuxbrew
 [[ -d /opt/homebrew/bin ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
-[[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# [[ -d /home/linuxbrew/.linuxbrew/bin ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Load starship theme
 zinit ice nocompletions

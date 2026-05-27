@@ -128,6 +128,7 @@ alias glogc='git logc'
 alias gck='git checkout'
 alias gb='git branch'
 alias gt='git tag'
+alias gd='git diff'
 
 ### Custom ###
 [[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"

@@ -129,11 +129,6 @@ alias gck='git checkout'
 alias gb='git branch'
 alias gt='git tag'
 
-###################
-# Ollama          #
-###################
-alias start_ollama='OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /opt/homebrew/opt/ollama/bin/ollama serve'
-
 ### Custom ###
 [[ -d "${HOME}/.bin" ]] && add-path "${HOME}/.bin"
 # Environment varibles(emails, api tokens etc.)
